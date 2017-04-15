@@ -8,23 +8,12 @@
 
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-// Import ngrx Tools
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
-
-// Import ngRx Store
-import { reducer } from '../store/reducers';
-import { MainEffects } from '../store/effects/mainEffects';
-import { MainActions } from '../store/actions/mainActions';
-
-// Import Providers Service
-import { DatasService } from "../providers/datas-service/datas-service";
+// // Import ngrx Tools
+import { NgRxStoreModule } from "../store/store.module";
 
 // import App & RootPage
 import { MyApp } from './app.component';
@@ -39,10 +28,7 @@ import { HomePage } from '../pages/home/home';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule,
-    EffectsModule.runAfterBootstrap(MainEffects),
-    StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    NgRxStoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -52,10 +38,7 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatasService,
-    MainActions,
-    MainEffects
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

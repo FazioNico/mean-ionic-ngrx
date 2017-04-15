@@ -30,7 +30,7 @@
          .map<Action, any>(toPayload)
          .switchMap((payload:Observable<any>) => {
             // return Observable.of({ type: 'LOAD_DATAS_ARRAY', payload: { loading: true } })
-            return this._database.getDatasArrayMock(payload)
+            return this._database.getDatasArray(payload)
          })
 
  }
