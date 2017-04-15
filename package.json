@@ -62,7 +62,8 @@
   },
   "version": "0.0.1",
   "config": {
-    "ionic_purge_decorators": false
+    "ionic_purge_decorators": false,
+    "ionic_webpack": "./webpack.config.js"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",

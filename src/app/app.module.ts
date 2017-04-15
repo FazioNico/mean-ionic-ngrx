@@ -12,7 +12,10 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-// // Import ngrx Tools
+// Import Environment Variables Module
+import { EnvironmentsModule } from "./environment/environment.module";
+
+// Import ngrx Tools
 import { NgRxStoreModule } from "../store/store.module";
 
 // import App & RootPage
@@ -28,7 +31,8 @@ import { HomePage } from '../pages/home/home';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    NgRxStoreModule
+    NgRxStoreModule,
+    EnvironmentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

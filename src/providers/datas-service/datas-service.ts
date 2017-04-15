@@ -6,12 +6,14 @@
  * @Last modified time: 15-04-2017
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
-const TODOS_URL = 'http://localhost:8080'
+import { EnvVariables } from '../../app/environment/environment.token';
+import { IEnvironment } from "../../../environments/env-model";
+
 /*
   Generated class for the DatasService provider.
 
@@ -21,14 +23,19 @@ const TODOS_URL = 'http://localhost:8080'
 @Injectable()
 export class DatasService {
 
-  constructor(public http: Http) {
-    console.log('Hello DatasService Provider');
+  private apiEndPoint:string;
+
+  constructor(
+    public http: Http,
+    @Inject(EnvVariables) public envVariables:IEnvironment
+  ) {
+    this.apiEndPoint = this.envVariables.apiEndpoint
   }
 
   getDatasArray(_params):Observable<any> {
     //console.log('Firebase-> Load data as Array: ' , _params.path);
     return Observable.create((observer) => {
-      this.http.get(`${TODOS_URL}${_params.path}`)
+      this.http.get(`${this.apiEndPoint}${_params.path}`)
                .map(response => response.json())
                .subscribe(
                   datas => {
