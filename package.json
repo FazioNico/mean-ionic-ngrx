@@ -12,6 +12,10 @@
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
+    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*+(e2e|spec|index).ts' ./src/",
+    "docs:compo": "node_modules/.bin/compodoc -p tsconfig.json -d docs && npm run serve-docs",
+    "typedoc": "typedoc",
+    "serve-docs": "node_modules/.bin/compodoc -s -d docs",
     "test": "karma start ./test-config/karma.conf.js"
   },
   "dependencies": {
@@ -57,6 +61,7 @@
     "@types/mongoose": "^4.7.9",
     "@types/node": "^7.0.12",
     "angular2-template-loader": "^0.6.2",
+    "compodoc": "0.0.41",
     "html-loader": "^0.4.5",
     "jasmine-core": "^2.5.2",
     "karma": "^1.6.0",
@@ -71,6 +76,7 @@
     "nodemon": "^1.11.0",
     "null-loader": "^0.1.1",
     "ts-loader": "^2.0.3",
+    "typedoc": "^0.5.10",
     "typescript": "~2.2.1"
   },
   "engines": {
