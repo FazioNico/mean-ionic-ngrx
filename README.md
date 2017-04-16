@@ -17,6 +17,7 @@ Hop is help you to start your project on the right way.
 - [Typescript](https://www.npmjs.com/package/typescript) Latest stable version install in Global `$ npm install -g typescript`
 - [Nodemon](https://nodemon.io/) Latest stable version install in Global `$ npm install -g nodemon`
 - [Ionic 3](https://ionicframework.com/) & [Cordova](https://cordova.apache.org/) - Latest stable version install in Global `$ npm install -g ionic cordova`
+- [TypeDoc](http://typedoc.org/) Latest stable version install in Global `$ npm install -g typedoc`
 - Good knowledge of [ReactiveX API](http://reactivex.io/) & [NgRx](https://github.com/ngrx)
 - And you should also have git installed to a better working flow.
 
@@ -39,6 +40,11 @@ Hop is help you to start your project on the right way.
 - `$ npm run deploy:server` to deploy server side on heroku
 - `$ npm run deploy:client` to deploy client side on GitHub gh-pages
 
+### Documentations
+- `$ npm run docs`
+- open file `./docs/index.html` in your favorite browser.
+
+Current Documentations: [Checkout current docs](docs/index.html)
 
 ## Server REST API Endpoints
 ````
@@ -80,6 +86,12 @@ USERS Endpoints
   methode: $_GET
 
 ````
+## Documentation
+App Documentations is generate by typeDoc. Use the following cmd to generate documentation
+- `$ npm run docs`
+- open file `./docs/index.html` in your favorite browser.
+
+Current Documentations: [Checkout current docs](docs/index.html)
 
 ## About author
 Hi, i'm a Front-end developper living in Geneva Switzerland and i build hybrid mobile & web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website http://nicolasfazio.ch
