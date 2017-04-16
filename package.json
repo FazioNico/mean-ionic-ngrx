@@ -12,7 +12,7 @@
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
     "ionic:serve": "ionic-app-scripts serve",
-    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*+(e2e|spec|index).ts' ./src/",
+    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
     "typedoc": "typedoc",
     "test": "karma start ./test-config/karma.conf.js"
   },

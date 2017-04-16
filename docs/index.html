@@ -1,0 +1,322 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>mean-ionic-ngrx</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">mean-ionic-ngrx</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> mean-ionic-ngrx</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<p><img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="http://code.runnable.com/images/provider-icons/icon-node.js.svg" width="80"><img src="http://amver.lt/wp-content/uploads/2016/07/Mathematic-Plus2.ico" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"></p>
+				<h1 id="mean-ionic-ngrx">MEAN Ionic NgRx</h1>
+				<blockquote>Full MEAN stack with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)</blockquote>
+				<h2 id="overview">Overview</h2>
+				<p>MEAN Ionic NgRx is a TypeScript Full Stack MongoDB + ExpressJS + Angular2 + NodeJS with Ionic 2 Framework to provide multi platform application.</p>
+				<p>It&#39;s a simple todo application exemple with server-side Users JWT authentification &amp; using ReactiveX API (ngrx/Store + ngrx/Effects)</p>
+				<p>Hop is help you to start your project on the right way.</p>
+				<h2 id="prerequisites">Prerequisites</h2>
+				<ul>
+					<li>NVM - <a href="https://github.com/creationix/nvm">Download</a> &amp; Install Node Version Manage</li>
+					<li>NodeJS 7 - Download &amp; Install Node.js and the npm package manager with NVM <code>$ nvm install node 7</code>.</li>
+					<li>MongoDB - <a href="https://www.mongodb.com">Download</a> &amp; Install MongoDB, and make sure it&#39;s running on the default port (27017).</li>
+					<li><a href="https://www.npmjs.com/package/typescript">Typescript</a> Latest stable version install in Global <code>$ npm install -g typescript</code></li>
+					<li><a href="https://nodemon.io/">Nodemon</a> Latest stable version install in Global <code>$ npm install -g nodemon</code></li>
+					<li><a href="https://ionicframework.com/">Ionic 3</a> &amp; <a href="https://cordova.apache.org/">Cordova</a> - Latest stable version install in Global <code>$ npm install -g ionic cordova</code></li>
+					<li><a href="http://typedoc.org/">TypeDoc</a> Latest stable version install in Global <code>$ npm install -g typedoc</code></li>
+					<li>Good knowledge of <a href="http://reactivex.io/">ReactiveX API</a> &amp; <a href="https://github.com/ngrx">NgRx</a></li>
+					<li>And you should also have git installed to a better working flow.</li>
+				</ul>
+				<h2 id="get-started">Get Started</h2>
+				<h3 id="installation">Installation</h3>
+				<ul>
+					<li><code>$ nvm use 7</code></li>
+					<li><code>$ npm install</code></li>
+				</ul>
+				<h3 id="start">Start</h3>
+				<ul>
+					<li><code>$ npm run start:dev</code> to start in dev mode</li>
+					<li><code>$ npm run start:prod</code> to start in prod mode</li>
+				</ul>
+				<h3 id="build">Build</h3>
+				<ul>
+					<li><code>$ npm run build:browser</code> to build app browser version</li>
+					<li><code>$ npm run build:browser --prod</code> to build app browser version in Angular Prod mode</li>
+					<li><code>$ npm run build:ios</code> to build app IOS version</li>
+					<li><code>$ npm run build:ios --prod</code> to build app IOS version in Angular Prod mode</li>
+				</ul>
+				<h3 id="deploy">Deploy</h3>
+				<ul>
+					<li><code>$ npm run deploy:server</code> to deploy server side on heroku</li>
+					<li><code>$ npm run deploy:client</code> to deploy client side on GitHub gh-pages</li>
+				</ul>
+				<h3 id="documentations">Documentations</h3>
+				<ul>
+					<li><code>$ npm run docs</code></li>
+					<li>open file <code>./docs/index.html</code> in your favorite browser.</li>
+				</ul>
+				<p>Current Documentations: <a href="docs/index.html">Checkout current docs</a></p>
+				<h2 id="server-rest-api-endpoints">Server REST API Endpoints</h2>
+				<pre><code><span class="hljs-string">TODOS</span> <span class="hljs-string">Endpoints</span>
+
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/todos</span>
+<span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span> <span class="hljs-string">/</span> <span class="hljs-string">$_POST</span>
+
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/todos/:id</span>
+<span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span> <span class="hljs-string">/</span> <span class="hljs-string">$_POST</span> <span class="hljs-string">/</span> <span class="hljs-string">$_DELETE</span>
+
+
+<span class="hljs-string">AUTH</span> <span class="hljs-string">Endpoints</span>
+
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/auth</span>
+<span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">  methode:</span> <span class="hljs-string">$_POST</span>
+
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/isauth</span>
+<span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span><span class="hljs-string">/true</span>
+<span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span>
+
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/signup</span>
+<span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">  methode:</span> <span class="hljs-string">$_POST</span>
+
+
+<span class="hljs-string">USERS</span> <span class="hljs-string">Endpoints</span>
+
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/users</span>
+<span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span>
+
+
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/users/:id</span>
+<span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span>
+</code></pre><h2 id="documentation">Documentation</h2>
+				<p>App Documentations is generate by typeDoc. Use the following cmd to generate documentation</p>
+				<ul>
+					<li><code>$ npm run docs</code></li>
+					<li>open file <code>./docs/index.html</code> in your favorite browser.</li>
+				</ul>
+				<p>Current Documentations: <a href="docs/index.html">Checkout current docs</a></p>
+				<h2 id="about-author">About author</h2>
+				<p>Hi, i&#39;m a Front-end developper living in Geneva Switzerland and i build hybrid mobile &amp; web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website <a href="http://nicolasfazio.ch">http://nicolasfazio.ch</a></p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_environments_development_.html">"environments/development"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_environments_env_model_.html">"environments/env-<wbr>model"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_environments_production_.html">"environments/production"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_app_component_.html">"src/app/app.component"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_app_module_.html">"src/app/app.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_environment_environment_module_.html">"src/app/environment/environment.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_environment_environment_token_.html">"src/app/environment/environment.token"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_main_.html">"src/app/main"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_home_home_.html">"src/pages/home/home"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_items_.html">"src/pages/items/items"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_items_module_.html">"src/pages/items/items.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_providers_datas_service_datas_service_.html">"src/providers/datas-<wbr>service/datas-<wbr>service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_actions_mainactions_.html">"src/store/actions/main<wbr>Actions"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_app_stats_.html">"src/store/app-<wbr>stats"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_effects_maineffects_.html">"src/store/effects/main<wbr>Effects"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_reducers_authcheckedreducer_.html">"src/store/reducers/auth<wbr>Checked<wbr>Reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_reducers_currentuserreducer_.html">"src/store/reducers/current<wbr>User<wbr>Reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_reducers_datasreducer_.html">"src/store/reducers/datas<wbr>Reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_reducers_errorreducer_.html">"src/store/reducers/error<wbr>Reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_reducers_loadedreducer_.html">"src/store/reducers/loaded<wbr>Reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_reducers_loadingreducer_.html">"src/store/reducers/loading<wbr>Reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_reducers_queryparamsreducer_.html">"src/store/reducers/query<wbr>Params<wbr>Reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_store_module_.html">"src/store/store.module"</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_src_store_reducers_index_.html">"src/store/reducers/index"</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

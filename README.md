@@ -42,7 +42,6 @@ Hop is help you to start your project on the right way.
 
 ### Documentations
 - `$ npm run docs`
-- open file `./docs/index.html` in your favorite browser.
 
 Current Documentations: [Checkout current docs](docs/index.html)
 
@@ -88,8 +87,7 @@ USERS Endpoints
 ````
 ## Documentation
 App Documentations is generate by typeDoc. Use the following cmd to generate documentation
-- `$ npm run docs`
-- open file `./docs/index.html` in your favorite browser.
+- `$ npm run docs` will generate Angular Application documentation and open the index doc in browser.
 
 Current Documentations: [Checkout current docs](docs/index.html)
 
