@@ -3,9 +3,9 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 16-04-2017
  */
- import { combineReducers, ActionReducer } from '@ngrx/store';
+ import { combineReducers, ActionReducer, Action } from '@ngrx/store';
  import { compose } from '@ngrx/core/compose';
  import { storeFreeze } from 'ngrx-store-freeze';
 
@@ -19,9 +19,8 @@
 
  import { AppStateI, RecucerStateI } from '../app-stats';
 
- const environment = {
-   name: 'dev'
- };
+ declare const process: any; // Typescript compiler will complain without this
+
  const reducers:RecucerStateI = {
    dataArray: fromDatas.reducer,
    loading: fromLoading.reducer,
@@ -34,10 +33,8 @@
  const developmentReducer:ActionReducer<AppStateI> = compose(storeFreeze, combineReducers)(reducers);
  const productionReducer: ActionReducer<AppStateI> = combineReducers(reducers);
 
- export function reducer(state: any, action: any):AppStateI {
-   if (environment.name === 'prod') {
-     return productionReducer(state, action);
-   } else {
-     return developmentReducer(state, action);
-   }
+ export function reducer(state: any, action: Action):AppStateI {
+   let combineReducer:AppStateI = process.env.IONIC_ENV === 'prod' ? productionReducer(state, action) : developmentReducer(state, action);
+   if(process.env.NODE_ENV === 'prod') { combineReducer = productionReducer(state, action) };
+   return combineReducer
  }
