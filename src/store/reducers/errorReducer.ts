@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 17-04-2017
  */
 
  import { Action } from "@ngrx/store";
@@ -20,6 +20,15 @@
      //console.log('ERROR REDUCER-> ', action);
      switch (action.type) {
        case MainActions.GET_DATAS_ARRAY_FAILED: {
+         return Object.assign({}, state, { error: action.payload })
+       }
+       case MainActions.UPDATE_DATA_FAILED: {
+         return Object.assign({}, state, { error: action.payload })
+       }
+       case MainActions.DELETE_DATA_FAILED: {
+         return Object.assign({}, state, { error: action.payload })
+       }
+       case MainActions.CREATE_DATA_FAILED: {
          return Object.assign({}, state, { error: action.payload })
        }
        default: {

@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 17-04-2017
  */
 
  import { Action } from "@ngrx/store";
@@ -28,6 +28,37 @@
        case 'GET_DATAS_ARRAY_FAILED': {
          return Object.assign({}, state, { loaded: false})
        }
+
+       case 'UPDATE_DATA': {
+         return Object.assign({}, state, { loaded: false})
+       }
+       case 'UPDATE_DATA_SUCCESS': {
+         return Object.assign({}, state, { loaded: true})
+       }
+       case 'UPDATE_DATA_FAILED': {
+         return Object.assign({}, state, { loaded: false})
+       }
+
+       case 'DELETE_DATA': {
+         return Object.assign({}, state, { loaded: false})
+       }
+       case 'DELETE_DATA_SUCCESS': {
+         return Object.assign({}, state, { loaded: true})
+       }
+       case 'DELETE_DATA_FAILED': {
+         return Object.assign({}, state, { loaded: false})
+       }
+
+       case 'CREATE_DATA': {
+         return Object.assign({}, state, { loaded: false})
+       }
+       case 'CREATE_DATA_SUCCESS': {
+         return Object.assign({}, state, { loaded: true})
+       }
+       case 'CREATE_DATA_FAILED': {
+         return Object.assign({}, state, { loaded: false})
+       }
+
        default: {
          return <ILoadedState>state;
        }
