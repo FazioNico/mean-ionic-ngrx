@@ -68,17 +68,17 @@ export class Items implements OnInit{
 
   navToEdit(todo:any):void {
     console.log(todo)
-    // this.navCtrl.push('ItemEditPage', {
-    //   id: todo._id,
-    //   todo: todo
-    // })
+    this.navCtrl.push('ItemEditPage', {
+      id: todo._id,
+      todo: todo
+    })
   }
 
   /* Core Methode */
   doQuery():void {
     this.store.dispatch(<Action>this.mainActions.get_data_array('/todos'));
   }
-  
+
   clearInput(todoInput:any):void{
     todoInput.value = '';
   }
