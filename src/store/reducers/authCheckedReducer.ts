@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 18-04-2017
  */
 
  import { Action } from "@ngrx/store";
@@ -20,6 +20,18 @@
  export function reducer (state:IAuthCheckedState = intitialState, action:Action):IAuthCheckedState {
      //console.log('CURRENT USER REDUCER-> ', action);
      switch (action.type) {
+       case 'LOGIN_SUCCESS':{
+         console.log(state, action.payload)
+          return Object.assign({}, state, { authChecked: true, currentCreds: action.payload.token })
+       }
+
+       case 'CHECK_AUTH_SUCCESS': {
+         return Object.assign({}, state, { authChecked: true })
+       }
+       case 'CHECK_AUTH_FAILED': {
+         return Object.assign({}, state, { authChecked: false })
+       }
+
        default: {
          return <IAuthCheckedState>state;
        }

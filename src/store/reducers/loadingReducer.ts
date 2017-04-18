@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-04-2017
+ * @Last modified time: 18-04-2017
  */
 
  import { Action } from "@ngrx/store";
@@ -60,6 +60,18 @@
          return Object.assign({}, state, { loading: false})
        }
 
+       case 'CHECK_AUTH': {
+         return Object.assign({}, state, { loading: true })
+       }
+       case 'CHECK_AUTH_SUCCESS': {
+         return Object.assign({}, state, { loading: false })
+       }
+       case 'CHECK_AUTH_FAILED': {
+         return Object.assign({}, state, { loading: false })
+       }
+       case 'CHECK_AUTH_NO_USER': {
+         return Object.assign({}, state, { loading: false })
+       }
        default: {
          return <ILoadingState>state;
        }

@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 18-04-2017
  */
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,12 +21,14 @@ import { NgRxStoreModule } from "../store/store.module";
 // import App & RootPage
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { Login } from '../pages/login/login';
 
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    Login
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    Login
   ],
   providers: [
     StatusBar,

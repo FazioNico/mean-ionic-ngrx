@@ -3,7 +3,7 @@
 * @Date:   15-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 18-04-2017
 */
 
 import { NgModule } from '@angular/core';
@@ -21,6 +21,7 @@ import { MainActions } from '../store/actions/mainActions';
 
 // Import Providers Service
 import { DatasService } from "../providers/datas-service/datas-service";
+import { AuthService } from "../providers/auth-service/auth-service";
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { DatasService } from "../providers/datas-service/datas-service";
   ],
   providers: [
     DatasService,
+    AuthService,
     MainActions,
     MainEffects
   ]

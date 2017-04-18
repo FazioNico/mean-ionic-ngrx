@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-04-2017
+ * @Last modified time: 18-04-2017
  */
 
 
@@ -14,13 +14,15 @@
 
  import { MainActions } from '../../store/actions/mainActions';
  import { DatasService } from "../../providers/datas-service/datas-service";
+ import { AuthService } from "../../providers/auth-service/auth-service";
 
  @Injectable()
  export class MainEffects {
 
      constructor(
        private action$: Actions,
-       private _database: DatasService
+       private _database: DatasService,
+       private _auth: AuthService
      ) {
      }
 
@@ -55,4 +57,48 @@
          .switchMap((payload:any) => {
             return this._database.create(payload)
          })
+
+
+     @Effect() loginAction$ = this.action$
+         // Listen for the 'LOGIN' action
+         .ofType(MainActions.LOGIN)
+         .map<Action, any>(toPayload)
+         .switchMap((payload:Observable<any>) => {
+             return this._auth.doAuth(payload)
+         })
+
+     @Effect() loginSuccessAction$ = this.action$
+         // Listen for the 'LOGIN' action
+         .ofType(MainActions.LOGIN_SUCCESS)
+         .map<Action, any>(toPayload)
+         .switchMap((payload:Observable<any>) => {
+             return this._auth.saveToken(payload)
+         })
+         .map<Action, any>((payload)=> {
+           console.log(payload)
+           if(payload.type === MainActions.TOKEN_SAVE_SUCCESS){
+             return <Action>{ type: MainActions.CHECK_AUTH }
+           }
+           else {
+             return <Action>{ type: MainActions.TOKEN_SAVE_FAILED }
+           }
+         })
+
+     @Effect() checkAuth$ = this.action$
+         // Listen for the 'CHECK_AUTH' action
+         .ofType(MainActions.CHECK_AUTH)
+         .switchMap<Action, any>(() => this._auth.isAuth())
+         .take(1)
+         .map<Action, any>((_result:any) => {
+             if (_result.type === MainActions.CHECK_AUTH_SUCCESS) {
+                 return <Action>{ type: MainActions.CHECK_AUTH_SUCCESS, payload: _result.payload }
+             } else {
+                 return <Action>{ type: MainActions.CHECK_AUTH_NO_USER, payload: null }
+             }
+
+         }).catch((res: any) => {
+           console.log('-->', res)
+           return Observable.of({ type: MainActions.CHECK_AUTH_FAILED, payload: res })
+         })
+
  }

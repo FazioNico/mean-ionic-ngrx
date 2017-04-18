@@ -3,7 +3,7 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-03-2017
+ * @Last modified time: 18-04-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -148,6 +148,7 @@ export const userController = {
               res.json({
                 success: true,
                 message: 'Enjoy your token!',
+                user: user,
                 token: token
               });
             }
