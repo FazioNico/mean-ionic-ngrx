@@ -93,6 +93,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_providers_auth_service_auth_service_.authservice.html#_apiendpoint" class="tsd-kind-icon">_api<wbr>End<wbr>Point</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_providers_auth_service_auth_service_.authservice.html#_authurl" class="tsd-kind-icon">_auth<wbr>Url</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_providers_auth_service_auth_service_.authservice.html#_isauthurl" class="tsd-kind-icon">_is<wbr>Auth<wbr>Url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_providers_auth_service_auth_service_.authservice.html#_signupurl" class="tsd-kind-icon">_sign<wbr>UpUrl</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#envvariables" class="tsd-kind-icon">env<wbr>Variables</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#http" class="tsd-kind-icon">http</a></li>
 							</ul>
@@ -102,10 +103,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#delltoken" class="tsd-kind-icon">dell<wbr>Token</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#doauth" class="tsd-kind-icon">do<wbr>Auth</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#dosignup" class="tsd-kind-icon">do<wbr>Sign<wbr>Up</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#docreateuser" class="tsd-kind-icon">do<wbr>Create<wbr>User</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#dologout" class="tsd-kind-icon">do<wbr>Logout</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#extractdata" class="tsd-kind-icon">extract<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#isauth" class="tsd-kind-icon">is<wbr>Auth</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#logoutuser" class="tsd-kind-icon">logout<wbr>User</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_providers_auth_service_auth_service_.authservice.html#savetoken" class="tsd-kind-icon">save<wbr>Token</a></li>
 							</ul>
 						</section>
@@ -149,7 +150,7 @@
 					<div class="tsd-signature tsd-kind-icon">_api<wbr>End<wbr>Point<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/providers/auth-service/auth-service.ts:33</li>
+							<li>Defined in src/providers/auth-service/auth-service.ts:32</li>
 						</ul>
 					</aside>
 				</section>
@@ -159,7 +160,7 @@
 					<div class="tsd-signature tsd-kind-icon">_auth<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/auth&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/providers/auth-service/auth-service.ts:34</li>
+							<li>Defined in src/providers/auth-service/auth-service.ts:33</li>
 						</ul>
 					</aside>
 				</section>
@@ -167,6 +168,16 @@
 					<a name="_isauthurl" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _is<wbr>Auth<wbr>Url</h3>
 					<div class="tsd-signature tsd-kind-icon">_is<wbr>Auth<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/isauth&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/providers/auth-service/auth-service.ts:34</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_signupurl" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _sign<wbr>UpUrl</h3>
+					<div class="tsd-signature tsd-kind-icon">_sign<wbr>UpUrl<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;/signup&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
 							<li>Defined in src/providers/auth-service/auth-service.ts:35</li>
@@ -179,7 +190,7 @@
 					<div class="tsd-signature tsd-kind-icon">env<wbr>Variables<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_environments_env_model_.ienvironment.html" class="tsd-signature-type">IEnvironment</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/providers/auth-service/auth-service.ts:40</li>
+							<li>Defined in src/providers/auth-service/auth-service.ts:39</li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +200,7 @@
 					<div class="tsd-signature tsd-kind-icon">http<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Http</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/providers/auth-service/auth-service.ts:39</li>
+							<li>Defined in src/providers/auth-service/auth-service.ts:38</li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +217,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/providers/auth-service/auth-service.ts:122</li>
+									<li>Defined in src/providers/auth-service/auth-service.ts:144</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -223,7 +234,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/providers/auth-service/auth-service.ts:77</li>
+									<li>Defined in src/providers/auth-service/auth-service.ts:76</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -237,19 +248,42 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="dosignup" class="tsd-anchor"></a>
-					<h3>do<wbr>Sign<wbr>Up</h3>
+					<a name="docreateuser" class="tsd-anchor"></a>
+					<h3>do<wbr>Create<wbr>User</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">do<wbr>Sign<wbr>Up<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">do<wbr>Create<wbr>User<span class="tsd-signature-symbol">(</span>_payload<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/providers/auth-service/auth-service.ts:103</li>
+									<li>Defined in src/providers/auth-service/auth-service.ts:102</li>
 								</ul>
 							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>_payload: <span class="tsd-signature-type">any</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="dologout" class="tsd-anchor"></a>
+					<h3>do<wbr>Logout</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">do<wbr>Logout<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/providers/auth-service/auth-service.ts:44</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -263,7 +297,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/providers/auth-service/auth-service.ts:107</li>
+									<li>Defined in src/providers/auth-service/auth-service.ts:129</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -286,27 +320,10 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/providers/auth-service/auth-service.ts:49</li>
+									<li>Defined in src/providers/auth-service/auth-service.ts:48</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="logoutuser" class="tsd-anchor"></a>
-					<h3>logout<wbr>User</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">logout<wbr>User<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/providers/auth-service/auth-service.ts:45</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -320,7 +337,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/providers/auth-service/auth-service.ts:114</li>
+									<li>Defined in src/providers/auth-service/auth-service.ts:136</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -365,6 +382,9 @@
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_providers_auth_service_auth_service_.authservice.html#_isauthurl" class="tsd-kind-icon">_is<wbr>Auth<wbr>Url</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_providers_auth_service_auth_service_.authservice.html#_signupurl" class="tsd-kind-icon">_sign<wbr>UpUrl</a>
+							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_providers_auth_service_auth_service_.authservice.html#envvariables" class="tsd-kind-icon">env<wbr>Variables</a>
 							</li>
@@ -378,16 +398,16 @@
 								<a href="_src_providers_auth_service_auth_service_.authservice.html#doauth" class="tsd-kind-icon">do<wbr>Auth</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_providers_auth_service_auth_service_.authservice.html#dosignup" class="tsd-kind-icon">do<wbr>Sign<wbr>Up</a>
+								<a href="_src_providers_auth_service_auth_service_.authservice.html#docreateuser" class="tsd-kind-icon">do<wbr>Create<wbr>User</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_src_providers_auth_service_auth_service_.authservice.html#dologout" class="tsd-kind-icon">do<wbr>Logout</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_providers_auth_service_auth_service_.authservice.html#extractdata" class="tsd-kind-icon">extract<wbr>Data</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_providers_auth_service_auth_service_.authservice.html#isauth" class="tsd-kind-icon">is<wbr>Auth</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_providers_auth_service_auth_service_.authservice.html#logoutuser" class="tsd-kind-icon">logout<wbr>User</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_src_providers_auth_service_auth_service_.authservice.html#savetoken" class="tsd-kind-icon">save<wbr>Token</a>

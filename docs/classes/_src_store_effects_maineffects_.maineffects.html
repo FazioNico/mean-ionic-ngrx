@@ -90,16 +90,20 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_maineffects_.maineffects.html#_alert" class="tsd-kind-icon">_alert</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_maineffects_.maineffects.html#_auth" class="tsd-kind-icon">_auth</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_maineffects_.maineffects.html#_database" class="tsd-kind-icon">_database</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_maineffects_.maineffects.html#action_" class="tsd-kind-icon">action$</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#checkauth_" class="tsd-kind-icon">check<wbr>Auth$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#checkauthaction_" class="tsd-kind-icon">check<wbr>Auth<wbr>Action$</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#createaction_" class="tsd-kind-icon">create<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#createuseraction_" class="tsd-kind-icon">create<wbr>User<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#handleerroraction_" class="tsd-kind-icon">handle<wbr>Error<wbr>Action$</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#loadaction_" class="tsd-kind-icon">load<wbr>Action$</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#loginaction_" class="tsd-kind-icon">login<wbr>Action$</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#loginsuccessaction_" class="tsd-kind-icon">login<wbr>Success<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#logout_" class="tsd-kind-icon">logout$</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#removeaction_" class="tsd-kind-icon">remove<wbr>Action$</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#updateaction_" class="tsd-kind-icon">update<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_maineffects_.maineffects.html#usersuccessaction_" class="tsd-kind-icon">user<wbr>Success<wbr>Action$</a></li>
 							</ul>
 						</section>
 					</div>
@@ -111,13 +115,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Main<wbr>Effects<span class="tsd-signature-symbol">(</span>action$<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Actions</span>, _database<span class="tsd-signature-symbol">: </span><a href="_src_providers_datas_service_datas_service_.datasservice.html" class="tsd-signature-type">DatasService</a>, _auth<span class="tsd-signature-symbol">: </span><a href="_src_providers_auth_service_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_store_effects_maineffects_.maineffects.html" class="tsd-signature-type">MainEffects</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Main<wbr>Effects<span class="tsd-signature-symbol">(</span>action$<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Actions</span>, _database<span class="tsd-signature-symbol">: </span><a href="_src_providers_datas_service_datas_service_.datasservice.html" class="tsd-signature-type">DatasService</a>, _auth<span class="tsd-signature-symbol">: </span><a href="_src_providers_auth_service_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a>, _alert<span class="tsd-signature-symbol">: </span><a href="_src_providers_alert_service_alert_service_.alertservice.html" class="tsd-signature-type">AlertService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_store_effects_maineffects_.maineffects.html" class="tsd-signature-type">MainEffects</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/store/effects/mainEffects.ts:20</li>
+									<li>Defined in src/store/effects/mainEffects.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -131,6 +135,9 @@
 								<li>
 									<h5>_auth: <a href="_src_providers_auth_service_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a></h5>
 								</li>
+								<li>
+									<h5>_alert: <a href="_src_providers_alert_service_alert_service_.alertservice.html" class="tsd-signature-type">AlertService</a></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_src_store_effects_maineffects_.maineffects.html" class="tsd-signature-type">MainEffects</a></h4>
 						</li>
@@ -140,12 +147,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a name="_alert" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _alert</h3>
+					<div class="tsd-signature tsd-kind-icon">_alert<span class="tsd-signature-symbol">:</span> <a href="_src_providers_alert_service_alert_service_.alertservice.html" class="tsd-signature-type">AlertService</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/store/effects/mainEffects.ts:27</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
 					<a name="_auth" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _auth</h3>
 					<div class="tsd-signature tsd-kind-icon">_auth<span class="tsd-signature-symbol">:</span> <a href="_src_providers_auth_service_auth_service_.authservice.html" class="tsd-signature-type">AuthService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:25</li>
+							<li>Defined in src/store/effects/mainEffects.ts:26</li>
 						</ul>
 					</aside>
 				</section>
@@ -155,7 +172,7 @@
 					<div class="tsd-signature tsd-kind-icon">_database<span class="tsd-signature-symbol">:</span> <a href="_src_providers_datas_service_datas_service_.datasservice.html" class="tsd-signature-type">DatasService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:24</li>
+							<li>Defined in src/store/effects/mainEffects.ts:25</li>
 						</ul>
 					</aside>
 				</section>
@@ -165,17 +182,17 @@
 					<div class="tsd-signature tsd-kind-icon">action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Actions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:23</li>
+							<li>Defined in src/store/effects/mainEffects.ts:24</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="checkauth_" class="tsd-anchor"></a>
-					<h3>check<wbr>Auth$</h3>
-					<div class="tsd-signature tsd-kind-icon">check<wbr>Auth$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;CHECK_AUTH&#x27; action.ofType(MainActions.CHECK_AUTH).switchMap&lt;Action, any&gt;(() &#x3D;&gt; this._auth.isAuth()).take(1).map&lt;Action, any&gt;((_result:any) &#x3D;&gt; {if (_result.type &#x3D;&#x3D;&#x3D; MainActions.CHECK_AUTH_SUCCESS) {return &lt;Action&gt;{ type: MainActions.CHECK_AUTH_SUCCESS, payload: _result.payload }} else {return &lt;Action&gt;{ type: MainActions.CHECK_AUTH_NO_USER, payload: null }}}).catch((res: any) &#x3D;&gt; {console.log(&#x27;--&gt;&#x27;, res)return Observable.of({ type: MainActions.CHECK_AUTH_FAILED, payload: res })})</span></div>
+					<a name="checkauthaction_" class="tsd-anchor"></a>
+					<h3>check<wbr>Auth<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">check<wbr>Auth<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;CHECK_AUTH&#x27; action.ofType(MainActions.CHECK_AUTH).switchMap&lt;Action, any&gt;(() &#x3D;&gt; this._auth.isAuth()).take(1).map&lt;Action, any&gt;((_result:any) &#x3D;&gt; {if (_result.type &#x3D;&#x3D;&#x3D; MainActions.CHECK_AUTH_SUCCESS) {return &lt;Action&gt;{ type: MainActions.CHECK_AUTH_SUCCESS, payload: _result.payload }} else {return &lt;Action&gt;{ type: MainActions.CHECK_AUTH_NO_USER, payload: null }}}).catch((res: any) &#x3D;&gt; {console.log(&#x27;--&gt;&#x27;, res)return Observable.of({ type: MainActions.CHECK_AUTH_FAILED, payload: res })})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:87</li>
+							<li>Defined in src/store/effects/mainEffects.ts:71</li>
 						</ul>
 					</aside>
 				</section>
@@ -185,7 +202,27 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;CREATE_DATA&#x27; action.ofType(MainActions.CREATE_DATA).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; {return this._database.create(payload)})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:53</li>
+							<li>Defined in src/store/effects/mainEffects.ts:55</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="createuseraction_" class="tsd-anchor"></a>
+					<h3>create<wbr>User<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">create<wbr>User<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;CREATE_USER&#x27; action.ofType(MainActions.CREATE_USER).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {console.log(&quot;in createUser$&quot;, payload)return this._auth.doCreateUser(payload)})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/store/effects/mainEffects.ts:102</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="handleerroraction_" class="tsd-anchor"></a>
+					<h3>handle<wbr>Error<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">handle<wbr>Error<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;CREATE_USER&#x27; action.ofType(MainActions.LOGIN_FAILED,MainActions.LOGOUT_FAILED,MainActions.CHECK_AUTH_FAILED,MainActions.CREATE_DATA_FAILED,MainActions.CREATE_USER_FAILED,MainActions.DELETE_DATA_FAILED,MainActions.UPDATE_DATA_FAILED,MainActions.GET_DATAS_ARRAY_FAILED).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {return this._alert.doDisplayAlert(payload)})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/store/effects/mainEffects.ts:133</li>
 						</ul>
 					</aside>
 				</section>
@@ -195,7 +232,7 @@
 					<div class="tsd-signature tsd-kind-icon">load<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;GET_DATAS_ARRAY&#x27; action.ofType(MainActions.GET_DATAS_ARRAY).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {return this._database.getDatasArray(payload)})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:29</li>
+							<li>Defined in src/store/effects/mainEffects.ts:31</li>
 						</ul>
 					</aside>
 				</section>
@@ -205,17 +242,17 @@
 					<div class="tsd-signature tsd-kind-icon">login<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;LOGIN&#x27; action.ofType(MainActions.LOGIN).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {return this._auth.doAuth(payload)})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:62</li>
+							<li>Defined in src/store/effects/mainEffects.ts:63</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="loginsuccessaction_" class="tsd-anchor"></a>
-					<h3>login<wbr>Success<wbr>Action$</h3>
-					<div class="tsd-signature tsd-kind-icon">login<wbr>Success<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;LOGIN&#x27; action.ofType(MainActions.LOGIN_SUCCESS).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {return this._auth.saveToken(payload)}).map&lt;Action, any&gt;((payload)&#x3D;&gt; {console.log(payload)if(payload.type &#x3D;&#x3D;&#x3D; MainActions.TOKEN_SAVE_SUCCESS){return &lt;Action&gt;{ type: MainActions.CHECK_AUTH }}else {return &lt;Action&gt;{ type: MainActions.TOKEN_SAVE_FAILED }}})</span></div>
+					<a name="logout_" class="tsd-anchor"></a>
+					<h3>logout$</h3>
+					<div class="tsd-signature tsd-kind-icon">logout$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;LOGOUT&#x27; action.ofType(MainActions.LOGOUT).switchMap&lt;Action, any&gt;(() &#x3D;&gt; this._auth.doLogout())// If successful, dispatch success action with result.flatMap&lt;Action, any&gt;(action &#x3D;&gt;{return Observable.concat(Observable.of(&lt;Action&gt;{ type: action.type }),Observable.of(&lt;Action&gt;{type: MainActions.LOGOUT_SUCCESS, payload: null }))})//.map((res: Observable&lt;any&gt;) &#x3D;&gt; ({ type: MainActions.LOGOUT_SUCCESS, payload: null }))// If request fails, dispatch failed action.catch((res: any) &#x3D;&gt; Observable.of({ type: MainActions.LOGOUT_FAILED, payload: res }))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:70</li>
+							<li>Defined in src/store/effects/mainEffects.ts:87</li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +262,7 @@
 					<div class="tsd-signature tsd-kind-icon">remove<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;DELETE_DATA&#x27; action.ofType(MainActions.DELETE_DATA).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; {return this._database.delete(payload)})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:45</li>
+							<li>Defined in src/store/effects/mainEffects.ts:47</li>
 						</ul>
 					</aside>
 				</section>
@@ -235,7 +272,17 @@
 					<div class="tsd-signature tsd-kind-icon">update<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;UPDATE_DATA&#x27; action.ofType(MainActions.UPDATE_DATA).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; {return this._database.update(payload)})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/mainEffects.ts:37</li>
+							<li>Defined in src/store/effects/mainEffects.ts:39</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="usersuccessaction_" class="tsd-anchor"></a>
+					<h3>user<wbr>Success<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">user<wbr>Success<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;LOGIN_SUCCESS &amp; CREATE_USER_SUCCESS&#x27; action.ofType(MainActions.CREATE_USER_SUCCESS, MainActions.LOGIN_SUCCESS).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {return this._auth.saveToken(payload)}).flatMap&lt;Action, any&gt;(payload &#x3D;&gt;{if(payload.type &#x3D;&#x3D;&#x3D; MainActions.TOKEN_SAVE_SUCCESS){return Observable.concat(Observable.of(&lt;Action&gt;{ type: MainActions.TOKEN_SAVE_SUCCESS, payload: payload }),Observable.of(&lt;Action&gt;{ type: MainActions.CHECK_AUTH }))}else {return Observable.concat(Observable.of( &lt;Action&gt;{ type: MainActions.TOKEN_SAVE_FAILED }),Observable.of(&lt;Action&gt;{ type: MainActions.CHECK_AUTH_FAILED }))}})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/store/effects/mainEffects.ts:111</li>
 						</ul>
 					</aside>
 				</section>
@@ -263,6 +310,9 @@
 								<a href="_src_store_effects_maineffects_.maineffects.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+								<a href="_src_store_effects_maineffects_.maineffects.html#_alert" class="tsd-kind-icon">_alert</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
 								<a href="_src_store_effects_maineffects_.maineffects.html#_auth" class="tsd-kind-icon">_auth</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
@@ -272,10 +322,16 @@
 								<a href="_src_store_effects_maineffects_.maineffects.html#action_" class="tsd-kind-icon">action$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_src_store_effects_maineffects_.maineffects.html#checkauth_" class="tsd-kind-icon">check<wbr>Auth$</a>
+								<a href="_src_store_effects_maineffects_.maineffects.html#checkauthaction_" class="tsd-kind-icon">check<wbr>Auth<wbr>Action$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_store_effects_maineffects_.maineffects.html#createaction_" class="tsd-kind-icon">create<wbr>Action$</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_store_effects_maineffects_.maineffects.html#createuseraction_" class="tsd-kind-icon">create<wbr>User<wbr>Action$</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_store_effects_maineffects_.maineffects.html#handleerroraction_" class="tsd-kind-icon">handle<wbr>Error<wbr>Action$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_store_effects_maineffects_.maineffects.html#loadaction_" class="tsd-kind-icon">load<wbr>Action$</a>
@@ -284,13 +340,16 @@
 								<a href="_src_store_effects_maineffects_.maineffects.html#loginaction_" class="tsd-kind-icon">login<wbr>Action$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_src_store_effects_maineffects_.maineffects.html#loginsuccessaction_" class="tsd-kind-icon">login<wbr>Success<wbr>Action$</a>
+								<a href="_src_store_effects_maineffects_.maineffects.html#logout_" class="tsd-kind-icon">logout$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_store_effects_maineffects_.maineffects.html#removeaction_" class="tsd-kind-icon">remove<wbr>Action$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_store_effects_maineffects_.maineffects.html#updateaction_" class="tsd-kind-icon">update<wbr>Action$</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_store_effects_maineffects_.maineffects.html#usersuccessaction_" class="tsd-kind-icon">user<wbr>Success<wbr>Action$</a>
 							</li>
 						</ul>
 					</li>
