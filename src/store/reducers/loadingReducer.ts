@@ -73,6 +73,24 @@
        case MainActions.CHECK_AUTH_NO_USER: {
          return Object.assign({}, state, { loading: false })
        }
+
+       case MainActions.LOGIN: {
+         return Object.assign({}, state, { loading: true })
+       }
+       case MainActions.LOGIN_SUCCESS: {
+         return Object.assign({}, state, { loading: false })
+       }
+       case MainActions.LOGIN_FAILED: {
+         return Object.assign({}, state, { loading: false })
+       }
+
+       case MainActions.LOGOUT: {
+         return Object.assign({}, state, { loading: true })
+       }
+       case MainActions.LOGOUT_SUCCESS: {
+         return Object.assign({}, state, { loading: false })
+       }
+
        default: {
          return <ILoadingState>state;
        }

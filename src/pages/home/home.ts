@@ -9,10 +9,11 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { Store } from '@ngrx/store'
+import { Store, Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Rx';
 
 import { AppStateI } from "../../store/app-stats";
+import { MainActions } from '../../store/actions/mainActions';
 
 @Component({
   selector: 'page-home',
@@ -24,12 +25,17 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private store: Store<any>
+    private store: Store<any>,
+    private mainActions: MainActions  
   ) {
     this.storeInfo = this.store.select((state:AppStateI) => state.currentUser )
   }
 
   goPage(page:string){
     this.navCtrl.push('ItemsPage')
+  }
+
+  onLogout():void{
+    this.store.dispatch(<Action>this.mainActions.logout());
   }
 }

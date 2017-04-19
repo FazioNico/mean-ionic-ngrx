@@ -18,7 +18,6 @@ import { MainActions } from "../../store/actions/mainActions";
 import { EnvVariables } from '../../app/environment/environment.token';
 import { IEnvironment } from "../../../environments/env-model";
 
-
 const STORAGE_ITEM:string = 'authTokenTest';
 
 /*
@@ -33,7 +32,7 @@ export class AuthService {
   private _apiEndPoint:string;
   private _authUrl:string = "/auth"
   private _isAuthUrl:string = "/isauth"
-  // private _signUpUrl:string = "/signup"
+  private _signUpUrl:string = "/signup"
 
   constructor(
     public http: Http,
@@ -42,8 +41,8 @@ export class AuthService {
     this._apiEndPoint = this.envVariables.apiEndpoint
   }
 
-  logoutUser(): void {
-
+  doLogout():Observable<any> {
+    return this.dellToken()
   }
 
   isAuth():Observable<any>{
@@ -64,7 +63,7 @@ export class AuthService {
                        observer.next({ type: MainActions.CHECK_AUTH_SUCCESS, payload: result })
                    }
                    // if no _id send event with default value // false
-                   observer.next({ type: 'CHECK_AUTH_NO_USER' })
+                   observer.next({ type: MainActions.CHECK_AUTH_NO_USER })
                  },
                  err => {
                    console.log(err)
@@ -86,7 +85,7 @@ export class AuthService {
                 .map(res => res.json())
                 .subscribe(result => {
                   if(result.success === true){
-                    observer.next({ type: 'LOGIN_SUCCESS', payload: result })
+                    observer.next({ type: MainActions.LOGIN_SUCCESS, payload: result })
                   }
                   else {
                     observer.next({ type: MainActions.LOGIN_FAILED, payload: result.message })
@@ -100,9 +99,32 @@ export class AuthService {
     })
   }
 
-  doSignUp():void{
+  doCreateUser(_payload):Observable<any> {
+    // Formate data as string
+    let body:string = JSON.stringify(_payload);
+    let headers:Headers = new Headers({'Content-Type': 'application/json'});
+    let options:RequestOptions = new RequestOptions({ headers: headers });
 
+    // Post request with data & headers
+    return Observable.create((observer) => {
+
+      this.http.post(`${this._apiEndPoint}${this._signUpUrl}`, body, options)
+               .map(res => res.json())
+               .subscribe(_result => {
+                    if(_result.success === true){
+                      return observer.next({ type: MainActions.CREATE_USER_SUCCESS, payload: _result })
+                    }
+                    else {
+                      return observer.next({ type: MainActions.CREATE_USER_FAILED, payload: _result.message })
+                    }
+               }, (error) => {
+                    console.log("doCreateUser error", error)
+                    return observer.next({ type: MainActions.CREATE_USER_FAILED, payload: error })
+               })
+
+    })
   }
+
   /* Methode to formate data output */
   extractData(res: Response):any {
       let body = res.json();

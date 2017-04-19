@@ -35,10 +35,19 @@
 
       </ion-list>
     </form>
-    <button ion-button block round (click)="onLogin()" [disabled]="!userForm.valid">Login</button>
-    <p>
-      Dont've a account? <br>
-      <span (click)="onGoSignup()" color="primary">Go to signup</span>
-    </p>
+    <div *ngIf="loginBtn; else signupBtn">
+      <button ion-button block round (click)="onLogin()" [disabled]="!userForm.valid">Login</button>
+      <p>
+        Dont've a account? <br>
+        <span (click)="toggleBtn()" class="primary">Go to signup</span>
+      </p>
+    </div>
+    <ng-template #signupBtn>
+      <button ion-button block round (click)="onSignup()" [disabled]="!userForm.valid">Signup</button>
+      <p>
+        You've already an account? <br>
+        <span (click)="toggleBtn()" class="primary">Go to login</span>
+      </p>
+    </ng-template>
   </div>
 </ion-content>

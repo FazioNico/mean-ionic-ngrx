@@ -33,6 +33,10 @@
          return Object.assign({}, state, { authChecked: false })
        }
 
+       case MainActions.TOKEN_DELETE: {
+         return Object.assign({}, intitialState)
+       }
+
        default: {
          return <IAuthCheckedState>state;
        }

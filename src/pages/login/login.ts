@@ -32,6 +32,7 @@ import { MainActions } from '../../store/actions/mainActions';
 })
 export class Login {
 
+  public loginBtn:boolean = true;
   public userForm:any;
   public loader:any;
   public errorMessage:any;
@@ -59,9 +60,14 @@ export class Login {
       this.store.dispatch(<Action>this.mainActions.login(this.userForm));
     }
   }
+  onSignup(){
+    if (this.userForm.valid) {
+      this.store.dispatch(<Action>this.mainActions.create_user(this.userForm));
+    }
+  }
 
-  onGoSignup(){
-
+  toggleBtn(){
+    this.loginBtn = !this.loginBtn
   }
 
   /* ErrorHandler Methode */

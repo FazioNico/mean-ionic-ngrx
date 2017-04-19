@@ -69,6 +69,23 @@ export function reducer (state:ILoadedState = intitialState, action:Action):ILoa
     case MainActions.CHECK_AUTH_NO_USER: {
       return Object.assign({}, state, { loaded: false })
     }
+
+    case MainActions.LOGIN: {
+     return Object.assign({}, state, { loaded: false })
+    }
+    case MainActions.LOGIN_SUCCESS: {
+     return Object.assign({}, state, { loaded: true })
+    }
+    case MainActions.LOGIN_FAILED: {
+     return Object.assign({}, state, { loaded: false })
+    }
+
+    case MainActions.LOGOUT: {
+      return Object.assign({}, state, { loaded: false })
+    }
+    case MainActions.LOGOUT_SUCCESS: {
+      return Object.assign({}, state, { loaded: true })
+    }
     default: {
       return <ILoadedState>state;
     }

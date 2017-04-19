@@ -24,6 +24,13 @@
        case MainActions.CHECK_AUTH_SUCCESS:{
           return Object.assign({}, state, { currentUser: action.payload })
        }
+       case MainActions.LOGOUT_SUCCESS:{
+          return Object.assign({}, intitialState)
+       }
+
+       case MainActions.CREATE_USER_SUCCESS:{
+          return Object.assign({}, { currentUser: action.payload.user })
+       }
        default: {
          return <ICurrentUserState>state;
        }

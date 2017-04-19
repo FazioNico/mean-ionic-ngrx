@@ -8,4 +8,7 @@ page-login {
   #logo {
     font-size: 10rem;
   }
+  .primary {
+    color: color($colors, primary);
+  }
 }
