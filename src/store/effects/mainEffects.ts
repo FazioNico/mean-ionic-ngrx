@@ -13,7 +13,6 @@
  import { Effect, Actions, toPayload } from "@ngrx/effects";
 
  import { MainActions } from '../../store/actions/mainActions';
- import { DatasService } from "../../providers/datas-service/datas-service";
  import { AuthService } from "../../providers/auth-service/auth-service";
  import { AlertService } from "../../providers/alert-service/alert-service";
 
@@ -22,43 +21,14 @@
 
      constructor(
        private action$: Actions,
-       private _database: DatasService,
        private _auth: AuthService,
        private _alert: AlertService
      ) {
      }
 
-     @Effect() loadAction$ = this.action$
-         // Listen for the 'GET_DATAS_ARRAY' action
-         .ofType(MainActions.GET_DATAS_ARRAY)
-         .map<Action, any>(toPayload)
-         .switchMap((payload:Observable<any>) => {
-            return this._database.getDatasArray(payload)
-         })
 
-     @Effect() updateAction$ = this.action$
-         // Listen for the 'UPDATE_DATA' action
-         .ofType(MainActions.UPDATE_DATA)
-         .map<Action, any>(toPayload)
-         .switchMap((payload:any) => {
-            return this._database.update(payload)
-         })
 
-     @Effect() removeAction$ = this.action$
-         // Listen for the 'DELETE_DATA' action
-         .ofType(MainActions.DELETE_DATA)
-         .map<Action, any>(toPayload)
-         .switchMap((payload:any) => {
-            return this._database.delete(payload)
-         })
 
-     @Effect() createAction$ = this.action$
-         // Listen for the 'CREATE_DATA' action
-         .ofType(MainActions.CREATE_DATA)
-         .map<Action, any>(toPayload)
-         .switchMap((payload:any) => {
-            return this._database.create(payload)
-         })
 
      @Effect() loginAction$ = this.action$
          // Listen for the 'LOGIN' action
@@ -136,11 +106,7 @@
           MainActions.LOGIN_FAILED,
           MainActions.LOGOUT_FAILED,
           MainActions.CHECK_AUTH_FAILED,
-          MainActions.CREATE_DATA_FAILED,
-          MainActions.CREATE_USER_FAILED,
-          MainActions.DELETE_DATA_FAILED,
-          MainActions.UPDATE_DATA_FAILED,
-          MainActions.GET_DATAS_ARRAY_FAILED
+          MainActions.CREATE_USER_FAILED
         )
         .map<Action, any>(toPayload)
         .switchMap((payload:Observable<any>) => {

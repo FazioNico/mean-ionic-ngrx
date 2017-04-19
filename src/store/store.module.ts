@@ -17,6 +17,7 @@ import { EffectsModule } from '@ngrx/effects';
 // Import ngRx Store
 import { reducer } from '../store/reducers';
 import { MainEffects } from '../store/effects/mainEffects';
+import { DatasEffects } from '../store/effects/datasEffects';
 import { MainActions } from '../store/actions/mainActions';
 
 // Import Providers Service
@@ -28,6 +29,7 @@ import { AlertService } from "../providers/alert-service/alert-service";
   imports: [
     HttpModule,
     EffectsModule.runAfterBootstrap(MainEffects),
+    EffectsModule.runAfterBootstrap(DatasEffects),
     StoreModule.provideStore(reducer),
     StoreDevtoolsModule.instrumentOnlyWithExtension(),
   ],
@@ -36,7 +38,8 @@ import { AlertService } from "../providers/alert-service/alert-service";
     AuthService,
     AlertService,
     MainActions,
-    MainEffects
+    MainEffects,
+    DatasEffects
   ]
 })
 export class NgRxStoreModule {}
