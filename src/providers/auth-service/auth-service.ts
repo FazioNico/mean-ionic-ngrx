@@ -33,7 +33,7 @@ export class AuthService {
   private _apiEndPoint:string;
   private _authUrl:string = "/auth"
   private _isAuthUrl:string = "/isauth"
-  private _signUpUrl:string = "/signup"
+  // private _signUpUrl:string = "/signup"
 
   constructor(
     public http: Http,
