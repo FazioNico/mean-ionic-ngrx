@@ -3,7 +3,7 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-03-2017
+ * @Last modified time: 19-04-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -85,8 +85,8 @@ export const userController = {
           });
           newuser.save((err, doc:IUserModel) => {
       			if(err) return console.log(err);
-            console.log('User saved successfully');
-            res.json({ success: true, message: 'User created successfully' });
+            console.log('User saved successfully', doc);
+            res.json({ success: true, message: 'User created successfully', user: doc});
       		})
         })
 
@@ -148,6 +148,7 @@ export const userController = {
               res.json({
                 success: true,
                 message: 'Enjoy your token!',
+                user: user,
                 token: token
               });
             }

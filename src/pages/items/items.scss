@@ -1,3 +1,51 @@
+// @Author: Nicolas Fazio <webmaster-fazio>
+// @Date:   14-04-2017
+// @Email:  contact@nicolasfazio.ch
+// @Last modified by:   webmaster-fazio
+// @Last modified time: 19-04-2017
+
 page-items {
 
+  #addTodo, #addTodo > div {
+    #clearInput{
+        background: color($colors, primary);
+        color: #fff;
+    }
+    color: #fff;
+    ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color:    lighten(color($colors, light), 40%);
+    }
+    :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+       color:    lighten(color($colors, light), 40%);
+       opacity:  1;
+    }
+    ::-moz-placeholder { /* Mozilla Firefox 19+ */
+       color:    lighten(color($colors, light), 40%);
+       opacity:  1;
+    }
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+       color:    lighten(color($colors, light), 40%);
+    }
+  }
+
+  ion-list {
+    >ion-item-sliding {
+      border-bottom: 1px solid color($colors, light);
+
+      .item,
+      &:last-child .item {
+        border:none;
+        margin:0;
+      }
+
+      .completed {
+          text-decoration: line-through;
+          font-style: italic;
+      }
+    }
+    .item-md.item-block .item-inner {
+      border-bottom: 0px solid color($colors, light);
+    }
+  }
+  
 }

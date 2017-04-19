@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-04-2017
+ * @Last modified time: 19-04-2017
  */
 
  import { Action } from "@ngrx/store";
@@ -44,6 +44,10 @@
          return Object.assign({}, state, {
            dataArray: [...state.dataArray, action.payload]
          })
+       }
+
+       case MainActions.LOGOUT_SUCCESS: {
+         return Object.assign({}, intitialState)
        }
        default: {
          return <IDatasState>state;

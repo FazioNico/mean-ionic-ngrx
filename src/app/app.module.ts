@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 19-04-2017
  */
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +22,10 @@ import { NgRxStoreModule } from "../store/store.module";
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+const ionicAppConfig:Object = {
+  tabsPlacement: 'bottom',
+  mode: 'md'
+};
 
 @NgModule({
   declarations: [
@@ -30,7 +34,7 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, ionicAppConfig),
     NgRxStoreModule,
     EnvironmentsModule
   ],
