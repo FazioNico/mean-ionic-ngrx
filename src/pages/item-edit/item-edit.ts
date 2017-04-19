@@ -3,7 +3,7 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-04-2017
+ * @Last modified time: 19-04-2017
  */
 
 import { Component } from '@angular/core';
@@ -11,10 +11,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 import { Store, Action } from '@ngrx/store'
-import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import { AppStateI } from "../../store/app-stats";
 import { MainActions } from '../../store/actions/mainActions';
 
 import { ITodo } from '../../providers/datas-service/datas-service';
@@ -36,7 +34,6 @@ import { ITodo } from '../../providers/datas-service/datas-service';
 })
 export class ItemEdit {
 
-  public storeInfo:Observable<any>;
   public updatedState:boolean = false;
   public todo:ITodo;
   public form: FormGroup;

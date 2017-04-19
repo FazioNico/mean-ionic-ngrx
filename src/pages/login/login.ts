@@ -3,7 +3,7 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 18-04-2017
+ * @Last modified time: 19-04-2017
  */
 
 import { Component } from '@angular/core';
@@ -11,7 +11,6 @@ import { IonicPage, NavController, LoadingController, AlertController } from 'io
 import { Validators, FormBuilder } from '@angular/forms';
 
 import { Store, Action } from '@ngrx/store'
-import { Observable } from 'rxjs/Rx';
 
 import { MainActions } from '../../store/actions/mainActions';
 
