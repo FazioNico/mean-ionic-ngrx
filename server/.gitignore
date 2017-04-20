@@ -35,3 +35,4 @@ UserInterfaceState.xcuserstate
 
 # Ignore deploy Browser version
 .publish/
+server/
