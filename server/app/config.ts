@@ -3,25 +3,22 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-04-2017
+ * @Last modified time: 20-04-2017
 */
 
-export const devVariables:any = {
-  environmentName: 'Development Environment',
-  serverEnvName: 'dev',
-  // Back-end
-  dbHost: 'mongodb://localhost:27017',
-  dbName: 'test'
-};
+import { devVariables } from '../../environments/development';
+import { prodVariables } from '../../environments/production';
+import { IEnvironment } from "../../environments/env-model";
 
 
 declare const process: any; // Typescript compiler will complain without this
 
 export function environmentConfig():any {
   let env = devVariables;
-  // if(process.env.NODE_ENV === 'pre-prod'){env = prodVariables}
+  if(process.env.NODE_ENV === 'prod'){env = prodVariables}
   return env;
 }
+
 
 export const SECRET_TOKEN_KEY: string = 'this is a bad secret sentence';
 export const DB_NAME: string = environmentConfig().dbName;
