@@ -3,7 +3,7 @@
  * @Date:   09-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-04-2017
+ * @Last modified time: 21-04-2017
  */
 
  import { IEnvironment } from "./env-model";
@@ -12,10 +12,11 @@
    environmentName: 'Production Environment',
    ionicEnvName: 'prod',
 
+   // TODO: Change wuth your own prod environment variable
    // Front-end
-   apiEndpoint: 'https://arcane-reef-52144.herokuapp.com',
+   apiEndpoint: 'http://localhost:8080',
 
    // Back-end
-   dbHost: 'mongodb://ionic_devops:porrVnMKN8FO@ds145230.mlab.com:45230',
-   dbName: 'ionic_devops'
+   dbHost: 'mongodb://localhost:27017',
+   dbName: 'test'
  };
