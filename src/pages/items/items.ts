@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-04-2017
+ * @Last modified time: 20-04-2017
  */
 
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
@@ -34,6 +34,7 @@ import { ITodo } from "../../providers/datas-service/datas-service";
 })
 export class Items implements OnInit{
 
+  public user:any;
   public storeInfo:Observable<AppStateI>;
 
   constructor(

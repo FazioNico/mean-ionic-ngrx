@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-04-2017
+ * @Last modified time: 20-04-2017
  */
 
 import { Injectable, Inject } from '@angular/core';
@@ -14,6 +14,8 @@ import 'rxjs/add/operator/map';
 import { EnvVariables } from '../../app/environment/environment.token';
 import { IEnvironment } from "../../../environments/env-model";
 
+const STORAGE_ITEM:string = 'authTokenTest';
+
 // define a Todo Interface to better usage
 export interface ITodo {
   _id: string;
@@ -21,6 +23,7 @@ export interface ITodo {
   isComplete: boolean;
   deadline?: number;
   expire?: boolean;
+  user_id: string;
 }
 
 /*
@@ -42,9 +45,17 @@ export class DatasService {
   }
 
   getDatasArray(_params):Observable<any> {
-    //console.log('Firebase-> Load data as Array: ' , _params.path);
     return Observable.create((observer) => {
-      this.http.get(`${this.apiEndPoint}${_params.path}`)
+      let storage:any = JSON.parse(localStorage.getItem(STORAGE_ITEM))
+      // if storage not found
+      if(!storage){
+        observer.next({ type: 'GET_DATAS_ARRAY_FAILED' })
+      }
+      // Define Heders request
+      let headers:Headers = new Headers({'cache-control': 'no-cache','x-access-token': storage.token});
+      let options:RequestOptions = new RequestOptions({ headers: headers });
+
+      this.http.get(`${this.apiEndPoint}${_params.path}`, options)
                .map(response => response.json())
                .subscribe(
                   datas => {
@@ -90,6 +101,7 @@ export class DatasService {
 
   // update item by ID
   update(_query:any):Observable<any> {
+
     let url:string = `${this.apiEndPoint}${_query.path}/${_query.params._id}`; //see mdn.io/templateliterals
     let body:string = JSON.stringify(_query.params)
     let headers:Headers = new Headers({'Content-Type': 'application/json'});
@@ -133,13 +145,21 @@ export class DatasService {
 
   // add new item
   create(_query: any):Observable<any>  {
-    // prepare header
-    let body:string = JSON.stringify({description: _query.params});
-    let headers:Headers = new Headers({'Content-Type': 'application/json'});
-
     return Observable.create((observer) => {
+
+      let storage:any = JSON.parse(localStorage.getItem(STORAGE_ITEM))
+      // if storage not found
+      if(!storage){
+        observer.next({ type: 'GET_DATAS_ARRAY_FAILED' })
+      }
+      // Define Heders request
+
+      let body:string = JSON.stringify({description: _query.params});
+      let headers:Headers = new Headers({'cache-control': 'no-cache','x-access-token': storage.token, 'Content-Type': 'application/json'});
+      let options:RequestOptions = new RequestOptions({ headers: headers });
+
       // post request to server
-      this.http.post(`${this.apiEndPoint}${_query.path}`, body, {headers: headers})
+      this.http.post(`${this.apiEndPoint}${_query.path}`, body, options)
                .map(response => response.json()) // return response as json
                .subscribe(
                   data => {
