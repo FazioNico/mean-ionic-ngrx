@@ -22,6 +22,7 @@ Hop is help you to start your project on the right way.
 - And you should also have git installed to a better working flow.
 
 ## Get Started
+You have to check the [Todo before Get Started](#todo-before-get-started)
 ### Installation
 - `$ nvm use 7`
 - `$ npm install`
@@ -85,11 +86,26 @@ USERS Endpoints
   methode: $_GET
 
 ````
+
 ## Documentation
 App Documentations is generate by typeDoc. Use the following cmd to generate documentation
 - `$ npm run docs` will generate Angular Application documentation and open the index doc in browser.
 
 Current Documentations: [Checkout current docs](docs/index.html)
+
+## Todo before get Started
+- you have to change `mongod` npm script into `./package.json`. Update mongod $path with your own.
+- create your own Heroku account and init your server project with the following cmd :
+  - `git checkout master`
+  - `$ heroku create`
+  - check with `$ git remote -v`
+  - optional: `$ git checkout <WORKING_BRANCH>`
+- add your own production variable environment into `./environments/production.ts`
+
+Heroku docs:
+- get started doc for NodeJS
+[https://devcenter.heroku.com/articles/git](https://devcenter.heroku.com/articles/git)
+- how to use Heroku with NodeJS & Git [https://devcenter.heroku.com/articles/getting-started-with-nodejs](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction)
 
 ## About author
 Hi, i'm a Front-end developper living in Geneva Switzerland and i build hybrid mobile & web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website http://nicolasfazio.ch

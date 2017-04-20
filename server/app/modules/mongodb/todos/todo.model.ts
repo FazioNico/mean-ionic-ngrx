@@ -3,7 +3,7 @@
 * @Date:   22-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 31-03-2017
+ * @Last modified time: 20-04-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -13,6 +13,7 @@ import { todoSchema } from './todo.schema';
 export interface ITodoModel extends mongoose.Document {
   description: string;
   isComplete: boolean;
+  user_id:string;
   deadline?: number;
   expire?: boolean;
 }

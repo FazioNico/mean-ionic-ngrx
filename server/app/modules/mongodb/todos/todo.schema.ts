@@ -3,7 +3,7 @@
 * @Date:   22-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 31-03-2017
+ * @Last modified time: 20-04-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -15,5 +15,6 @@ export const todoSchema = new mongoose.Schema({
       default: false
     },
     deadline: { type: Number, default: Date.now() },
-    expire: { type: Boolean, default: false }
+    expire: { type: Boolean, default: false },
+    user_id: { type: String, required: true  }
 });

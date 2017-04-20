@@ -3,7 +3,7 @@
 * @Date:   19-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 20-04-2017
 */
 
 import { Injectable } from "@angular/core";
@@ -13,15 +13,13 @@ import { Effect, Actions, toPayload } from "@ngrx/effects";
 
 import { MainActions } from '../../store/actions/mainActions';
 import { DatasService } from "../../providers/datas-service/datas-service";
-import { AlertService } from "../../providers/alert-service/alert-service";
 
 @Injectable()
 export class DatasEffects {
 
   constructor(
     private action$: Actions,
-    private _database: DatasService,
-    private _alert: AlertService
+    private _database: DatasService
   ) {
   }
 
@@ -57,16 +55,4 @@ export class DatasEffects {
         return this._database.create(payload)
       })
 
-  @Effect() handleErrorAction$ = this.action$
-      // Listen for the 'CREATE_USER' action
-      .ofType(
-        MainActions.GET_DATAS_ARRAY_FAILED,
-        MainActions.DELETE_DATA_FAILED,
-        MainActions.CREATE_DATA_FAILED,
-        MainActions.UPDATE_DATA_FAILED,
-      )
-      .map<Action, any>(toPayload)
-      .switchMap((payload:Observable<any>) => {
-        return this._alert.doDisplayAlert(payload)
-      })
 }
