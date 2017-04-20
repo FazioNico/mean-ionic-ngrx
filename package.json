@@ -8,7 +8,7 @@
     "server": "tsc server/server.ts --outDir ./server/dist && NODE_ENV=prod node ./server/dist/server.js ",
     "server:dev": "tsc server/server.ts -w --outDir ./server/dist & nodemon ./server/dist/server.js --dev  --ignore src/ --ignore www/ --ignore .tmp/",
     "mongod": "$HOME/Applications/mongodb/bin/mongod --dbpath $HOME/Applications/mongodb/data/db",
-    "deploy:server": "tsc server/server.ts --outDir ./server/dist && cp ./server/package.json ./server/dist/package.json && cp ./server/.gitignore ./server/dist/.gitignore && git add -f ./server/dist/ && git add --all && git commit -m 'upd version - `date`' && git subtree split -P dist -b heroku-serve && git rm -r --cached ./server/dist/ && git add --all && git commit -m 'rm .temp folder'",
+    "deploy:server": "tsc server/server.ts --outDir ./server/dist && cp ./server/package.json ./server/dist/package.json && cp ./server/.gitignore ./server/dist/.gitignore && git add -f ./server/dist/ && git add --all && git commit -m 'upd version - `date`' && git subtree split -P server/dist -b heroku-serve && git rm -r --cached ./server/dist/ && git add --all && git commit -m 'rm .temp folder'",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
     "ionic:build": "ionic-app-scripts build",
