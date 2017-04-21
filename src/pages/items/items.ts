@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 20-04-2017
  */
 
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
@@ -14,6 +14,9 @@ import { Observable } from 'rxjs/Rx';
 
 import { AppStateI } from "../../store/app-stats";
 import { MainActions } from '../../store/actions/mainActions';
+
+import { ITodo } from "../../providers/datas-service/datas-service";
+
 /**
  * Generated class for the Items page.
  *
@@ -31,6 +34,7 @@ import { MainActions } from '../../store/actions/mainActions';
 })
 export class Items implements OnInit{
 
+  public user:any;
   public storeInfo:Observable<AppStateI>;
 
   constructor(
@@ -48,22 +52,27 @@ export class Items implements OnInit{
   }
 
   /* Event Methode */
-  toggleComplete(todo:any):void {
-    todo.isComplete = !todo.isComplete;
-    //this.todoService.update(todo)
+  addTodo(todoInput:any):void {
+    this.store.dispatch(<Action>this.mainActions.create_data( { path: '/todos', params: todoInput.value} ));
+    this.clearInput(todoInput);
+  }
+
+  toggleComplete(todo:ITodo):void {
+    let updated = Object.assign({}, todo)
+    updated.isComplete = !updated.isComplete
+    this.store.dispatch(<Action>this.mainActions.update_data( { path: '/todos', params: updated} ));
   }
 
   deleteTodo(todo:any):void {
-    //console.log('delete todo-> ', todo)
-    //this.todoService.delete(todo._id)
+    this.store.dispatch(<Action>this.mainActions.delete_data( { path: '/todos', params: todo} ));
   }
 
   navToEdit(todo:any):void {
     console.log(todo)
-    // this.navCtrl.push('item-edit', {
-    //   id: todo._id,
-    //   todo: todo
-    // })
+    this.navCtrl.push('ItemEditPage', {
+      id: todo._id,
+      todo: todo
+    })
   }
 
   /* Core Methode */
@@ -71,5 +80,8 @@ export class Items implements OnInit{
     this.store.dispatch(<Action>this.mainActions.get_data_array('/todos'));
   }
 
+  clearInput(todoInput:any):void{
+    todoInput.value = '';
+  }
 
 }

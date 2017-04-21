@@ -6,9 +6,27 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>Items</ion-title>
   </ion-navbar>
+  <div id="addTodo" color="primary">
+    <ion-item no-lines color="primary">
+      <ion-input
+        #newTodo
+        (keyup.enter)="addTodo(newTodo)"
+        type="text"
+        placeholder="Add a new todo..." ></ion-input>
+      <button
+        ion-button
+        id="clearInput"
+        color="primary"
+        clear
+        large
+        item-right
+        (click)="clearInput(newTodo)"><ion-icon name="close"></ion-icon>
+      </button>
+    </ion-item>
+  </div>
 
 </ion-header>
 

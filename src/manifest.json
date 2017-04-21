@@ -1,6 +1,6 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "MEAN Ionic NgRx",
+  "short_name": "MEAN Ionic NgRx",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
