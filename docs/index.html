@@ -66,9 +66,9 @@
 			<div class="tsd-panel tsd-typography">
 				<p><img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="http://code.runnable.com/images/provider-icons/icon-node.js.svg" width="80"><img src="http://amver.lt/wp-content/uploads/2016/07/Mathematic-Plus2.ico" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"></p>
 				<h1 id="mean-ionic-ngrx">MEAN Ionic NgRx</h1>
-				<blockquote>Full MEAN stack with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)</blockquote>
+				<blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)</blockquote>
 				<h2 id="overview">Overview</h2>
-				<p>MEAN Ionic NgRx is a TypeScript Full Stack MongoDB + ExpressJS + Angular2 + NodeJS with Ionic 2 Framework to provide multi platform application.</p>
+				<p>MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS with Ionic  Framework to provide multi platform application.</p>
 				<p>It&#39;s a simple todo application exemple with server-side Users JWT authentification &amp; using ReactiveX API (ngrx/Store + ngrx/Effects)</p>
 				<p>Hop is help you to start your project on the right way.</p>
 				<h2 id="prerequisites">Prerequisites</h2>
@@ -79,11 +79,16 @@
 					<li><a href="https://www.npmjs.com/package/typescript">Typescript</a> Latest stable version install in Global <code>$ npm install -g typescript</code></li>
 					<li><a href="https://nodemon.io/">Nodemon</a> Latest stable version install in Global <code>$ npm install -g nodemon</code></li>
 					<li><a href="https://ionicframework.com/">Ionic 3</a> &amp; <a href="https://cordova.apache.org/">Cordova</a> - Latest stable version install in Global <code>$ npm install -g ionic cordova</code></li>
-					<li><a href="http://typedoc.org/">TypeDoc</a> Latest stable version install in Global <code>$ npm install -g typedoc</code></li>
+					<li><a href="http://typedoc.org/">TypeDoc</a> - Latest stable version install in Global <code>$ npm install -g typedoc</code></li>
+					<li><a href="https://karma-runner.github.io">Karma</a> - Latest stable version install in Global <code>$ npm install -g karma-cli</code></li>
+					<li><a href="http://gulpjs.com/">Gulp</a> - Latest stable version install in Global <code>$ npm install -g gulp</code></li>
+					<li><a href="heroku.com">Heroku</a> - Download &amp; Install latest stable version.</li>
 					<li>Good knowledge of <a href="http://reactivex.io/">ReactiveX API</a> &amp; <a href="https://github.com/ngrx">NgRx</a></li>
+					<li><a href="http://extension.remotedev.io/">Redux DevTools Extension</a> - Install Plugin for Chrome - Debugging application&#39;s state changes &amp; provides power-ups for your Redux development workflow.</li>
 					<li>And you should also have git installed to a better working flow.</li>
 				</ul>
 				<h2 id="get-started">Get Started</h2>
+				<p>You have to check the <a href="#todo-before-get-started">Todo before Get Started</a></p>
 				<h3 id="installation">Installation</h3>
 				<ul>
 					<li><code>$ nvm use 7</code></li>
@@ -92,15 +97,16 @@
 				<h3 id="start">Start</h3>
 				<ul>
 					<li><code>$ npm run start:dev</code> to start in dev mode</li>
-					<li><code>$ npm run start:prod</code> to start in prod mode</li>
+					<li><code>$ npm run start:prod</code> to start in prod mode (you have to config your production environments variable)</li>
 				</ul>
 				<h3 id="build">Build</h3>
+				<p>First add selected platform: <code>$ ionic platform add browser|ios|android</code> (one by one). Then you can build each platform with ionic CLI <code>$ ionic build browser|ios|android --prod</code></p>
+				<p>And we have the following npm run script ready to use:</p>
 				<ul>
 					<li><code>$ npm run build:browser</code> to build app browser version</li>
 					<li><code>$ npm run build:browser --prod</code> to build app browser version in Angular Prod mode</li>
-					<li><code>$ npm run build:ios</code> to build app IOS version</li>
-					<li><code>$ npm run build:ios --prod</code> to build app IOS version in Angular Prod mode</li>
 				</ul>
+				<p>If you want, you can add your own build run script.</p>
 				<h3 id="deploy">Deploy</h3>
 				<ul>
 					<li><code>$ npm run deploy:server</code> to deploy server side on heroku</li>
@@ -110,7 +116,7 @@
 				<ul>
 					<li><code>$ npm run docs</code></li>
 				</ul>
-				<p>Current Documentations: <a href="docs/index.html">Checkout current docs</a></p>
+				<p>open <code>./docs/index.html</code> to read documentation</p>
 				<h2 id="server-rest-api-endpoints">Server REST API Endpoints</h2>
 				<pre><code><span class="hljs-string">TODOS</span> <span class="hljs-string">Endpoints</span>
 
@@ -153,7 +159,24 @@
 				<ul>
 					<li><code>$ npm run docs</code> will generate Angular Application documentation and open the index doc in browser.</li>
 				</ul>
-				<p>Current Documentations: <a href="docs/index.html">Checkout current docs</a></p>
+				<h2 id="todo-before-get-started">Todo before get Started</h2>
+				<ul>
+					<li>you have to change <code>mongod</code> npm script into <code>./package.json</code>. Update mongod $path with your own.</li>
+					<li>create your own Heroku account and init your server project with the following cmd :<ul>
+							<li><code>git checkout master</code></li>
+							<li><code>$ heroku create</code></li>
+							<li>check with <code>$ git remote -v</code></li>
+							<li>optional: <code>$ git checkout &lt;WORKING_BRANCH&gt;</code></li>
+						</ul>
+					</li>
+					<li>add your own production variable environment into <code>./environments/production.ts</code></li>
+				</ul>
+				<p>Heroku docs:</p>
+				<ul>
+					<li>get started doc for NodeJS
+					<a href="https://devcenter.heroku.com/articles/git">https://devcenter.heroku.com/articles/git</a></li>
+					<li>how to use Heroku with NodeJS &amp; Git <a href="https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction">https://devcenter.heroku.com/articles/getting-started-with-nodejs</a></li>
+				</ul>
 				<h2 id="about-author">About author</h2>
 				<p>Hi, i&#39;m a Front-end developper living in Geneva Switzerland and i build hybrid mobile &amp; web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website <a href="http://nicolasfazio.ch">http://nicolasfazio.ch</a></p>
 			</div>
@@ -228,7 +251,13 @@
 						<a href="modules/_src_store_app_stats_.html">"src/store/app-<wbr>stats"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_store_effects_maineffects_.html">"src/store/effects/main<wbr>Effects"</a>
+						<a href="modules/_src_store_effects_autheffects_.html">"src/store/effects/auth<wbr>Effects"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_effects_dataseffects_.html">"src/store/effects/datas<wbr>Effects"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_effects_erroreffects_.html">"src/store/effects/error<wbr>Effects"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_store_reducers_authcheckedreducer_.html">"src/store/reducers/auth<wbr>Checked<wbr>Reducer"</a>

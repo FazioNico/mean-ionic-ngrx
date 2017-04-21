@@ -20,7 +20,8 @@
   "exclude": [
     "node_modules",
     "./src/**/*.spec.ts",
-    "server"
+    "server",
+    "e2e"
   ],
   "compileOnSave": false,
   "atom": {
