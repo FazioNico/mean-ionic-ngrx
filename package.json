@@ -22,7 +22,7 @@
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
     "typedoc": "typedoc",
     "e2e": "protractor test-config/protractor.conf.js",
-    "test": "karma start ./test-config/karma.conf.js"
+    "test": "karma start test-config/karma.conf.js"
   },
   "dependencies": {
     "@angular/common": "4.0.0",
