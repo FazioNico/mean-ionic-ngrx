@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HomePage | mean-ionic-ngrx</title>
+	<title>DatasEffects | mean-ionic-ngrx</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_src_pages_home_home_.html">&quot;src/pages/home/home&quot;</a>
+					<a href="../modules/_src_store_effects_dataseffects_.html">&quot;src/store/effects/datasEffects&quot;</a>
 				</li>
 				<li>
-					<a href="_src_pages_home_home_.homepage.html">HomePage</a>
+					<a href="_src_store_effects_dataseffects_.dataseffects.html">DatasEffects</a>
 				</li>
 			</ul>
-			<h1>Class HomePage</h1>
+			<h1>Class DatasEffects</h1>
 		</div>
 	</div>
 </header>
@@ -73,7 +73,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">HomePage</span>
+						<span class="target">DatasEffects</span>
 					</li>
 				</ul>
 			</section>
@@ -84,24 +84,18 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_src_pages_home_home_.homepage.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_src_store_effects_dataseffects_.dataseffects.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_pages_home_home_.homepage.html#mainactions" class="tsd-kind-icon">main<wbr>Actions</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_pages_home_home_.homepage.html#navctrl" class="tsd-kind-icon">nav<wbr>Ctrl</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_pages_home_home_.homepage.html#store" class="tsd-kind-icon">store</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_pages_home_home_.homepage.html#storeinfo" class="tsd-kind-icon">store<wbr>Info</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_pages_home_home_.homepage.html#user" class="tsd-kind-icon">user</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_pages_home_home_.homepage.html#gopage" class="tsd-kind-icon">go<wbr>Page</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_src_pages_home_home_.homepage.html#onlogout" class="tsd-kind-icon">on<wbr>Logout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_dataseffects_.dataseffects.html#_database" class="tsd-kind-icon">_database</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_dataseffects_.dataseffects.html#action_" class="tsd-kind-icon">action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_dataseffects_.dataseffects.html#createaction_" class="tsd-kind-icon">create<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_dataseffects_.dataseffects.html#loadaction_" class="tsd-kind-icon">load<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_dataseffects_.dataseffects.html#removeaction_" class="tsd-kind-icon">remove<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_dataseffects_.dataseffects.html#updateaction_" class="tsd-kind-icon">update<wbr>Action$</a></li>
 							</ul>
 						</section>
 					</div>
@@ -113,28 +107,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Home<wbr>Page<span class="tsd-signature-symbol">(</span>navCtrl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">NavController</span>, store<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Store</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span>, mainActions<span class="tsd-signature-symbol">: </span><a href="_src_store_actions_mainactions_.mainactions.html" class="tsd-signature-type">MainActions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_pages_home_home_.homepage.html" class="tsd-signature-type">HomePage</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Datas<wbr>Effects<span class="tsd-signature-symbol">(</span>action$<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Actions</span>, _database<span class="tsd-signature-symbol">: </span><a href="_src_providers_datas_service_datas_service_.datasservice.html" class="tsd-signature-type">DatasService</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_src_store_effects_dataseffects_.dataseffects.html" class="tsd-signature-type">DatasEffects</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/pages/home/home.ts:25</li>
+									<li>Defined in src/store/effects/datasEffects.ts:18</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>navCtrl: <span class="tsd-signature-type">NavController</span></h5>
+									<h5>action$: <span class="tsd-signature-type">Actions</span></h5>
 								</li>
 								<li>
-									<h5>store: <span class="tsd-signature-type">Store</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
-								</li>
-								<li>
-									<h5>mainActions: <a href="_src_store_actions_mainactions_.mainactions.html" class="tsd-signature-type">MainActions</a></h5>
+									<h5>_database: <a href="_src_providers_datas_service_datas_service_.datasservice.html" class="tsd-signature-type">DatasService</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_src_pages_home_home_.homepage.html" class="tsd-signature-type">HomePage</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_src_store_effects_dataseffects_.dataseffects.html" class="tsd-signature-type">DatasEffects</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -142,97 +133,64 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="mainactions" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> main<wbr>Actions</h3>
-					<div class="tsd-signature tsd-kind-icon">main<wbr>Actions<span class="tsd-signature-symbol">:</span> <a href="_src_store_actions_mainactions_.mainactions.html" class="tsd-signature-type">MainActions</a></div>
+					<a name="_database" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> _database</h3>
+					<div class="tsd-signature tsd-kind-icon">_database<span class="tsd-signature-symbol">:</span> <a href="_src_providers_datas_service_datas_service_.datasservice.html" class="tsd-signature-type">DatasService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/pages/home/home.ts:30</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="navctrl" class="tsd-anchor"></a>
-					<h3>nav<wbr>Ctrl</h3>
-					<div class="tsd-signature tsd-kind-icon">nav<wbr>Ctrl<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NavController</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/pages/home/home.ts:28</li>
+							<li>Defined in src/store/effects/datasEffects.ts:22</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="store" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> store</h3>
-					<div class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Store</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="action_" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> action$</h3>
+					<div class="tsd-signature tsd-kind-icon">action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Actions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/pages/home/home.ts:29</li>
+							<li>Defined in src/store/effects/datasEffects.ts:21</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="storeinfo" class="tsd-anchor"></a>
-					<h3>store<wbr>Info</h3>
-					<div class="tsd-signature tsd-kind-icon">store<wbr>Info<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/_src_store_app_stats_.appstatei.html" class="tsd-signature-type">AppStateI</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="createaction_" class="tsd-anchor"></a>
+					<h3>create<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">create<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;CREATE_DATA&#x27; action.ofType(MainActions.CREATE_DATA).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; {return this._database.create(payload)})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/pages/home/home.ts:25</li>
+							<li>Defined in src/store/effects/datasEffects.ts:50</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="user" class="tsd-anchor"></a>
-					<h3>user</h3>
-					<div class="tsd-signature tsd-kind-icon">user<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<a name="loadaction_" class="tsd-anchor"></a>
+					<h3>load<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">load<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;GET_DATAS_ARRAY&#x27; action.ofType(MainActions.GET_DATAS_ARRAY).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {return this._database.getDatasArray(payload)})</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/pages/home/home.ts:24</li>
+							<li>Defined in src/store/effects/datasEffects.ts:26</li>
 						</ul>
 					</aside>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="gopage" class="tsd-anchor"></a>
-					<h3>go<wbr>Page</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">go<wbr>Page<span class="tsd-signature-symbol">(</span>page<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/pages/home/home.ts:35</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>page: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="removeaction_" class="tsd-anchor"></a>
+					<h3>remove<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">remove<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;DELETE_DATA&#x27; action.ofType(MainActions.DELETE_DATA).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; {return this._database.delete(payload)})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/store/effects/datasEffects.ts:42</li>
+						</ul>
+					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="onlogout" class="tsd-anchor"></a>
-					<h3>on<wbr>Logout</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">on<wbr>Logout<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/pages/home/home.ts:39</li>
-								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="updateaction_" class="tsd-anchor"></a>
+					<h3>update<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">update<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;UPDATE_DATA&#x27; action.ofType(MainActions.UPDATE_DATA).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; {return this._database.update(payload)})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/store/effects/datasEffects.ts:34</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 		</div>
@@ -243,7 +201,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_src_pages_home_home_.html">"src/pages/home/home"</a>
+						<a href="../modules/_src_store_effects_dataseffects_.html">"src/store/effects/datas<wbr>Effects"</a>
 					</li>
 				</ul>
 			</nav>
@@ -252,31 +210,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-external-module">
-						<a href="_src_pages_home_home_.homepage.html" class="tsd-kind-icon">Home<wbr>Page</a>
+						<a href="_src_store_effects_dataseffects_.dataseffects.html" class="tsd-kind-icon">Datas<wbr>Effects</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_src_pages_home_home_.homepage.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_src_store_effects_dataseffects_.dataseffects.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_src_pages_home_home_.homepage.html#mainactions" class="tsd-kind-icon">main<wbr>Actions</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_src_pages_home_home_.homepage.html#navctrl" class="tsd-kind-icon">nav<wbr>Ctrl</a>
+								<a href="_src_store_effects_dataseffects_.dataseffects.html#_database" class="tsd-kind-icon">_database</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_src_pages_home_home_.homepage.html#store" class="tsd-kind-icon">store</a>
+								<a href="_src_store_effects_dataseffects_.dataseffects.html#action_" class="tsd-kind-icon">action$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_src_pages_home_home_.homepage.html#storeinfo" class="tsd-kind-icon">store<wbr>Info</a>
+								<a href="_src_store_effects_dataseffects_.dataseffects.html#createaction_" class="tsd-kind-icon">create<wbr>Action$</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_src_pages_home_home_.homepage.html#user" class="tsd-kind-icon">user</a>
+								<a href="_src_store_effects_dataseffects_.dataseffects.html#loadaction_" class="tsd-kind-icon">load<wbr>Action$</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_pages_home_home_.homepage.html#gopage" class="tsd-kind-icon">go<wbr>Page</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_store_effects_dataseffects_.dataseffects.html#removeaction_" class="tsd-kind-icon">remove<wbr>Action$</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_src_pages_home_home_.homepage.html#onlogout" class="tsd-kind-icon">on<wbr>Logout</a>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_store_effects_dataseffects_.dataseffects.html#updateaction_" class="tsd-kind-icon">update<wbr>Action$</a>
 							</li>
 						</ul>
 					</li>
