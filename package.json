@@ -1,6 +1,6 @@
 {
   "name": "mean-ionic-ngrx",
-  "author": "Ionic Framework",
+  "author": "Nicolas Fazio",
   "homepage": "http://nicoalsfazio.ch/",
   "private": true,
   "scripts": {
@@ -93,7 +93,7 @@
   "engines": {
     "node": "~7.0.0"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "config": {
     "ionic_purge_decorators": false,
     "ionic_webpack": "./webpack.config.js"
