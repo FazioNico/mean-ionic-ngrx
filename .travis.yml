@@ -20,12 +20,14 @@ branches:
     - master
 
 addons:
-apt:
- sources:
-   - google-chrome
- packages:
-   - google-chrome-stable
-   - google-chrome-beta
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+      - google-chrome
+    packages:
+      - google-chrome-stable
+      - lib32stdc++6
+      - lib32z1
 
 #
 # Build Lifecycle:
