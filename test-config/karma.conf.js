@@ -3,7 +3,7 @@
  * @Date:   16-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-04-2017
+ * @Last modified time: 21-04-2017
  */
 
 var webpackConfig = require('./webpack.test.js');
@@ -11,7 +11,14 @@ var webpackConfig = require('./webpack.test.js');
 module.exports = function (config) {
   var _config = {
     basePath: '',
-
+    plugins: [
+      require('karma-webpack'),
+      require('karma-mocha-reporter'),
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-jasmine-html-reporter'),
+      require('jasmine-spec-reporter')
+    ],
     frameworks: ['jasmine'],
 
     files: [
@@ -19,7 +26,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      './karma-test-shim.js': ['webpack', 'sourcemap']
+      './karma-test-shim.js': ['webpack']
     },
     mime: {
        'text/x-typescript': ['ts','tsx']
