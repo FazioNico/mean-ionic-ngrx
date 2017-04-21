@@ -33,6 +33,7 @@ before_install:
   - nvm use node
   - npm install -g cordova ionic
   - npm install -g karma
+  - npm install -g webpack
   - ionic state clear
 
 install: npm install
