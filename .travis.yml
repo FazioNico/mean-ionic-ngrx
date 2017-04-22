@@ -2,7 +2,7 @@
 # @Date:   21-04-2017
 # @Email:  contact@nicolasfazio.ch
 # @Last modified by:   webmaster-fazio
-# @Last modified time: 21-04-2017
+# @Last modified time: 22-04-2017
 
 #
 # Configuration
@@ -36,7 +36,7 @@ before_install:
   - npm install -g webpack
   - ionic state clear
   - npm install -g webdriver-manager
-  - webdriver-manager update
+  - webdriver-manager update --versions.chrome 2.24
 
 install: npm install
 
