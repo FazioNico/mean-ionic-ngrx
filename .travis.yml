@@ -36,11 +36,11 @@ before_install:
   - npm install -g webpack
   - ionic state clear
   - npm install -g webdriver-manager
-  - webdriver-manager update --versions.chrome 2.24
+  - webdriver-manager update
 
 install: npm install
 
 
 script:
   - karma start ./test-config/karma.conf.js --single-run  # unit tests
-  - protractor test-config/protractor.conf.js      # run e2e tests against ionic
+  # - protractor test-config/protractor.conf.js      # run e2e tests against ionic
