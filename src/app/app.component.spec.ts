@@ -57,6 +57,7 @@
 
    /**
     * NgRx Testing Reducer: AuthCheck
+    * Inspiration from: http://redux.js.org/docs/recipes/WritingTests.html
     */
    it('should return correct state when user is not autenticate', () => {
        const state = { authChecked: false };
