@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 01-05-2017
  */
 
 import {Injectable} from '@angular/core';
@@ -95,6 +95,12 @@ export class MainActions {
         type: MainActions.CHECK_AUTH,
     }
   }
+  checkAuthNoUser():Action{
+    return <Action>{
+      type: MainActions.CHECK_AUTH_NO_USER,
+      payload: null
+    }
+  }
 
   logout(){
     return <Action>{
@@ -108,5 +114,5 @@ export class MainActions {
           payload: _credentials.value
       }
   }
-  
+
 }
