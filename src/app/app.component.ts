@@ -3,39 +3,38 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 27-09-2017
  */
 
-import { Component, OnInit } from '@angular/core';
-import { Platform, App } from 'ionic-angular';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { Platform, Nav, AlertController, Alert, Loading, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Rx';
 
-import { MainActions } from '../store/actions/mainActions';
+//import { AuthActions } from '../pages/login/store/actions/auth.actions';
 import { AppStateI } from "../store/app-stats";
-
-
-import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
 
-  user:any;
-  rootPage:any;
+  public user:any|null;
+  public rootPage:any;
   public storeInfo:Observable<AppStateI>;
+  public loader:Loading;
+  @ViewChild(Nav) nav:Nav;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private store: Store<any>,
-    private mainActions: MainActions,
-    public app: App
+    //private authActions: AuthActions,
+    public alertCtrl: AlertController,
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -46,15 +45,16 @@ export class MyApp implements OnInit{
       this.storeInfo = this.store.select((state:AppStateI) => state.currentUser)
       // here we are monitoring the authstate
       this.storeInfo.subscribe((currentState: any) => {
-        if (currentState.currentUser) {
-          this.user = currentState.currentUser;
-          this.app.getActiveNav().setRoot(HomePage)
-          // this.rootPage = HomePage;
-          console.log('home')
+        if (currentState) {
+          if(!this.user){
+            console.log('home')
+            this.nav.setRoot('HomePage')
+          }
+          this.user = currentState;
         }
         else {
-          this.app.getActiveNav().setRoot('LoginPage')
-          // this.rootPage = 'LoginPage';
+          this.user = null
+          this.nav.setRoot('LoginPage')
           console.log('login')
         }
       });
@@ -63,6 +63,28 @@ export class MyApp implements OnInit{
 
   ngOnInit() {
     this.rootPage = 'LoginPage';
-    this.store.dispatch(this.mainActions.checkAuth());
+    this.store.dispatch(
+      {
+        type: 'CHECK_AUTH',
+      }
+      //this.authActions.checkAuth()
+    );
+  }
+
+  // TODO subscrib to error reducers
+  // and remove error effects
+  /* ErrorHandler Methode */
+  showError(text:string,hideLoading:boolean=true):void {
+    if (hideLoading === true){
+      setTimeout(() => {
+        this.loader.dismiss();
+      });
+    }
+    let alert:Alert = this.alertCtrl.create({
+      title: 'Erreur',
+      subTitle: text,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }

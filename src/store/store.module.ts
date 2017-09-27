@@ -3,10 +3,10 @@
 * @Date:   15-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 20-04-2017
+ * @Last modified time: 27-09-2017
 */
 
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 // Import ngrx Tools
@@ -16,43 +16,50 @@ import { EffectsModule } from '@ngrx/effects';
 
 // Import ngRx Store
 import { reducer } from '../store/reducers';
-import { AuthEffects } from '../store/effects/authEffects';
-import { DatasEffects } from '../store/effects/datasEffects';
+import { AuthEffects } from '../store/effects/auth.effects';
 import { ErrorEffects } from '../store/effects/errorEffects';
 
+import { AuthActions } from '../store/actions/auth.actions';
 import { MainActions } from '../store/actions/mainActions';
 
 // Import Providers Service
-import { DatasService } from "../providers/datas-service/datas-service";
-import { AuthService } from "../providers/auth-service/auth-service";
+import { AuthService } from "../providers/auth-service/auth.service";
 import { AlertService } from "../providers/alert-service/alert-service";
 
 const providers:Array<any> =  [
-    DatasService,
     AuthService,
     AlertService,
 ];
 const effects:Array<any> = [
     AuthEffects,
-    DatasEffects,
     ErrorEffects
 ];
 const actions:Array<any> = [
-    MainActions
+    AuthActions,
+    MainActions,
 ];
 
 /*
-  Bootstrap NgModule
+  Bootstrap NgRxStoreModule
+  with default root store state & reducer & effects
+  => rest of store will be loaded with lazy loading ;-)
 */
 @NgModule({
   imports: [
     HttpModule,
-    EffectsModule.runAfterBootstrap(AuthEffects),
-    EffectsModule.runAfterBootstrap(DatasEffects),
-    EffectsModule.runAfterBootstrap(ErrorEffects),
-    StoreModule.provideStore(reducer),
-    StoreDevtoolsModule.instrumentOnlyWithExtension(),
+    StoreModule.forRoot(reducer),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([...effects]),
   ],
   providers: [...providers, ...effects, ...actions]
 })
-export class NgRxStoreModule {}
+export class NgRxStoreModule {
+  // guarantee that only one instance of Services is added to the root module
+  // see => https://angular-2-training-book.rangle.io/handout/modules/feature-modules.html
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: NgRxStoreModule,
+      providers: [...providers, ...effects, ...actions]
+    }
+  }
+}

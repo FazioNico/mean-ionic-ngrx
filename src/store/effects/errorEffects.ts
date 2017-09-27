@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 20-04-2017
+ * @Last modified time: 26-09-2017
 */
 
 
@@ -25,23 +25,14 @@ export class ErrorEffects {
   }
 
   @Effect() handleErrorAction$ = this.action$
-      // Listen for the '*_FAILED' action
+      // Listen for the ERROR_DISPLAY action
       .ofType(
-        MainActions.LOGIN_FAILED,
-        MainActions.LOGOUT_FAILED,
-
-        MainActions.CHECK_AUTH_FAILED,
-        MainActions.CREATE_USER_FAILED,
-
-        MainActions.TOKEN_SAVE_FAILED,
-
-        MainActions.GET_DATAS_ARRAY_FAILED,
-        MainActions.DELETE_DATA_FAILED,
-        MainActions.CREATE_DATA_FAILED,
-        MainActions.UPDATE_DATA_FAILED,
+        MainActions.ERROR_DISPLAY,
       )
       .map<Action, any>(toPayload)
-      .switchMap((payload:Observable<any>) => {
-        return this._alert.doDisplayAlert(payload)
+      .switchMap((payload:Observable<any>) => this._alert.doDisplayAlert(payload))
+      .catch(err=> {
+        console.log(err)
+        return Observable.of({type:'ERROR_DISPLAY_FAILED', payload:err})
       })
 }

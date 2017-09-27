@@ -3,16 +3,17 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 27-09-2017
  */
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
-import { Validators, FormBuilder } from '@angular/forms';
+import { IonicPage, NavController, LoadingController, Loading, AlertController, Alert } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 import { Store, Action } from '@ngrx/store'
+import { AppStateI } from "../../store/app-stats";
 
-import { MainActions } from '../../store/actions/mainActions';
+import { AuthActions } from '../../store/actions/auth.actions';
 
 // import { AppStateI } from "../../store/app-stats";
 
@@ -33,8 +34,8 @@ import { MainActions } from '../../store/actions/mainActions';
 export class Login {
 
   public loginBtn:boolean = true;
-  public userForm:any;
-  public loader:any;
+  public userForm:FormGroup;
+  public loader:Loading;
   public errorMessage:any;
 
   constructor(
@@ -42,8 +43,8 @@ export class Login {
     private _formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public loadCtrl:LoadingController,
-    private store: Store<any>,
-    private mainActions: MainActions
+    private store: Store<AppStateI>,
+    private authActions: AuthActions
   ) {
     this.userForm = this._formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -57,12 +58,12 @@ export class Login {
   onLogin(){
     //this.submitted = true;
     if (this.userForm.valid) {
-      this.store.dispatch(<Action>this.mainActions.login(this.userForm));
+      this.store.dispatch(<Action>this.authActions.login(this.userForm));
     }
   }
   onSignup(){
     if (this.userForm.valid) {
-      this.store.dispatch(<Action>this.mainActions.create_user(this.userForm));
+      this.store.dispatch(<Action>this.authActions.create_user(this.userForm));
     }
   }
 
@@ -70,18 +71,4 @@ export class Login {
     this.loginBtn = !this.loginBtn
   }
 
-  /* ErrorHandler Methode */
-  showError(text:string,hideLoading:boolean=true):void {
-    if (hideLoading === true){
-      setTimeout(() => {
-        this.loader.dismiss();
-      });
-    }
-    let alert = this.alertCtrl.create({
-      title: 'Erreur',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 }

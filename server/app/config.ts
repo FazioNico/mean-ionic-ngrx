@@ -3,12 +3,12 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 20-04-2017
+ * @Last modified time: 24-09-2017
 */
 
 import { devVariables } from '../../environments/development';
 import { prodVariables } from '../../environments/production';
-import { IEnvironment } from "../../environments/env-model";
+import { IEnvironment } from '../../environments/env-model';
 
 
 declare const process: any; // Typescript compiler will complain without this

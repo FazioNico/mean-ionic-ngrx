@@ -3,13 +3,13 @@
  * @Date:   19-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 26-09-2017
  */
 
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import { AlertController } from 'ionic-angular';
+import { AlertController, Alert } from 'ionic-angular';
 
 /*
   Generated class for the AlertService provider.
@@ -29,7 +29,7 @@ export class AlertService {
     Displaying State alert with Ionic AlertController
   */
   doDisplayAlert(_payload):Observable<any>{
-    let alert = this.alertCtrl.create({
+    let alert:Alert = this.alertCtrl.create({
       title: 'Error',
       subTitle: _payload,
       buttons: ['Dismiss']

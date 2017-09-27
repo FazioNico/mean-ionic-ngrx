@@ -45,7 +45,7 @@
 
     <ion-list>
 
-      <ion-item-sliding #slidingItem *ngFor="let todo of (storeInfo | async)?.dataArray">
+      <ion-item-sliding #slidingItem *ngFor="let todo of (storeInfo | async)">
 
         <ion-item>
             <ion-label>{{ todo.description }}</ion-label>

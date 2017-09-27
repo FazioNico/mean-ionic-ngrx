@@ -3,12 +3,12 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 27-09-2017
 */
 
 import { Action } from "@ngrx/store";
 
-import { IDatasState } from '../store/reducers/datasReducer';
+// import { IDatasState } from '../store/reducers/datasReducer'; // added with lazy loading
 import { IqueryParamsState } from '../store/reducers/queryParamsReducer';
 import { ILoadingState } from '../store/reducers/loadingReducer';
 import { ILoadedState } from '../store/reducers/loadedReducer';
@@ -23,7 +23,7 @@ export interface AppStateI {
   queryParams: IqueryParamsState,
   currentUser?: ICurrentUserState,
   error?: IErrorState
-  dataArray?:IDatasState
+  //dataArray?:IDatasState // added with lazy loading
   dataObject?: Object
 };
 
@@ -35,6 +35,6 @@ export interface RecucerStateI {
   queryParams: (state: IqueryParamsState, action: Action) => IqueryParamsState,
   currentUser?: (state: ICurrentUserState, action: Action) => ICurrentUserState,
   error?: (state: IErrorState, action: Action) => IErrorState,
-  dataArray?: (state: IDatasState, action: Action) => IDatasState,
+  // dataArray?: (state: IDatasState, action: Action) => IDatasState, // added with lazy loading
   dataObject?: (state: Object, action: Action) => Object
 };

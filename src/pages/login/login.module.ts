@@ -3,7 +3,7 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 18-04-2017
+ * @Last modified time: 27-09-2017
  */
 
 import { NgModule } from '@angular/core';
@@ -17,6 +17,7 @@ import { Login } from './login';
   imports: [
     IonicPageModule.forChild(Login),
   ],
+  providers: [],
   exports: [
     Login
   ]
