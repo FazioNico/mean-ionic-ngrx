@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 29-09-2017
  */
 
 import { Component } from '@angular/core';
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { AppStateI } from "../../store/app-stats";
 import { ICurrentUserState } from '../../store/reducers/currentUserReducer';
-import { AuthActions } from '../../store/actions/auth.actions';
+import * as Auth from '../../store/actions/auth.actions';
 
 @IonicPage({
   name: 'HomePage',
@@ -31,7 +31,6 @@ export class HomePage {
   constructor(
     private readonly navCtrl: NavController,
     private readonly store: Store<AppStateI>,
-    private readonly authActions: AuthActions
   ) {
     this.storeInfo = this.store.select((state:AppStateI) => state.currentUser )
   }
@@ -41,6 +40,6 @@ export class HomePage {
   }
 
   onLogout():void{
-    this.store.dispatch(<Action>this.authActions.logout());
+    this.store.dispatch(new Auth.LogoutAction());
   }
 }

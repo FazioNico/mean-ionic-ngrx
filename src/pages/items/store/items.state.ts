@@ -1,10 +1,11 @@
 /**
 * @Author: Nicolas Fazio <webmaster-fazio>
-* @Date:   26-09-2017
+* @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 26-09-2017
+ * @Last modified time: 27-09-2017
 */
+
 
 export interface ITodo {
   _id: string;
@@ -15,3 +16,5 @@ export interface ITodo {
   user_id: string;
 }
 export interface IItemsState extends Array<ITodo>{}
+
+export const intitialState:IItemsState = []

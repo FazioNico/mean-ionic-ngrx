@@ -3,7 +3,7 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 29-09-2017
  */
 
 import { Component } from '@angular/core';
@@ -13,9 +13,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Store, Action } from '@ngrx/store'
 import { AppStateI } from "../../store/app-stats";
 
-import { AuthActions } from '../../store/actions/auth.actions';
-
-// import { AppStateI } from "../../store/app-stats";
+import * as Auth from '../../store/actions/auth.actions';
 
 /**
  * Generated class for the Login page.
@@ -43,8 +41,7 @@ export class Login {
     private _formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public loadCtrl:LoadingController,
-    private store: Store<AppStateI>,
-    private authActions: AuthActions
+    private store: Store<AppStateI>
   ) {
     this.userForm = this._formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
@@ -52,22 +49,19 @@ export class Login {
     });
   }
 
-  ionViewDidLoad() {
-  }
-
-  onLogin(){
+  onLogin():void{
     //this.submitted = true;
     if (this.userForm.valid) {
-      this.store.dispatch(<Action>this.authActions.login(this.userForm));
+      this.store.dispatch(new Auth.LoginAction((this.userForm.value)))
     }
   }
-  onSignup(){
+  onSignup():void{
     if (this.userForm.valid) {
-      this.store.dispatch(<Action>this.authActions.create_user(this.userForm));
+      this.store.dispatch(new Auth.CreateAction(this.userForm.value));
     }
   }
 
-  toggleBtn(){
+  toggleBtn():void{
     this.loginBtn = !this.loginBtn
   }
 

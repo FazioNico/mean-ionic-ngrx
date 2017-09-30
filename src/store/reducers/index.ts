@@ -3,10 +3,10 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 28-09-2017
  */
 
- import { ActionReducerMap, combineReducers, ActionReducer, Action } from '@ngrx/store';
+ import { MetaReducer, ActionReducerMap, combineReducers, ActionReducer, Action } from '@ngrx/store';
  import { storeFreeze } from 'ngrx-store-freeze';
 
  import * as fromLoading from './loadingReducer';
@@ -28,15 +28,6 @@
    currentUser: fromCurrentUser.reducer,
    error: fromError.reducer
  };
- const developmentReducer= reducers;
- const productionReducer = reducers; //combineReducers(reducers);
 
-
- //export const reducer:ActionReducerMap<State> = process.env.IONIC_ENV === 'prod' ? productionReducer :  developmentReducer;
- export const reducer = process.env.IONIC_ENV === 'prod' ? productionReducer :  developmentReducer;
-
- // export function reducer(state: any, action: Action):AppStateI {
- //   let combineReducer:AppStateI = process.env.IONIC_ENV === 'prod' ? productionReducer(state, action) : developmentReducer(state, action);
- //   if(process.env.NODE_ENV === 'prod') { combineReducer = productionReducer(state, action) };
- //   return combineReducer
- // }
+ export const reducer:ActionReducerMap<AppStateI> = reducers;
+ export const metaReducers: MetaReducer<AppStateI>[] = process.env.IONIC_ENV !== 'prod' ? [storeFreeze]: [];

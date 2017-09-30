@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 28-09-2017
 */
 
 import { Action } from "@ngrx/store";
@@ -26,7 +26,10 @@ export function reducer (state:ICurrentUserState = intitialState, action:any):IC
       return intitialState
     }
 
-    case AuthActions.CREATE_USER_SUCCESS:{
+    // case AuthActions.CREATE_USER_SUCCESS:{
+    //   return Object.assign({},  action.payload.user )
+    // }
+    case AuthActions.CREATE_SUCCESS:{
       return Object.assign({},  action.payload.user )
     }
     default: {

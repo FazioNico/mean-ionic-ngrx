@@ -3,7 +3,7 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 28-09-2017
  */
 
 import { NgModule } from '@angular/core';
@@ -20,7 +20,7 @@ import { DatasEffects } from "../../shared/store/datas.effects";
 // import { ItemsActions } from "./store/items.actions";
 
 //mimport { ItemsService } from "./store/items.service";
-import { SharedModule } from '../../shared/shared.module';
+import { ItemsStoreService } from '../items/store/items-store.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { SharedModule } from '../../shared/shared.module';
     //StoreDevtoolsModule.instrument(),
     //EffectsModule.forFeature([DatasEffects]), // Define datasEffects
   ],
+  providers: [ItemsStoreService],
   exports: [
     ItemEdit
   ]

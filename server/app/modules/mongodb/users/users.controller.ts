@@ -3,7 +3,7 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 29-09-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -107,9 +107,10 @@ export const userController = {
     		User.findById(toObjectId(isAuth.user._id), (err, doc:IUserModel) => {
     			if(err) res.json(err);
           if(doc === null){
-            res.json({ success: false, message: 'isAuth failed. User not exist', user: isAuth.user});
+            res.json({ success: false, message: 'isAuth failed. User not exist'});
             return console.log('isAuth failed. User not exist')
           }
+          doc.password = null;
           res.json(doc);
         })
       }
@@ -144,6 +145,7 @@ export const userController = {
               var token = jwt.sign(user, SECRET_TOKEN_KEY, {
                 expiresIn: JWT_EXPIRE // expires in 24 hours
               });
+              user.password = null;
               // return the information including token as JSON
               res.json({
                 success: true,
@@ -185,6 +187,7 @@ export const userController = {
           // Send request to database
       		User.findById(toObjectId(req.params.id), (err, doc:IUserModel) => {
       			if(err) return console.log(err);
+            doc.password = null;
             res.json(doc);
           })
 

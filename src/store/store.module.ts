@@ -3,7 +3,7 @@
 * @Date:   15-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 30-09-2017
 */
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -13,14 +13,12 @@ import { HttpModule } from '@angular/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { storeFreeze } from 'ngrx-store-freeze';
 
 // Import ngRx Store
-import { reducer } from '../store/reducers';
+import { reducer, metaReducers } from '../store/reducers';
 import { AuthEffects } from '../store/effects/auth.effects';
 import { ErrorEffects } from '../store/effects/errorEffects';
-
-import { AuthActions } from '../store/actions/auth.actions';
-import { MainActions } from '../store/actions/mainActions';
 
 // Import Providers Service
 import { AuthService } from "../providers/auth-service/auth.service";
@@ -34,10 +32,7 @@ const effects:Array<any> = [
     AuthEffects,
     ErrorEffects
 ];
-const actions:Array<any> = [
-    AuthActions,
-    MainActions,
-];
+
 
 /*
   Bootstrap NgRxStoreModule
@@ -47,11 +42,11 @@ const actions:Array<any> = [
 @NgModule({
   imports: [
     HttpModule,
-    StoreModule.forRoot(reducer),
+    StoreModule.forRoot(reducer, { metaReducers }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([...effects]),
   ],
-  providers: [...providers, ...effects, ...actions]
+  providers: [...providers, ...effects]
 })
 export class NgRxStoreModule {
   // guarantee that only one instance of Services is added to the root module
@@ -59,7 +54,7 @@ export class NgRxStoreModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: NgRxStoreModule,
-      providers: [...providers, ...effects, ...actions]
+      providers: [...providers, ...effects]
     }
   }
 }

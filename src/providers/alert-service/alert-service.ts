@@ -3,7 +3,7 @@
  * @Date:   19-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 26-09-2017
+ * @Last modified time: 29-09-2017
  */
 
 import { Injectable } from '@angular/core';
@@ -31,12 +31,12 @@ export class AlertService {
   doDisplayAlert(_payload):Observable<any>{
     let alert:Alert = this.alertCtrl.create({
       title: 'Error',
-      subTitle: _payload,
+      subTitle: _payload.message || 'Error...',
       buttons: ['Dismiss']
     });
     alert.present();
     return Observable.create((observer) => {
-      observer.next({ type: 'ERROR_DISPLAYED' })
+      observer.next(true)
     })
   }
 }

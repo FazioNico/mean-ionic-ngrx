@@ -3,7 +3,7 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 29-09-2017
  */
 
  import { Injectable } from "@angular/core";
@@ -11,7 +11,7 @@
  import { Action } from '@ngrx/store';
  import { Effect, Actions, toPayload } from "@ngrx/effects";
 
- import { AuthActions } from '../actions/auth.actions';
+ import * as Auth from '../actions/auth.actions';
  import { AuthService } from "../../providers/auth-service/auth.service";
  import { Response } from '@angular/http';
 
@@ -25,67 +25,65 @@
    }
 
    @Effect() loginAction$ = this.action$
-       .ofType(AuthActions.LOGIN)
+       .ofType(Auth.AuthActions.LOGIN)
        .map<Action, any>(toPayload)
        .switchMap((payload:Observable<any>) => this._auth.doAuth(payload))
        .switchMap((result:any)=> {
          if(result.success === true){
-           return Observable.of({ type: AuthActions.LOGIN_SUCCESS, payload: result })
+           return Observable.of(new Auth.LoginSuccessAction(result))
          }
          else {
-           return Observable.of({ type: AuthActions.LOGIN_FAILED, payload: result.message })
+           return Observable.of(new Auth.ErrorAction(result))
          }
        })
 
+
    @Effect() checkMainAction$ = this.action$
-       // Listen for the 'CHECK_AUTH' action
-       .ofType(AuthActions.CHECK_AUTH)
+       .ofType(Auth.AuthActions.CHECK_AUTH)
        .switchMap<Action, Observable<any>>(() =>  this._auth.isAuth())
        .switchMap<Observable<any>, Observable<Action>>((_result:any) => {
          console.log('CHECK_AUTH -->',_result)
          if (_result._id) {
-           return Observable.of({ type: AuthActions.CHECK_AUTH_SUCCESS, payload: _result })
+           return Observable.of(new Auth.CheckAuthSuccessAction(_result))
          } else {
-           return Observable.of({ type: AuthActions.CHECK_AUTH_NO_USER })
+           return Observable.of(new Auth.CheckAuthNoUserSuccessAction())
          }
        })
-       .catch((res: any) => {
-         console.log('catch -->', res)
-         return Observable.of({ type: AuthActions.CHECK_AUTH_FAILED, payload: res })
-       })
+       .catch((res: any) => Observable.of(new Auth.ErrorAction(res)))
+
 
    @Effect() logoutAction$ = this.action$
-       .ofType(AuthActions.LOGOUT)
+       .ofType(Auth.AuthActions.LOGOUT)
        .switchMap<Action, any>(() => this._auth.doLogout())
        // If successful, dispatch success action
        .switchMap<Action, any>(action =>Observable.concat(
-           Observable.of(<Action>{ type: AuthActions.TOKEN_DELETE }),
-           Observable.of(<Action>{type: AuthActions.LOGOUT_SUCCESS })
+          Observable.of(new Auth.TokenDeleteAction()),
+          Observable.of(new Auth.LogoutSuccessAction())
        ))
        // If request fails, dispatch failed action
-       .catch((err: any) => Observable.of({ type: AuthActions.LOGOUT_FAILED, payload: err }))
+       .catch((err: any) => Observable.of(new Auth.ErrorAction))
+
 
    @Effect() createUserAction$ = this.action$
-       .ofType(AuthActions.CREATE_USER)
+       .ofType(Auth.AuthActions.CREATE)
        .map<Action, any>(toPayload)
        .switchMap((payload:Observable<any>) => this._auth.doCreateUser(payload))
        .switchMap((_result:any) => {
          //console.log('-->',_result)
          if(_result.success === true){
-           return Observable.of({ type: AuthActions.CREATE_USER_SUCCESS, payload: _result })
+           return Observable.of(new Auth.CreateSuccessAction(_result))
          }
          else {
-           return Observable.of({ type: AuthActions.CREATE_USER_FAILED, payload: _result.message })
+           return Observable.of(new Auth.ErrorAction(_result))
          }
        })
-       .catch((err: any) => Observable.of({ type: AuthActions.CREATE_USER_FAILED, payload: err.message }))
+       .catch((err: any) => Observable.of(new Auth.ErrorAction(err.message)))
 
-   // TODO
+
    @Effect() userSuccessAction$ = this.action$
-       // Listen for the 'LOGIN_SUCCESS & CREATE_USER_SUCCESS' action
        .ofType(
-         AuthActions.CREATE_USER_SUCCESS,
-         AuthActions.LOGIN_SUCCESS
+         Auth.AuthActions.CREATE_SUCCESS,
+         Auth.AuthActions.LOGIN_SUCCESS
        )
        .map<Action, any>(toPayload)
        .switchMap((payload:Observable<any>) => this._auth.saveToken(payload))
@@ -94,16 +92,14 @@
          if(payload){
 
            return Observable.concat(
-             Observable.of(<Action>{ type: AuthActions.TOKEN_SAVE_SUCCESS, payload: payload }),
-             Observable.of(<Action>{ type: AuthActions.CHECK_AUTH })
+            Observable.of(new Auth.TokenSaveSuccessAction(payload)),
+            Observable.of(new Auth.CheckAuthAction())
            )
          }
          else {
-           return Observable.concat(
-             Observable.of( <Action>{ type: AuthActions.TOKEN_SAVE_FAILED }),
-             Observable.of(<Action>{ type: AuthActions.CHECK_AUTH_FAILED })
-           )
+          return Observable.of(new Auth.ErrorAction())
          }
        })
+       .catch((err: any) => Observable.of(new Auth.ErrorAction(err.message)))
 
  }

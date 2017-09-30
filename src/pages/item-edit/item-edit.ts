@@ -3,20 +3,17 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 29-09-2017
  */
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
-import { Store, Action } from '@ngrx/store'
 import 'rxjs/add/operator/map';
 
-import { DatasActions } from '../../shared/store/datas.actions';
-
 import { AppStateI } from "../../store/app-stats";
-//import { ITodo } from '../../providers/datas-service/datas-service';
+import { ItemsStoreService } from '../items/store/items-store.service';
 
 /**
  * Generated class for the ItemEdit page.
@@ -44,8 +41,8 @@ export class ItemEdit {
     private navCtrl: NavController,
     private navParams: NavParams,
     private fb: FormBuilder,
-    private store: Store<AppStateI>,
-    private datasActions: DatasActions
+    private itemsStore: ItemsStoreService
+    //private datasActions: DatasActions
   ) {
     // get todo item from navParams
     this.todo = this.navParams.get('todo')
@@ -94,13 +91,13 @@ export class ItemEdit {
     // add convert ISO Date format to the param deadline
     updated.deadline = newDate
     // then send the todo ready to todoService
-    this.store.dispatch(<Action>this.datasActions.update_data( { path: '/todos', params: updated} ));
+    this.itemsStore.dispatchUpdateAction(updated)
     this.navCtrl.pop()
   }
 
   deleteTodo():void{
     // use item ID
-    this.store.dispatch(<Action>this.datasActions.delete_data( { path: '/todos', params: this.todo} ));
+    this.itemsStore.dispatchRemoveAction(this.todo._id)
     // pop() navigation
     this.navCtrl.pop()
   }
@@ -111,7 +108,7 @@ export class ItemEdit {
   }
 
   toogleClick():void{
-    console.log(this.form.value.expire)
+    //console.log(this.form.value.expire)
   }
 
 }
