@@ -22,7 +22,9 @@
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
     "typedoc": "typedoc",
     "e2e": "protractor test-config/protractor.conf.js",
-    "test": "karma start test-config/karma.conf.js"
+    "test": "karma start test-config/karma.conf.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "@angular/common": "4.0.2",
@@ -53,7 +55,8 @@
     "ionicons": "3.0.0",
     "rxjs": "5.1.1",
     "sw-toolbox": "3.4.0",
-    "zone.js": "^0.8.5"
+    "zone.js": "^0.8.5",
+    "snyk": "^1.41.1"
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.3.4",
@@ -119,5 +122,6 @@
       "locator": "ios"
     }
   ],
-  "description": "Full MEAN stack with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)"
+  "description": "Full MEAN stack with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)",
+  "snyk": true
 }
