@@ -1,20 +1,19 @@
 /**
- * @Author: Nicolas Fazio <webmaster-fazio>
- * @Date:   14-04-2017
- * @Email:  contact@nicolasfazio.ch
+* @Author: Nicolas Fazio <webmaster-fazio>
+* @Date:   14-04-2017
+* @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 29-09-2017
- */
+ * @Last modified time: 01-10-2017
+*/
 
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Store, Action } from '@ngrx/store'
+import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Rx';
 
 import { AppStateI } from "../../store/app-stats";
-import { ICurrentUserState } from '../../store/reducers/currentUserReducer';
-import * as Auth from '../../store/actions/auth.actions';
+import { AuthStoreService } from '../login/store/auth-store.service';
 
 @IonicPage({
   name: 'HomePage',
@@ -25,14 +24,24 @@ import * as Auth from '../../store/actions/auth.actions';
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  public readonly storeInfo:Observable<ICurrentUserState>;
+/**
+ * Exemple how to use store in components without store
+ */
+  public readonly storeInfo:Observable<any>;
 
   constructor(
     private readonly navCtrl: NavController,
+    private readonly navParams: NavParams,
     private readonly store: Store<AppStateI>,
+    private readonly authStore:AuthStoreService,
   ) {
-    this.storeInfo = this.store.select((state:AppStateI) => state.currentUser )
+    // add this to all page need to be login
+    if(!this.navParams.get('checkAuth')){
+      this.navCtrl.setRoot('LoginPage')
+      return
+    }
+    // manage store state
+    this.storeInfo = this.authStore.getCurrentUser()
   }
 
   goPage(page:string):void{
@@ -40,6 +49,6 @@ export class HomePage {
   }
 
   onLogout():void{
-    this.store.dispatch(new Auth.LogoutAction());
+    this.authStore.dispatchLogoutAction()
   }
 }

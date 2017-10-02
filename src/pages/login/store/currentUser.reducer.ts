@@ -1,0 +1,45 @@
+/**
+* @Author: Nicolas Fazio <webmaster-fazio>
+* @Date:   14-04-2017
+* @Email:  contact@nicolasfazio.ch
+ * @Last modified by:   webmaster-fazio
+ * @Last modified time: 02-10-2017
+*/
+
+import { Action } from "@ngrx/store";
+import { AuthActions, TAuthActions } from './auth.actions';
+import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
+
+
+export type Action = TAuthActions;
+export interface ICurrentUserState extends Object {};
+// TODO: add & use ngrx Entities
+//export const adapter: EntityAdapter<User> = createEntityAdapter<ICurrentUserState>();
+
+export const intitialState:ICurrentUserState = null
+
+export function reducer (state:ICurrentUserState = intitialState, action:Action|any):ICurrentUserState {
+  //console.log('CURRENT USER REDUCER-> ', action);
+  switch (action.type) {
+    case AuthActions.LOGIN_SUCCESS:{
+      return Object.assign({}, state, )
+      // return Object.assign({}, state,  action.payload.user)
+    }
+    case AuthActions.CHECK_AUTH_SUCCESS:{
+      return Object.assign({}, state, action.payload )
+    }
+    case AuthActions.LOGOUT_SUCCESS:{
+      return intitialState
+    }
+
+    // case AuthActions.CREATE_USER_SUCCESS:{
+    //   return Object.assign({},  action.payload.user )
+    // }
+    case AuthActions.CREATE_SUCCESS:{
+      return Object.assign({},  action.payload.user )
+    }
+    default: {
+      return <ICurrentUserState>state;
+    }
+  }
+};

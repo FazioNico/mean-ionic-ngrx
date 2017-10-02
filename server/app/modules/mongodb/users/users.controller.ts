@@ -3,7 +3,7 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 29-09-2017
+ * @Last modified time: 01-10-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -61,7 +61,12 @@ export const userController = {
     // before add new user
     // find the user
     User.findOne({email: req.body.email}, (err, user:IUserModel)=> {
-      if (err) throw err;
+      if (err) {
+        console.log('errr!!')
+        res.json({ success: false, message: err.message });
+        //throw err
+        return
+      };
       if (!user) {
         // No existing user found, create the new user
         // Check password length is >= 6
@@ -95,6 +100,13 @@ export const userController = {
         // User alerady existe un DB
         res.json({ success: false, message: 'User already existe'});
       }
+    })
+    .catch(err=> {
+      console.log('errr!!')
+      res.json({ success: false, message: err.message });
+      //throw err
+      return
+
     });
 	},
   isAuth: (req,res)=> {

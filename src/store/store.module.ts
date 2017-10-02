@@ -3,7 +3,7 @@
 * @Date:   15-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 30-09-2017
+ * @Last modified time: 02-10-2017
 */
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
@@ -13,26 +13,24 @@ import { HttpModule } from '@angular/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { storeFreeze } from 'ngrx-store-freeze';
 
 // Import ngRx Store
 import { reducer, metaReducers } from '../store/reducers';
-import { AuthEffects } from '../store/effects/auth.effects';
 import { ErrorEffects } from '../store/effects/errorEffects';
 
 // Import Providers Service
-import { AuthService } from "../providers/auth-service/auth.service";
 import { AlertService } from "../providers/alert-service/alert-service";
 
+// (Optional): import auth-store.service to enable Login on rootPage
+import { AuthStoreService } from '../pages/login/store/auth-store.service';
+
 const providers:Array<any> =  [
-    AuthService,
     AlertService,
+    AuthStoreService
 ];
 const effects:Array<any> = [
-    AuthEffects,
     ErrorEffects
 ];
-
 
 /*
   Bootstrap NgRxStoreModule

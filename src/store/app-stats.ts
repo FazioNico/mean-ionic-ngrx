@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 30-09-2017
 */
 
 import { Action } from "@ngrx/store";
@@ -19,9 +19,9 @@ import { ICurrentUserState } from '../store/reducers/currentUserReducer';
 export interface AppStateI {
   loading: ILoadingState,
   loaded: ILoadedState,
-  authCheck: IAuthCheckedState,
+  //authCheck: IAuthCheckedState,
   queryParams: IqueryParamsState,
-  currentUser?: ICurrentUserState,
+  //currentUser?: ICurrentUserState,
   error?: IErrorState
   //dataArray?:IDatasState // added with lazy loading
   dataObject?: Object
@@ -31,9 +31,9 @@ export interface AppStateI {
 export interface RecucerStateI {
   loading: (state: ILoadingState, action: Action) => ILoadingState,
   loaded: (state: ILoadedState, action: Action) => ILoadedState,
-  authCheck: (state: IAuthCheckedState, action: Action) => IAuthCheckedState,
+  //authCheck: (state: IAuthCheckedState, action: Action) => IAuthCheckedState,
   queryParams: (state: IqueryParamsState, action: Action) => IqueryParamsState,
-  currentUser?: (state: ICurrentUserState, action: Action) => ICurrentUserState,
+  //currentUser?: (state: ICurrentUserState, action: Action) => ICurrentUserState,
   error?: (state: IErrorState, action: Action) => IErrorState,
   // dataArray?: (state: IDatasState, action: Action) => IDatasState, // added with lazy loading
   dataObject?: (state: Object, action: Action) => Object
