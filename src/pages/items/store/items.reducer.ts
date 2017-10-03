@@ -3,32 +3,31 @@
 * @Date:   26-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 03-10-2017
 */
 
-import { Action } from "@ngrx/store";
 import { ItemsActions, TItemsActions } from './items.actions';
-import { ITodo, IItemsState, intitialState } from "./items.state";
+import { ITodo, IItemsState, intitialState /*, adapter*/ } from "./items.state";
 
 export function reducer (
   state:IItemsState = intitialState,
   action:TItemsActions
 ):IItemsState {
-  //console.log('ARRAY DATAS REDUCER-> ', action);
   switch (action.type) {
     case ItemsActions.LOAD: {
       return Object.assign([], state)
     }
     case ItemsActions.LOAD_SUCCESS: {
+      //return adapter.addMany(action.payload, state)
       return Object.assign([], [...action.payload])
     }
     case ItemsActions.UPDATE_SUCCESS: {
-      return Object.assign([], [...state.map((item: any) => {
+      return Object.assign([], [...state.map((item:ITodo) => {
         return item._id === action.payload.response._id ? action.payload.response : item;
       })
     ])}
     case ItemsActions.REMOVE_SUCCESS: {
-      return Object.assign([], [...state.filter((item: any) => {
+      return Object.assign([], [...state.filter((item: ITodo) => {
         return item._id !== action.payload._id;
       })]
     )}

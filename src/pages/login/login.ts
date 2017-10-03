@@ -3,15 +3,14 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 02-10-2017
+ * @Last modified time: 03-10-2017
 */
 
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, LoadingController, Loading, AlertController, Alert } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
-import { Store, Action } from '@ngrx/store'
 import { AuthStoreService } from './store/auth-store.service';
 
 /**
@@ -35,13 +34,10 @@ export class Login implements OnInit{
   public user:any|null;
   public loginBtn:boolean = true;
   public userForm:FormGroup;
-  public loader:Loading;
 
   constructor(
     public navCtrl: NavController,
     private _formBuilder: FormBuilder,
-    public alertCtrl: AlertController,
-    public loadCtrl:LoadingController,
     public authStore: AuthStoreService
   ) {
     this.userForm = this._formBuilder.group({

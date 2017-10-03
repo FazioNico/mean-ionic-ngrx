@@ -3,16 +3,15 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 29-09-2017
+ * @Last modified time: 03-10-2017
  */
 
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import 'rxjs/add/operator/map';
 
-import { AppStateI } from "../../store/app-stats";
 import { ItemsStoreService } from '../items/store/items-store.service';
 
 /**
@@ -42,7 +41,6 @@ export class ItemEdit {
     private navParams: NavParams,
     private fb: FormBuilder,
     private itemsStore: ItemsStoreService
-    //private datasActions: DatasActions
   ) {
     // get todo item from navParams
     this.todo = this.navParams.get('todo')

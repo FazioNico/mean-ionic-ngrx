@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 02-10-2017
+ * @Last modified time: 03-10-2017
  */
 
  import { MetaReducer, ActionReducerMap, Action } from '@ngrx/store';

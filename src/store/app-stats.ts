@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 30-09-2017
+ * @Last modified time: 03-10-2017
 */
 
 import { Action } from "@ngrx/store";
@@ -16,6 +16,8 @@ import { IAuthCheckedState } from '../store/reducers/authCheckedReducer';
 import { IErrorState } from '../store/reducers/errorReducer';
 import { ICurrentUserState } from '../store/reducers/currentUserReducer';
 
+// TODO use & add selectors
+// see => https://github.com/ngrx/platform/blob/master/docs/store/selectors.md
 export interface AppStateI {
   loading: ILoadingState,
   loaded: ILoadedState,
