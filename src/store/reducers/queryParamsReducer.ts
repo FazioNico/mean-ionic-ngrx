@@ -3,11 +3,11 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 30-09-2017
+ * @Last modified time: 03-10-2017
  */
 
  import { Action } from "@ngrx/store";
- import { AuthActions } from '../actions/auth.actions';
+ import { AuthActions } from '../../pages/login/store/auth.actions';
  import { ErrorActions } from '../actions/err.actions';
  import { ItemsActions } from "../../pages/items/store/items.actions";
 

@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 30-09-2017
+ * @Last modified time: 03-10-2017
 */
 
 import { Injectable } from "@angular/core";
@@ -12,7 +12,7 @@ import { Action } from '@ngrx/store';
 import { Effect, Actions, toPayload } from "@ngrx/effects";
 
 import * as Err from '../actions/err.actions';
-import * as Auth from '../actions/auth.actions';
+import * as Auth from '../../pages/login/store/auth.actions';
 import * as Items from '../../pages/items/store/items.actions';
 import { AlertService } from "../../providers/alert-service/alert-service";
 

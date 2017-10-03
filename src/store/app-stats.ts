@@ -8,13 +8,10 @@
 
 import { Action } from "@ngrx/store";
 
-// import { IDatasState } from '../store/reducers/datasReducer'; // added with lazy loading
 import { IqueryParamsState } from '../store/reducers/queryParamsReducer';
 import { ILoadingState } from '../store/reducers/loadingReducer';
 import { ILoadedState } from '../store/reducers/loadedReducer';
-import { IAuthCheckedState } from '../store/reducers/authCheckedReducer';
 import { IErrorState } from '../store/reducers/errorReducer';
-import { ICurrentUserState } from '../store/reducers/currentUserReducer';
 
 // TODO use & add selectors
 // see => https://github.com/ngrx/platform/blob/master/docs/store/selectors.md
