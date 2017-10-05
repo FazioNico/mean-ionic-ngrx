@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 05-10-2017
 */
 
 import { Action } from "@ngrx/store";
@@ -18,9 +18,9 @@ import { IErrorState } from '../store/reducers/errorReducer';
 export interface AppStateI {
   loading: ILoadingState,
   loaded: ILoadedState,
-  //authCheck: IAuthCheckedState,
+  //authCheck: IAuthCheckedState, // added with lazy loading
   queryParams: IqueryParamsState,
-  //currentUser?: ICurrentUserState,
+  //currentUser?: ICurrentUserState, // added with lazy loading
   error?: IErrorState
   //dataArray?:IDatasState // added with lazy loading
   dataObject?: Object

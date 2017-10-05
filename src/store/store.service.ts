@@ -3,7 +3,7 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 29-09-2017
+ * @Last modified time: 05-10-2017
  */
 
  import { Action, Store } from '@ngrx/store';

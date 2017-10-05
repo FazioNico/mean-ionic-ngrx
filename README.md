@@ -1,6 +1,6 @@
-<img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="http://code.runnable.com/images/provider-icons/icon-node.js.svg" width="80"><img src="http://amver.lt/wp-content/uploads/2016/07/Mathematic-Plus2.ico" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px">
+<img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="80"><img src="https://camo.githubusercontent.com/a083a6650043b70297ab9655569d56ed0d300687/687474703a2f2f616d7665722e6c742f77702d636f6e74656e742f75706c6f6164732f323031362f30372f4d617468656d617469632d506c7573322e69636f" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px">
 
-#  MEAN Ionic NgRx
+#  MEAN Ionic NgRx Lazy Load
 [![Build Status](https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master)](https://travis-ci.org/FazioNico/mean-ionic-ngrx) [![dependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx) [![devDependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev) [![Known Vulnerabilities](https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg)](https://snyk.io/test/github/fazionico/mean-ionic-ngrx)
 <blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)</blockquote>
 
@@ -11,7 +11,7 @@ It's a simple todo application exemple with server-side Users JWT authentificati
 
 Hop is help you to start your project on the right way.
 
-<i>work in proccess...</i>
+#### <i><b>work in proccess... do not use right now!!</b></i>
 
 ## Prerequisites
 - NVM - [Download](https://github.com/creationix/nvm) & Install Node Version Manage
