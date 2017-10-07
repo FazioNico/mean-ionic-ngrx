@@ -4,7 +4,7 @@
   "homepage": "http://nicolasfazio.ch/",
   "private": true,
   "scripts": {
-    "start": "NODE_ENV=prod node ./server/server.js",
+    "start": "NODE_ENV=prod node ./server.js",
     "start.local": "NODE_ENV=prod node ./server.js"
   },
   "dependencies": {

@@ -33,3 +33,6 @@ $RECYCLE.BIN/
 Thumbs.db
 UserInterfaceState.xcuserstate
 .sourcemaps
+
+# TODO: uncomment the following lines
+# production.ts

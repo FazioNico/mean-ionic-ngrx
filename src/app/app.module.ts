@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 29-09-2017
+ * @Last modified time: 07-10-2017
  */
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,7 +32,7 @@ const ionicAppConfig:Object = {
   ],
   imports: [
     BrowserModule,
-    EnvironmentsModule, // import app environment variable
+    EnvironmentsModule.forRoot(), // import app environment variable
     NgRxStoreModule.forRoot(), // import AppCore NgRxStoreModule
     IonicModule.forRoot(MyApp, ionicAppConfig)
   ],

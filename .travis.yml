@@ -2,7 +2,7 @@
 # @Date:   21-04-2017
 # @Email:  contact@nicolasfazio.ch
 # @Last modified by:   webmaster-fazio
-# @Last modified time: 23-04-2017
+# @Last modified time: 06-10-2017
 
 #
 # Configuration
@@ -34,7 +34,7 @@ before_install:
   - npm install -g cordova ionic
   - npm install -g karma-cli
   - npm install -g webpack
-  - ionic state clear
+  # - ionic state clear # Deprecate: remove from ionic >3.0.0
   - npm install -g webdriver-manager
   - webdriver-manager update
 

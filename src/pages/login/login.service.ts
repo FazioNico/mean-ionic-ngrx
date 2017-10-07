@@ -3,7 +3,7 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 02-10-2017
+ * @Last modified time: 07-10-2017
 */
 
 import { Injectable, Inject } from '@angular/core';
@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 
 import { HttpService } from "../../providers/http-service/http.service";
 import { EnvVariables } from '../../app/environment/environment.token';
-import { IEnvironment } from "../../../environments/env-model";
+import { IEnvironment } from "../../app/environment/env-model";
 
 const STORAGE_ITEM:string = 'authTokenTest';
 

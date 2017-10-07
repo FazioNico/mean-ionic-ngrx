@@ -3,21 +3,22 @@
  * @Date:   09-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
+ * @Last modified time: 07-10-2017
  */
 
- import { NgModule } from '@angular/core';
+ import { NgModule, ModuleWithProviders } from '@angular/core';
  import { EnvVariables } from './environment.token';
- import { devVariables } from '../../../environments/development';
- import { prodVariables } from '../../../environments/production';
- import { IEnvironment } from "../../../environments/env-model";
+ import { devVariables } from './development';
+ import { prodVariables } from './production';
+ import { IEnvironment } from "./env-model";
 
- declare const process: any; // Typescript compiler will complain without this
+export declare const process: any; // Typescript compiler will complain without this
 
  export function environmentFactory():IEnvironment {
-   let env:IEnvironment = process.env.IONIC_ENV === 'prod' ? prodVariables : devVariables;
-   process.env.IONIC_ENV != 'prod'? console.info('env->', env) : console.info("env-> ", env.environmentName);
-   if(process.env.NODE_ENV === 'prod') { env = prodVariables };
+   //console.log('process.env.IONIC_ENV-> ', process.env.IONIC_ENV)
+   //console.log('process.env-> ',  process.env.NODE_ENV)
+   let env:IEnvironment = (process.env.IONIC_ENV === 'prod' || process.env.NODE_ENV === 'prod' )? prodVariables : devVariables;
+   env.ionicEnvName != 'prod'? console.info('env->', env) : console.info('env->', 'Production Mode');
    return env
  }
 
@@ -29,4 +30,14 @@
      }
    ]
  })
- export class EnvironmentsModule {}
+ export class EnvironmentsModule {
+   static forRoot(): ModuleWithProviders {
+     return {
+       ngModule: EnvironmentsModule,
+       providers: [     {
+              provide: EnvVariables,
+              useFactory: environmentFactory
+            }]
+     }
+   }
+ }
