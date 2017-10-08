@@ -22,7 +22,7 @@
     "copy.files": "cp ./server/package.json ./platforms/server/package.json && cp ./server/.gitignore ./platforms/server/.gitignore",
     "docs": "npm run typedoc -- --out docs/ --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
     "helper.cmd": "node ./tools/helper.cmd.js",
-    "e2e": "protractor test-config/protractor.conf.js",
+    "e2e": "protractor ./test-config/protractor.conf.js",
     "test": "karma start test-config/karma.conf.js"
   },
   "dependencies": {
