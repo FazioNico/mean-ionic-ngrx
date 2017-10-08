@@ -3,7 +3,7 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 01-10-2017
+ * @Last modified time: 08-10-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -113,7 +113,8 @@ export const userController = {
     Authentication.checkAuthentication(req,  (isAuth: boolean|any): void =>{
       //console.log('looog-> ', doc)
       if (isAuth) {
-        //console.log('isAuth-> ', isAuth.user._id, 'req.params.id-> ',  req.params.id)
+        // console.log('isAuth-> ', isAuth,)
+        // console.log('isAuth-> ', isAuth, isAuth.user._id, 'req.params.id-> ',  req.params.id)
         // the user has a proper token
         // Send request to database
     		User.findById(toObjectId(isAuth.user._id), (err, doc:IUserModel) => {
@@ -154,9 +155,12 @@ export const userController = {
             else if (result === true){
               // if user is found and password is right
               // create a token
-              var token = jwt.sign(user, SECRET_TOKEN_KEY, {
+              //
+              // console.log('XXXXX befor token-> ', user)
+              var token = jwt.sign({_id:user._id,email:user.email}, SECRET_TOKEN_KEY, {
                 expiresIn: JWT_EXPIRE // expires in 24 hours
               });
+              // console.log('XXXXX token-> ', token)
               user.password = null;
               // return the information including token as JSON
               res.json({

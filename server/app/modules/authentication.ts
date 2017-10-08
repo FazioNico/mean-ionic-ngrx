@@ -2,8 +2,8 @@
 * @Author: Nicolas Fazio <webmaster-fazio>
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
-* @Last modified by:   webmaster-fazio
-* @Last modified time: 25-12-2016
+ * @Last modified by:   webmaster-fazio
+ * @Last modified time: 08-10-2017
 */
 
 import { verify } from 'jsonwebtoken';
@@ -26,9 +26,9 @@ export class Authentication {
         if (err) {
           cb(false);
         } else {
-          //console.log('req.decoded-> ', decoded._doc._id )
+          //console.log('req.decoded-> ', decoded )
           req.decoded = decoded;
-          cb({success:true, user: decoded._doc});
+          cb({success:true, user: decoded});
         }
       });
     }

@@ -3,7 +3,7 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 07-10-2017
+ * @Last modified time: 08-10-2017
 */
 
 import { devVariables } from './environment/development';
