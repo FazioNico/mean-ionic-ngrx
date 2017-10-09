@@ -3,17 +3,17 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 08-10-2017
+ * @Last modified time: 09-10-2017
 */
 
 import * as mongoose from 'mongoose';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
 
-import { User, IUserModel } from './user.model';
-import {Authentication} from '../../authentication';
+import { User, IUserModel } from '../../../models/user.models';
+import {Authentication} from '../../../authentication';
 // Import config
-import { SECRET_TOKEN_KEY, BCRYPT_ROUND, PASSWORD_MIN_LENGHT, JWT_EXPIRE} from "../../../config";
+import { CONFIG } from "../../../config";
 
 const toObjectId = (_id: string): mongoose.Types.ObjectId =>{
     return mongoose.Types.ObjectId.createFromHexString(_id);
@@ -28,7 +28,7 @@ export const userController = {
   */
 	setup : (req,res) =>{
     // Use bcrypte to encrypte user password
-    bcrypt.hash('A123456', BCRYPT_ROUND, (err, hash) =>{
+    bcrypt.hash('A123456', CONFIG.bcryptRound, (err, hash) =>{
       if(err){
         console.log('User saved successfully');
         res.json({ success: false, message: 'Error with bcrypt hash password' });
@@ -70,13 +70,13 @@ export const userController = {
       if (!user) {
         // No existing user found, create the new user
         // Check password length is >= 6
-        if(req.body.password.length < PASSWORD_MIN_LENGHT) {
+        if(req.body.password.length < CONFIG.passwordMinLenght) {
           console.log('User saved successfully');
           res.json({ success: false, message: 'Error password require min 6 characters' });
           return
         }
         // Use bcrypte to encrypte user password
-        bcrypt.hash(req.body.password, BCRYPT_ROUND, (err, hash) =>{
+        bcrypt.hash(req.body.password, CONFIG.bcryptRound, (err, hash) =>{
           if(err){
             console.log('User saved successfully');
             res.json({ success: false, message: 'Error with bcrypt hash password' });
@@ -110,14 +110,15 @@ export const userController = {
     });
 	},
   isAuth: (req,res)=> {
-    Authentication.checkAuthentication(req,  (isAuth: boolean|any): void =>{
-      //console.log('looog-> ', doc)
+    Authentication.checkAuthentication(req)
+    .then(isAuth=> {
+      console.log('XXXX isAuth', isAuth)
       if (isAuth) {
         // console.log('isAuth-> ', isAuth,)
         // console.log('isAuth-> ', isAuth, isAuth.user._id, 'req.params.id-> ',  req.params.id)
         // the user has a proper token
         // Send request to database
-    		User.findById(toObjectId(isAuth.user._id), (err, doc:IUserModel) => {
+    		User.findById(toObjectId(isAuth._id), (err, doc:IUserModel) => {
     			if(err) res.json(err);
           if(doc === null){
             res.json({ success: false, message: 'isAuth failed. User not exist'});
@@ -157,8 +158,8 @@ export const userController = {
               // create a token
               //
               // console.log('XXXXX befor token-> ', user)
-              var token = jwt.sign({_id:user._id,email:user.email}, SECRET_TOKEN_KEY, {
-                expiresIn: JWT_EXPIRE // expires in 24 hours
+              var token = jwt.sign({_id:user._id,email:user.email}, CONFIG.secretTokent, {
+                expiresIn: CONFIG.jwtExpire // expires in 24 hours
               });
               // console.log('XXXXX token-> ', token)
               user.password = null;
@@ -191,15 +192,15 @@ export const userController = {
         }
       })
 			res.json(docsReady);
-		})
+		});
 	},
   getUser: (req,res) => {
-    Authentication.checkAuthentication(req,  (isAuth: boolean|any): void =>{
-      //console.log('looog-> ', doc)
+    Authentication.checkAuthentication(req)
+    .then(isAuth=> {
       if (isAuth) {
         //console.log('isAuth-> ', isAuth.user._id, 'req.params.id-> ',  req.params.id)
         // the user has a proper token & is the same of the req.params.id: let's call next
-        if(isAuth.user._id === req.params.id){
+        if(isAuth._id === req.params.id){
           // Send request to database
       		User.findById(toObjectId(req.params.id), (err, doc:IUserModel) => {
       			if(err) return console.log(err);

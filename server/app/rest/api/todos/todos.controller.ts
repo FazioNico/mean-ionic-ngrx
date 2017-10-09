@@ -3,13 +3,13 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 20-04-2017
+ * @Last modified time: 09-10-2017
 */
 
 import * as mongoose from 'mongoose';
-import { Todo, ITodoModel } from './todo.model';
+import { Todo, ITodoModel } from '../../../models/todo.models';
 
-import {Authentication} from '../../authentication';
+import {Authentication} from '../../../authentication';
 
 const toObjectId = (_id: string): mongoose.Types.ObjectId =>{
     return mongoose.Types.ObjectId.createFromHexString(_id);
@@ -17,9 +17,10 @@ const toObjectId = (_id: string): mongoose.Types.ObjectId =>{
 
 export const todoController = {
 	getItems : (req,res) => {
-    Authentication.checkAuthentication(req,  (isAuth: boolean|any): void =>{
+    Authentication.checkAuthentication(req)
+    .then(isAuth=>{
       if(isAuth){
-        let _uid = isAuth.user._id
+        let _uid = isAuth._id
     		Todo
           .find({ user_id : _uid.toString() })
           .exec((err, docs:ITodoModel[]) => {
@@ -28,7 +29,7 @@ export const todoController = {
       		})
       }
       else {
-        res.json([]);
+        res.json('error');
       }
     })
 	},
@@ -45,9 +46,10 @@ export const todoController = {
 		})
 	},
 	addItem : (req,res) =>{
-    Authentication.checkAuthentication(req,  (isAuth: boolean|any): void =>{
+    Authentication.checkAuthentication(req)
+    .then(isAuth=> {
       if(isAuth){
-        let _uid = isAuth.user._id
+        let _uid = isAuth._id
         let newTodo = req.body
         newTodo.user_id = _uid;
     		(new Todo(<ITodoModel>newTodo)).save((err, doc:ITodoModel) => {

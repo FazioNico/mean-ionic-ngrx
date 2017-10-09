@@ -2,14 +2,14 @@
 * @Author: Nicolas Fazio <webmaster-fazio>
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
-* @Last modified by:   webmaster-fazio
-* @Last modified time: 25-12-2016
+ * @Last modified by:   webmaster-fazio
+ * @Last modified time: 08-10-2017
 */
 
 import * as express from 'express';
-import { userController }  from "../../mongodb/users/users.controller";
-import { log } from '../../log';
-import {Authentication} from '../../authentication';
+import { userController }  from "./users.controller";
+import { log } from '../../../log';
+import {Authentication} from '../../../authentication';
 
 const router = express.Router();
 

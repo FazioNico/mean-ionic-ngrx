@@ -3,7 +3,7 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 08-10-2017
+ * @Last modified time: 09-10-2017
 */
 
 import { devVariables } from './environment/development';
@@ -19,10 +19,15 @@ export function environmentConfig():any {
   return env;
 }
 
-
-export const SECRET_TOKEN_KEY: string = 'this is a bad secret sentence';
-export const DB_NAME: string = environmentConfig().dbName;
-export const DB_HOST: string = environmentConfig().dbHost;
-export const BCRYPT_ROUND: number = 10;
-export const PASSWORD_MIN_LENGHT: number = 6;
-export const JWT_EXPIRE: number = 86400000;
+export const CONFIG:{server:{PORT:number},database:{HOST:string},secretTokent:string,jwtExpire:number, bcryptRound:number, passwordMinLenght:number} = {
+	server: {
+		PORT: +process.env.PORT || 8080,
+	},
+	database: {
+		HOST: process.env.MONGODB || `${environmentConfig().dbHost}/${environmentConfig().dbName}`
+	},
+	secretTokent: 'this is a bad secret sentence',
+	jwtExpire: 86400000,
+	bcryptRound: 10,
+	passwordMinLenght: 6
+};

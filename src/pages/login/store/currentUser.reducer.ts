@@ -3,13 +3,13 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 05-10-2017
+ * @Last modified time: 09-10-2017
 */
 
 import { AuthActions, TAuthActions } from './auth.actions';
 //import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { IUserModel } from "../../../../server/app/modules/mongodb/users/user.model";
+import { IUserModel } from "../../../../server/app/models/user.models";
 
 
 export type Action = TAuthActions;

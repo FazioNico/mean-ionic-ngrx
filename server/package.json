@@ -1,5 +1,5 @@
 {
-  "name": "mean-ionic-nodejs-simple-rest-ts",
+  "name": "mean-ionic-nodejs-simple-graphql-and-rest-ts",
   "author": "Nicolas Fazio",
   "homepage": "http://nicolasfazio.ch/",
   "private": true,
@@ -34,5 +34,5 @@
     "node": "~7.0.0"
   },
   "version": "0.0.1",
-  "description": "NodeJS Simple REST TS"
+  "description": "NodeJS Simple GraphQL & REST TS"
 }
