@@ -3,39 +3,41 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 03-10-2017
  */
 
  import { Action } from "@ngrx/store";
- import { MainActions } from '../actions/mainActions';
+ import { AuthActions } from '../../pages/login/store/auth.actions';
+ import { ErrorActions } from '../actions/err.actions';
+ import { ItemsActions } from "../../pages/items/store/items.actions";
 
  export interface IqueryParamsState {
-   queryParams:{
      path:string
      params?:Object
-   };
  };
 
  export const intitialState:IqueryParamsState = {
-   queryParams: {path: '/'}
+   path: '/'
  }
 
- export function reducer (state:IqueryParamsState = intitialState, action:Action):IqueryParamsState {
-     //console.log('ARRAY DATAS REDUCER-> ', action);
+ export function reducer (
+   state:IqueryParamsState = intitialState,
+   action:any
+ ):IqueryParamsState {
      switch (action.type) {
-       case MainActions.GET_DATAS_ARRAY: {
-         return Object.assign({}, state, { queryParams: action.payload })
+       case ItemsActions.LOAD: {
+         return Object.assign({}, state, action.payload )
        }
-       case MainActions.UPDATE_DATA: {
-         return Object.assign({}, state, { queryParams: action.payload })
+       case ItemsActions.UPDATE: {
+         return Object.assign({}, state, action.payload )
        }
-       case MainActions.DELETE_DATA: {
-         return Object.assign({}, state, { queryParams: action.payload })
+       case ItemsActions.REMOVE: {
+         return Object.assign({}, state, action.payload )
        }
-       case MainActions.CREATE_DATA: {
-         return Object.assign({}, state, { queryParams: action.payload })
+       case ItemsActions.CREATE: {
+         return Object.assign({}, state, action.payload )
        }
-       case MainActions.LOGOUT_SUCCESS: {
+       case AuthActions.LOGIN_SUCCESS: {
          return Object.assign({}, intitialState)
        }
        default: {

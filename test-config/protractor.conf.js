@@ -3,7 +3,7 @@
  * @Date:   21-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 22-04-2017
+ * @Last modified time: 08-10-2017
  */
 
  var SpecReporter = require('jasmine-spec-reporter').SpecReporter;

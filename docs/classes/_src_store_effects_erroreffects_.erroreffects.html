@@ -93,6 +93,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_erroreffects_.erroreffects.html#_alert" class="tsd-kind-icon">_alert</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_src_store_effects_erroreffects_.erroreffects.html#action_" class="tsd-kind-icon">action$</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_erroreffects_.erroreffects.html#handleerroraction_" class="tsd-kind-icon">handle<wbr>Error<wbr>Action$</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_src_store_effects_erroreffects_.erroreffects.html#hdisplayerroraction_" class="tsd-kind-icon">hdisplay<wbr>Error<wbr>Action$</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,7 +111,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/store/effects/errorEffects.ts:19</li>
+									<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/store/effects/errorEffects.ts#L20">src/store/effects/errorEffects.ts:20</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -135,7 +136,7 @@
 					<div class="tsd-signature tsd-kind-icon">_alert<span class="tsd-signature-symbol">:</span> <a href="_src_providers_alert_service_alert_service_.alertservice.html" class="tsd-signature-type">AlertService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/errorEffects.ts:23</li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/store/effects/errorEffects.ts#L24">src/store/effects/errorEffects.ts:24</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,17 +146,27 @@
 					<div class="tsd-signature tsd-kind-icon">action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Actions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/errorEffects.ts:22</li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/store/effects/errorEffects.ts#L23">src/store/effects/errorEffects.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="handleerroraction_" class="tsd-anchor"></a>
 					<h3>handle<wbr>Error<wbr>Action$</h3>
-					<div class="tsd-signature tsd-kind-icon">handle<wbr>Error<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$// Listen for the &#x27;*_FAILED&#x27; action.ofType(MainActions.LOGIN_FAILED,MainActions.LOGOUT_FAILED,MainActions.CHECK_AUTH_FAILED,MainActions.CREATE_USER_FAILED,MainActions.TOKEN_SAVE_FAILED,MainActions.GET_DATAS_ARRAY_FAILED,MainActions.DELETE_DATA_FAILED,MainActions.CREATE_DATA_FAILED,MainActions.UPDATE_DATA_FAILED,).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; {return this._alert.doDisplayAlert(payload)})</span></div>
+					<div class="tsd-signature tsd-kind-icon">handle<wbr>Error<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_store_actions_err_actions_.errordisplayaction.html" class="tsd-signature-type">ErrorDisplayAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Auth.AuthActions.ERROR,Items.ItemsActions.ERROR).map&lt;Action, any&gt;(toPayload).switchMap(err &#x3D;&gt; Observable.of(new Err.ErrorDisplayAction(err)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/store/effects/errorEffects.ts:27</li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/store/effects/errorEffects.ts#L28">src/store/effects/errorEffects.ts:28</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="hdisplayerroraction_" class="tsd-anchor"></a>
+					<h3>hdisplay<wbr>Error<wbr>Action$</h3>
+					<div class="tsd-signature tsd-kind-icon">hdisplay<wbr>Error<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="_src_store_actions_err_actions_.errordisplaysuccessaction.html" class="tsd-signature-type">ErrorDisplaySuccessAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Err.ErrorActions.ERROR_DISPLAY).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; this._alert.doDisplayAlert(payload)).switchMap((payload:Observable&lt;any&gt;)&#x3D;&gt;(payload)? Observable.of(new Err.ErrorDisplaySuccessAction()): Observable.of(new Err.ErrorAction())).catch(err&#x3D;&gt; Observable.of(Err.ErrorActions.ERROR_DISPLAY_FAILED))</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/store/effects/errorEffects.ts#L37">src/store/effects/errorEffects.ts:37</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -190,6 +201,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_src_store_effects_erroreffects_.erroreffects.html#handleerroraction_" class="tsd-kind-icon">handle<wbr>Error<wbr>Action$</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_src_store_effects_erroreffects_.erroreffects.html#hdisplayerroraction_" class="tsd-kind-icon">hdisplay<wbr>Error<wbr>Action$</a>
 							</li>
 						</ul>
 					</li>

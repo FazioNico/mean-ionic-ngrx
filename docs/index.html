@@ -64,13 +64,15 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p><img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="http://code.runnable.com/images/provider-icons/icon-node.js.svg" width="80"><img src="http://amver.lt/wp-content/uploads/2016/07/Mathematic-Plus2.ico" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"></p>
-				<h1 id="mean-ionic-ngrx">MEAN Ionic NgRx</h1>
+				<p><img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="80"><img src="https://camo.githubusercontent.com/a083a6650043b70297ab9655569d56ed0d300687/687474703a2f2f616d7665722e6c742f77702d636f6e74656e742f75706c6f6164732f323031362f30372f4d617468656d617469632d506c7573322e69636f" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"></p>
+				<h1 id="mean-ionic-ngrx-lazy-load">MEAN Ionic NgRx Lazy Load</h1>
+				<p><a href="https://travis-ci.org/FazioNico/mean-ionic-ngrx"><img src="https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/FazioNico/mean-ionic-ngrx"><img src="https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev"><img src="https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg" alt="devDependencies Status"></a> <a href="https://snyk.io/test/github/fazionico/mean-ionic-ngrx"><img src="https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg" alt="Known Vulnerabilities"></a></p>
 				<blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)</blockquote>
 				<h2 id="overview">Overview</h2>
 				<p>MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS with Ionic  Framework to provide multi platform application.</p>
 				<p>It&#39;s a simple todo application exemple with server-side Users JWT authentification &amp; using ReactiveX API (ngrx/Store + ngrx/Effects)</p>
 				<p>Hop is help you to start your project on the right way.</p>
+				<h4 id="-i-b-work-in-proccess-do-not-use-right-now-b-i-"><i><b>work in proccess... do not use right now!!</b></i></h4>
 				<h2 id="prerequisites">Prerequisites</h2>
 				<ul>
 					<li>NVM - <a href="https://github.com/creationix/nvm">Download</a> &amp; Install Node Version Manage</li>
@@ -191,19 +193,16 @@
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_environments_development_.html">"environments/development"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_environments_env_model_.html">"environments/env-<wbr>model"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_environments_production_.html">"environments/production"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_app_app_component_.html">"src/app/app.component"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_app_app_module_.html">"src/app/app.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_environment_development_.html">"src/app/environment/development"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_environment_env_model_.html">"src/app/environment/env-<wbr>model"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_app_environment_environment_module_.html">"src/app/environment/environment.module"</a>
@@ -212,10 +211,16 @@
 						<a href="modules/_src_app_environment_environment_token_.html">"src/app/environment/environment.token"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_environment_production_.html">"src/app/environment/production"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_app_main_.html">"src/app/main"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_pages_home_home_.html">"src/pages/home/home"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_home_home_module_.html">"src/pages/home/home.module"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_pages_item_edit_item_edit_.html">"src/pages/item-<wbr>edit/item-<wbr>edit"</a>
@@ -230,43 +235,70 @@
 						<a href="modules/_src_pages_items_items_module_.html">"src/pages/items/items.module"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_items_service_.html">"src/pages/items/items.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_store_items_store_module_.html">"src/pages/items/store/items-<wbr>store.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_store_items_store_service_.html">"src/pages/items/store/items-<wbr>store.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_store_items_actions_.html">"src/pages/items/store/items.actions"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_store_items_effects_.html">"src/pages/items/store/items.effects"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_store_items_reducer_.html">"src/pages/items/store/items.reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_store_items_state_.html">"src/pages/items/store/items.state"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_pages_login_login_.html">"src/pages/login/login"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_pages_login_login_module_.html">"src/pages/login/login.module"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_login_login_service_.html">"src/pages/login/login.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_login_store_auth_store_module_.html">"src/pages/login/store/auth-<wbr>store.module"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_login_store_auth_store_service_.html">"src/pages/login/store/auth-<wbr>store.service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_login_store_auth_actions_.html">"src/pages/login/store/auth.actions"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_login_store_auth_effects_.html">"src/pages/login/store/auth.effects"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_login_store_authchecked_reducer_.html">"src/pages/login/store/auth<wbr>Checked.reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_login_store_currentuser_reducer_.html">"src/pages/login/store/current<wbr>User.reducer"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_providers_alert_service_alert_service_.html">"src/providers/alert-<wbr>service/alert-<wbr>service"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_providers_auth_service_auth_service_.html">"src/providers/auth-<wbr>service/auth-<wbr>service"</a>
+						<a href="modules/_src_providers_http_service_http_service_.html">"src/providers/http-<wbr>service/http.service"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_providers_datas_service_datas_service_.html">"src/providers/datas-<wbr>service/datas-<wbr>service"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_store_actions_mainactions_.html">"src/store/actions/main<wbr>Actions"</a>
+						<a href="modules/_src_store_actions_err_actions_.html">"src/store/actions/err.actions"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_store_app_stats_.html">"src/store/app-<wbr>stats"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_store_effects_autheffects_.html">"src/store/effects/auth<wbr>Effects"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_store_effects_dataseffects_.html">"src/store/effects/datas<wbr>Effects"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_store_effects_erroreffects_.html">"src/store/effects/error<wbr>Effects"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_store_reducers_authcheckedreducer_.html">"src/store/reducers/auth<wbr>Checked<wbr>Reducer"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_store_reducers_currentuserreducer_.html">"src/store/reducers/current<wbr>User<wbr>Reducer"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_src_store_reducers_datasreducer_.html">"src/store/reducers/datas<wbr>Reducer"</a>
+						<a href="modules/_src_store_ngrx_actions_.html">"src/store/ngrx.actions"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_store_reducers_errorreducer_.html">"src/store/reducers/error<wbr>Reducer"</a>
@@ -283,8 +315,17 @@
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_store_store_module_.html">"src/store/store.module"</a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_store_store_service_.html">"src/store/store.service"</a>
+					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_server_app_modules_mongodb_users_user_model_.html">"server/app/modules/mongodb/users/user.model"</a>
+					</li>
+					<li class=" tsd-kind-external-module tsd-is-external">
+						<a href="modules/_server_app_modules_mongodb_users_user_schema_.html">"server/app/modules/mongodb/users/user.schema"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_src_store_reducers_index_.html">"src/store/reducers/index"</a>

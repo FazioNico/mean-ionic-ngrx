@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 09-10-2017
  */
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +20,9 @@ import { NgRxStoreModule } from "../store/store.module";
 
 // import App & RootPage
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+
+import { ApolloModule } from 'apollo-angular';
+import { provideClient } from "./apollo.client";
 
 const ionicAppConfig:Object = {
   tabsPlacement: 'bottom',
@@ -29,19 +31,18 @@ const ionicAppConfig:Object = {
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, ionicAppConfig),
-    NgRxStoreModule,
-    EnvironmentsModule
+    EnvironmentsModule.forRoot(), // import app environment variable
+    ApolloModule.forRoot(provideClient),
+    NgRxStoreModule.forRoot(), // import AppCore NgRxStoreModule
+    IonicModule.forRoot(MyApp, ionicAppConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage
+    MyApp
   ],
   providers: [
     StatusBar,

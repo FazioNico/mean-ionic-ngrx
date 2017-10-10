@@ -3,66 +3,62 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 07-10-2017
  */
 
-import { Component, OnInit } from '@angular/core';
-import { Platform, App } from 'ionic-angular';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { Platform, Nav, Loading, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { Store } from '@ngrx/store'
 import { Observable } from 'rxjs/Rx';
 
-import { MainActions } from '../store/actions/mainActions';
 import { AppStateI } from "../store/app-stats";
-
-
-import { HomePage } from '../pages/home/home';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp implements OnInit{
 
-  user:any;
-  rootPage:any;
-  public storeInfo:Observable<AppStateI>;
+  public rootPage:string;
+  public storeInfo:Observable<any>;
+  public loadingSpinner:Loading;
+  @ViewChild(Nav) nav:Nav;
 
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private store: Store<any>,
-    private mainActions: MainActions,
-    public app: App
+    private store: Store<AppStateI>,
+    public loadingCtrl: LoadingController
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
-      this.storeInfo = this.store.select((state:AppStateI) => state.currentUser)
-      // here we are monitoring the authstate
-      this.storeInfo.subscribe((currentState: any) => {
-        if (currentState.currentUser) {
-          this.user = currentState.currentUser;
-          this.app.getActiveNav().setRoot(HomePage)
-          // this.rootPage = HomePage;
-          console.log('home')
-        }
-        else {
-          this.app.getActiveNav().setRoot('LoginPage')
-          // this.rootPage = 'LoginPage';
-          console.log('login')
-        }
-      });
     });
   }
 
-  ngOnInit() {
+  ngOnInit():void {
     this.rootPage = 'LoginPage';
-    this.store.dispatch(this.mainActions.checkAuth());
+    // manage loading spinner
+    this.store.select((state:AppStateI) => state.loading)
+              .subscribe(state => (state)? this.displayLoader() : this.dismissLoader())
   }
+
+  displayLoader():void{
+    if(this.loadingSpinner) return;
+    this.loadingSpinner = this.loadingCtrl.create({
+      content: 'loading datas...'
+    });
+    this.loadingSpinner.present();
+  }
+
+  dismissLoader():void{
+    if(!this.loadingSpinner) return;
+    this.loadingSpinner.dismiss();
+  }
+
 }
