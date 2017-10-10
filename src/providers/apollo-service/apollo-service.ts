@@ -26,6 +26,7 @@ export abstract class ApolloServiceProvider {
   public abstract readonly mutationCreate:any;
   public abstract readonly mutationUpdate:any;
   public abstract readonly mutationDelete:any;
+  public abstract readonly subscriptionAdded:any;
 
   constructor(public apollo: Apollo) {
   }
@@ -59,5 +60,15 @@ export abstract class ApolloServiceProvider {
       variables: {id:_id}
     })
     .map(res=> res.data)
+  }
+
+  /**
+   * ::: Currently not working :::
+   * Start Observable data on Todo added (realTime database)
+   */
+  subscribAdded():Observable<any>{
+    return this.apollo.subscribe({
+      query:this.subscriptionAdded
+    })
   }
 }

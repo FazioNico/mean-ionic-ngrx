@@ -29,6 +29,9 @@ interface MutationCreateResponse{
 interface MutationDeleteResponse{
   deleteTodo:{_id:String}
 }
+interface SubscriptionAddedResponse{
+  todoAdded:ITodo
+}
 /*
   Generated class for the ApolloServiceProvider provider.
 
@@ -42,6 +45,7 @@ export class ItemsService extends ApolloServiceProvider{
   public readonly mutationCreate:any;
   public readonly mutationUpdate:any;
   public readonly mutationDelete:any;
+  public readonly subscriptionAdded:any;
 
   constructor(public apollo: Apollo) {
     super(apollo);
@@ -51,6 +55,7 @@ export class ItemsService extends ApolloServiceProvider{
     this.mutationCreate = typeDefs.TodoCreate
     this.mutationUpdate = typeDefs.TodoUpdate
     this.mutationDelete = typeDefs.TodoDelete
+    this.subscriptionAdded = typeDefs.TodoAdded
   }
 
   get():Observable<ITodo[]>{
@@ -72,6 +77,18 @@ export class ItemsService extends ApolloServiceProvider{
   delete(_id:string):Observable<{_id:string}>{
     return super.delete(_id)
                 .map((data:MutationDeleteResponse) => data.deleteTodo)
+  }
+
+  /**
+   * ::: Currently not working :::
+   * Start Observable data on Todo added (realTime database)
+   */
+  subscribAdded():Observable<any>{
+    return super.subscribAdded()
+                .map((data:any)=> {
+                  console.log('---->', data)
+                  return data.todoAdded
+                })
   }
 
 }

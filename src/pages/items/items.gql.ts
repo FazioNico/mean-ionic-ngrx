@@ -71,3 +71,15 @@
      }
    }
  `;
+ export const TodoAdded = gql`
+   subscription todoAdded{
+     todoAdded{
+       _id
+       user_id
+       isComplete
+       description
+       deadline
+       expire
+     }
+   }
+ `;

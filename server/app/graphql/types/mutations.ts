@@ -9,7 +9,7 @@
  export const typeDef = `
 
  type Mutation {
-   addTodo(description: String, deadline: String, user_id:String): Todo
+   addTodo(description: String): Todo
    updateTodo(_id: String!, description: String, isComplete: Boolean, deadline: String, expire: Boolean, user_id:String): Todo
    deleteTodo(_id: String!): Status
 
