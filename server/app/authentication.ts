@@ -3,7 +3,7 @@
 * @Date:   16-08-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-10-2017
+ * @Last modified time: 10-10-2017
 */
 
 import { verify } from 'jsonwebtoken';
@@ -19,7 +19,7 @@ export class Authentication {
 
     // look for the token in the incoming request:
     let token: string = req.body.token || req.query.token ||
-    req.get('x-access-token') || req.get('authentication') || undefined;
+    req.get('x-access-token') || req.get('authentication') || req.get('authorization') || undefined;
 
     if (token === undefined) {
       // there is no token!

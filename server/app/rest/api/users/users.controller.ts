@@ -112,7 +112,7 @@ export const userController = {
   isAuth: (req,res)=> {
     Authentication.checkAuthentication(req)
     .then(isAuth=> {
-      console.log('XXXX isAuth', isAuth)
+      // console.log('XXXX isAuth', isAuth)
       if (isAuth) {
         // console.log('isAuth-> ', isAuth,)
         // console.log('isAuth-> ', isAuth, isAuth.user._id, 'req.params.id-> ',  req.params.id)

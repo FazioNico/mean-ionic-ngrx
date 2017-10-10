@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 27-09-2017
+ * @Last modified time: 10-10-2017
 */
 
 
@@ -33,7 +33,7 @@ export class UpdateAction extends NgRxAction<any> { type = ItemsActions.UPDATE; 
 export class UpdateSuccessAction extends NgRxAction<ITodo> { type = ItemsActions.UPDATE_SUCCESS; }
 
 export class RemoveAction extends NgRxAction<{id}> { type = ItemsActions.REMOVE; }
-export class RemoveSuccessAction extends NgRxAction<ITodo> { type = ItemsActions.REMOVE_SUCCESS; }
+export class RemoveSuccessAction extends NgRxAction<{_id:string}> { type = ItemsActions.REMOVE_SUCCESS; }
 
 export class ErrorAction extends NgRxAction<any> { type = ItemsActions.ERROR; }
 

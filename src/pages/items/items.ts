@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 10-10-2017
  */
 
 import { Component, OnInit } from '@angular/core';
@@ -71,6 +71,8 @@ export class Items implements OnInit{
 
   /* Core Methode */
   doQuery():void {
+    // Dispatch action to GraphQL API.
+    // Params {path:string} is optional for GraphQL API but is require for REST API
     this.itemsStore.dispatchLoadAction({path:'/todos'})
   }
 

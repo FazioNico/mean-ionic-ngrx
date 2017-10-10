@@ -3,7 +3,7 @@
 * @Date:   15-08-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-08-2017
+ * @Last modified time: 10-10-2017
 */
 
 import * as mongoose from 'mongoose'
@@ -37,12 +37,15 @@ export const UserResolver = {
   single( context, options ):Promise<IUserModel>  {
     return Authentication.checkAuthentication(context)
     .then(doc => {
-      // check if user token ID is same of reqest options.id
-      if(doc._id != options.id || options._id){
-        // return Promise.reject('user not have authorization to access.')
-        throw (new Error('user not have authorization to access.'))
+      if(doc){
+        // check if user token ID is same of reqest options.id
+        if(doc._id != options.id || options._id){
+          // return Promise.reject('user not have authorization to access.')
+          throw (new Error('user not have authorization to access.'))
+        }
+        return doc;
       }
-      return doc;
+      throw (new Error('user not have authorization to access.'))
     })
     .then(doc => {
       // if user is same... do stuff
@@ -122,13 +125,15 @@ export const UserResolver = {
     return Authentication.checkAuthentication(context)
     .then(doc => {
       // check if user token ID is same of reqest data.id
-
-      if(doc._id != (data.id || data._id)){
-        console.log(doc._id, data.id || data._id)
-        // return Promise.reject({message:'user not have authorization to update user.'})
-        throw (new Error('you not have authorization to update this user.'))
+      if(doc){
+        if(doc._id != (data.id || data._id)){
+          console.log(doc._id, data.id || data._id)
+          // return Promise.reject({message:'user not have authorization to update user.'})
+          throw (new Error('you not have authorization to update this user.'))
+        }
+        return doc
       }
-      return
+      throw (new Error('you not have authorization to update this user.'))
     })
     .then(_=> {
       return User.findOne({ _id: (data.id || data._id)})

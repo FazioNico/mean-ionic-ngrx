@@ -3,7 +3,7 @@
 * @Date:   17-08-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-08-2017
+ * @Last modified time: 10-10-2017
 */
 
 import { PubSub } from 'graphql-subscriptions';
@@ -20,11 +20,11 @@ const prepare = (o) => {
 export const resolvers = {
   Query: {
     // Todo
-    todo:  (root, {_id}) => {
-      return TodoResolver.single({ id: _id })
+    todo:  (root, args, context, info) => {
+      return TodoResolver.single(context, { id: args. _id})
     },
-    todos:  () => {
-      return TodoResolver.index()
+    todos:  (root,  args, context, info) => {
+      return TodoResolver.index(context)
     },
 
     // User
@@ -47,7 +47,7 @@ export const resolvers = {
   Mutation: {
     // Todo
     addTodo:  (root, args, context, info) => {
-      return  TodoResolver.create(args)
+      return  TodoResolver.create(context, args)
               .then(todo=>{
                  pubsub.publish('todoAdded', { ['todoAdded']: todo });
                  return todo

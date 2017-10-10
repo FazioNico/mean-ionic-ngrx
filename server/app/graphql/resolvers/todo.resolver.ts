@@ -3,21 +3,37 @@
 * @Date:   15-08-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-08-2017
+ * @Last modified time: 10-10-2017
 */
 
 import * as mongoose from 'mongoose'
 import { Todo, ITodoModel } from "../../models/todo.models";
+import { Authentication } from '../../authentication';
 
 export const TodoResolver = {
 
   // this will find all the records in database and return it
-  index():Promise<ITodoModel[]>{
-    return Todo.find()
-    .sort('deadline')
-    .exec()
-    .then( records => {
-      return records;
+  index(req):Promise<ITodoModel[]>{
+    return Authentication.checkAuthentication(req)
+    .then(doc => {
+      //console.log('doc->', doc)
+      // check if token exist
+      if(!doc){
+        // return Promise.reject('user not have authorization to access.')
+        throw (new Error('user not have authorization to access.'))
+      }
+      return doc;
+    })
+    .then(user=> {
+      return Todo.find({ user_id : user._id.toString() })
+      .sort('deadline')
+      .exec()
+      .then( (records:ITodoModel[]) => {
+        return records;
+      })
+      .catch( error => {
+        return error;
+      });
     })
     .catch( error => {
       return error;
@@ -25,11 +41,23 @@ export const TodoResolver = {
   },
 
   // this will find a single item based on id and return it.
-  single( options ):Promise<ITodoModel> {
-    return Todo.findOne({ _id: (options.id||options._id) })
-    .exec()
-    .then( item => {
-      return item;
+  single( req, options ):Promise<ITodoModel> {
+    return Authentication.checkAuthentication(req)
+    .then(doc => {
+      //console.log('doc->', doc)
+      // check if token exist
+      if(!doc){
+        // return Promise.reject('user not have authorization to access.')
+        throw (new Error('user not have authorization to access.'))
+      }
+      return doc;
+    })
+    .then(_=>{
+      return Todo.findOne({ _id: (options.id||options._id) })
+      .exec()
+      .then( (item:ITodoModel) => {
+        return item;
+      })
     })
     .catch( error => {
       return error;
@@ -37,13 +65,28 @@ export const TodoResolver = {
   },
 
   // this will insert a new item in database
-  create(data):Promise<ITodoModel> {
-    const newitem = new Todo(data);
-    console.log('###########')
-    console.log('new todo-> ', data)
-    return newitem.save()
-    .then( (result) => {
-      return result;
+  create(req, data):Promise<ITodoModel> {
+    return Authentication.checkAuthentication(req)
+    .then(doc => {
+      //console.log('doc->', doc)
+      // check if token exist
+      if(!doc){
+        // return Promise.reject('user not have authorization to access.')
+        throw (new Error('user not have authorization to access.'))
+      }
+      return doc;
+    })
+    .then(user=> {
+      let newTodo = data
+      newTodo.user_id = user._id;
+      const newitem:ITodoModel = new Todo(newTodo);
+      console.log('###########')
+      console.log('new todo-> ', newitem)
+      return newitem.save()
+      .then( (result:ITodoModel) => {
+        console.log('result save->', result)
+        return result;
+      })
     })
     .catch( (error) => {
       return error;
@@ -60,7 +103,7 @@ export const TodoResolver = {
       });
 
       return item.save()
-      .then( updated => {
+      .then( (updated:ITodoModel) => {
         return updated;
       })
       .catch( (error) => {
@@ -77,7 +120,7 @@ export const TodoResolver = {
   delete( options ):Promise<{status:boolean}> {
     return Todo.findById( (options._id  || options.id))
     .exec()
-    .then( item => {
+    .then( (item:ITodoModel) => {
       item.remove();
       return { status: true, _id: (options._id  || options.id)};
     })

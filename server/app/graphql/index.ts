@@ -9,6 +9,7 @@
 
 import * as express from 'express';
 import * as http  from "http";
+import * as expressGraphQL from 'express-graphql';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
 // imports form server subscribtions
 import { execute, subscribe } from 'graphql';
@@ -38,10 +39,12 @@ export class GraphqlApi {
     app
     // .use(
     //   '/graphql',
-    //   expressGraphQL( () => {
+    //   expressGraphQL( (req) => {
+    //     //console.log('->',req)
     //     return {
     //       graphiql: true,
-    //       schema: schemas //GraphQLSchema,
+    //       schema: schemas, //GraphQLSchema,
+    //       context: req
     //     }
     //   })
     // )

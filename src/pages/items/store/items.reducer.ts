@@ -3,7 +3,7 @@
 * @Date:   26-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 10-10-2017
 */
 
 import { ItemsActions, TItemsActions } from './items.actions';
@@ -23,7 +23,7 @@ export function reducer (
     }
     case ItemsActions.UPDATE_SUCCESS: {
       return Object.assign([], [...state.map((item:ITodo) => {
-        return item._id === action.payload.response._id ? action.payload.response : item;
+        return item._id === action.payload._id ? action.payload : item;
       })
     ])}
     case ItemsActions.REMOVE_SUCCESS: {
