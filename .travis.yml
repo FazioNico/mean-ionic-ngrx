@@ -42,6 +42,6 @@ install: npm install
 
 
 script:
-  - karma start ./tools/test/karma.conf.js --single-run  # unit tests
+  - karma start ./tools/config/test/karma.conf.js --single-run  # unit tests
   # - ionic build broewser --prod
   # - protractor test-config/protractor.conf.js      # run e2e tests against ionic
