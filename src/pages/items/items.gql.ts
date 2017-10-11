@@ -3,12 +3,16 @@
  * @Date:   10-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 10-10-2017
+ * @Last modified time: 11-10-2017
  */
 
 
  import gql from 'graphql-tag';
 
+ /**
+  * TypeDefs for request query of all items
+  * Return items Collection
+  */
  export const TodosList = gql`
    query TodosList {
      todos {
@@ -20,6 +24,20 @@
      }
    }
  `;
+
+ /**
+  * TypeDefs for update an item
+  * required variable object:
+  *  {
+  *    _id:String!,
+  *    description:String,
+  *    deadline:String,
+  *    user_id:String,
+  *    isComplete:Boolean,
+  *    expire:Boolean
+  *  }
+  *  Return item updated
+  */
  export const TodoUpdate = gql`
    mutation updateTodo(
      $_id:String!,
@@ -46,6 +64,15 @@
      }
    }
  `;
+
+ /**
+  * TypeDefs for create an item
+  * required variable object:
+  *  {
+  *   description:String
+  *  }
+  *  Return new item created
+  */
  export const TodoCreate = gql`
    mutation addTodo(
      $description:String
@@ -62,6 +89,15 @@
      }
    }
  `;
+
+ /**
+  * TypeDefs for delete an item
+  * required variable object:
+  * {
+  *   id:String!
+  * }
+  * Return item deleted ID
+  */
  export const TodoDelete = gql`
    mutation deleteTodo(
      $id:String!
@@ -71,6 +107,11 @@
      }
    }
  `;
+
+ /**
+  * TypeDefs for request realTime itemAdded
+  * Return item added 
+  */
  export const TodoAdded = gql`
    subscription todoAdded{
      todoAdded{

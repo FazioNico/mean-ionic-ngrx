@@ -7,9 +7,11 @@
 */
 
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
+// import {SubscriptionClient, addGraphQLSubscriptions} from 'subscriptions-transport-ws';
 
 /**
  * Apollo CLient 2.0.0
+ * with subscriptions-transport-ws >0.9.0
  * ::: Currently not working :::
  * Using GraphQL Observable realTime database.
  * will soon implemented with new version of apollo-client v.2.0
@@ -19,6 +21,7 @@ import { ApolloClient, createNetworkInterface } from 'apollo-client';
  *
  * See issues and info:
  *  => https://github.com/apollographql/subscriptions-transport-ws/issues/275
+ *  => https://github.com/apollographql/subscriptions-transport-ws/issues/276
  *  => https://github.com/howtographql/howtographql/issues/226
  *  => https://medium.com/@SunCerberus/setup-apollo-client-2-0-with-websocket-example-a879ca81aa83
  *  => https://www.npmjs.com/package/apollo-link-ws
@@ -49,7 +52,7 @@ import { ApolloClient, createNetworkInterface } from 'apollo-client';
 
 /**
  * Apollo Client v.1.9.3
- * Woring without realtime database
+ * with subscriptions-transport-ws <= 0.8.3
  */
 // Create GraphQL network Interface with your GraphQL server endpoint
 const networkInterface = createNetworkInterface({
@@ -67,6 +70,24 @@ networkInterface.use([{
     next();
   }
 }]);
+
+/**
+ * SubscriptionClient not working right now with
+ * SubscriptionServer from subscriptions-transport-ws >0.9.0
+ */
+// // Create WebSocket client
+// const wsClient = new SubscriptionClient(`ws://localhost:8080/subscriptions`, {
+//     reconnect: true,
+//     connectionParams: {
+//         // Pass any arguments you want for initialization
+//     }
+// });
+// // Extend the network interface with the WebSocket
+// const networkInterfaceWithSubscriptions = addGraphQLSubscriptions(
+//     networkInterface,
+//     wsClient
+// );
+
 // Apollo Client Interface definition
 const client = new ApolloClient({
   networkInterface //: networkInterfaceWithSubscriptions

@@ -7,11 +7,11 @@
 ## Overview
 MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS.
 
-<u>Front-End:</u> Ionic Framework to provide multi platform application.
+- <b>Front-End:</b> Ionic Framework to provide multi platform application.
+- <b>Back-End:</b> Express GraphQL API + Express REST API
 
-<u>Back-End:</u> Express GraphQL API + Express REST API
-
-It's a simple todo application exemple with server-side Users JWT authentification & using ReactiveX API (ngrx/Store + ngrx/Effects)
+It's a simple todo application exemple with REST server-side for Users authentification with JWT + GraphQL server-side for request all others datas.
+Front side is building with Angular and Ionicframework and using ReactiveX API (ngrx/Store + ngrx/Effects) to provide a better and simply datas management. Front side using Apollo Client provider to work with GraphQL server-side + Angular HttpModule to work with REST server-side.
 
 Hop is help you to start your project on the right way.
 
@@ -63,45 +63,49 @@ If you want, you can add your own build run script.
 open `./docs/index.html` to read documentation
 
 ## Server GraphQL API Endpoints
-- use GraphIQL UI to get full server documentation and many more...
-- open browser with `http://localhost:8080/graphiql`
+- server dev runing on `http://localhost:8080/graphql`
+- server prod runing on `http://YOUR_HOST/graphql` (or https)
+- use GraphIQL UI to get full server documentation and many more... open browser with `http://localhost:8080/graphiql`
 
 ## Server REST API Endpoints
+- server dev runing on `http://localhost:8080/rest`
+- server prod runing on `http://YOUR_HOST/rest` (or https)
+
 ````
 TODOS Endpoints
 
-  path: http://localhost:8080/todos
+  path: http://localhost:8080/rest/todos
   autenticate: false
   methode: $_GET / $_POST
 
-  path: http://localhost:8080/todos/:id
+  path: http://localhost:8080/rest/todos/:id
   autenticate: false
   methode: $_GET / $_POST / $_DELETE
 
 
 AUTH Endpoints
 
-  path: http://localhost:8080/auth
+  path: http://localhost:8080/rest/auth
   autenticate: false
   methode: $_POST
 
-  path: http://localhost:8080/isauth
+  path: http://localhost:8080/rest/isauth
   autenticate: false/true
   methode: $_GET
 
-  path: http://localhost:8080/signup
+  path: http://localhost:8080/rest/signup
   autenticate: false
   methode: $_POST
 
 
 USERS Endpoints
 
-  path: http://localhost:8080/users
+  path: http://localhost:8080/rest/users
   autenticate: true
   methode: $_GET
 
 
-  path: http://localhost:8080/users/:id
+  path: http://localhost:8080/rest/users/:id
   autenticate: true
   methode: $_GET
 

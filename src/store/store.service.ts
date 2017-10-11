@@ -3,14 +3,20 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 05-10-2017
+ * @Last modified time: 11-10-2017
  */
 
  import { Action, Store } from '@ngrx/store';
 
  import { AppStateI } from './app-stats';
 
+ /**
+  * Define an abstract class to be used by each module with store
+  * This can make more easeling provide generic methode to all child service.
+  */
  export abstract class StoreService {
+   // do not forguet to init STATE proprety in each child module
+   // to select the right feature store state.
    protected readonly STATE;
    protected store: Store<AppStateI>;
 
