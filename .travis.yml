@@ -2,7 +2,7 @@
 # @Date:   21-04-2017
 # @Email:  contact@nicolasfazio.ch
 # @Last modified by:   webmaster-fazio
-# @Last modified time: 06-10-2017
+# @Last modified time: 11-10-2017
 
 #
 # Configuration
@@ -42,6 +42,6 @@ install: npm install
 
 
 script:
-  - karma start ./test-config/karma.conf.js --single-run  # unit tests
+  - karma start ./tools/test/karma.conf.js --single-run  # unit tests
   # - ionic build broewser --prod
   # - protractor test-config/protractor.conf.js      # run e2e tests against ionic
