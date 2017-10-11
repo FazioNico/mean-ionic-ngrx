@@ -27,7 +27,7 @@ interface MutationCreateResponse{
   addTodo:ITodo
 }
 interface MutationDeleteResponse{
-  deleteTodo:{_id:String}
+  deleteTodo:{_id:string}
 }
 interface SubscriptionAddedResponse{
   todoAdded:ITodo

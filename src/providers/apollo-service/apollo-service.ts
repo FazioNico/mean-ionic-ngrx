@@ -10,8 +10,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
-import { Apollo, ApolloQueryObservable } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { Apollo } from 'apollo-angular';
 
 /**
  * Main Abstract Provider for Apollo Client

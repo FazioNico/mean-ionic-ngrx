@@ -3,7 +3,7 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 11-10-2017
 */
 
 import { Component, OnInit } from '@angular/core';
@@ -50,7 +50,7 @@ export class Login implements OnInit{
       //console.log('state->', currentState)
       if (currentState) {
         if(!this.user){
-          console.log('home')
+          //console.log('home')
           this.navCtrl.setRoot('HomePage', {'checkAuth':true})
         }
         this.user = currentState;
@@ -60,7 +60,7 @@ export class Login implements OnInit{
           this.user = null
           this.navCtrl.setRoot('LoginPage')
         }
-        console.log('login')
+        //console.log('login')
       }
     });
   }

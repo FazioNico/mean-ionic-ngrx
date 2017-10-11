@@ -113,7 +113,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/pages/items/store/items.effects.ts#L18">src/pages/items/store/items.effects.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/ff5f4ab/src/pages/items/store/items.effects.ts#L18">src/pages/items/store/items.effects.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -138,7 +138,7 @@
 					<div class="tsd-signature tsd-kind-icon">_database<span class="tsd-signature-symbol">:</span> <a href="_src_pages_items_items_service_.itemsservice.html" class="tsd-signature-type">ItemsService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/pages/items/store/items.effects.ts#L22">src/pages/items/store/items.effects.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/ff5f4ab/src/pages/items/store/items.effects.ts#L22">src/pages/items/store/items.effects.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -148,49 +148,55 @@
 					<div class="tsd-signature tsd-kind-icon">action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Actions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/pages/items/store/items.effects.ts#L21">src/pages/items/store/items.effects.ts:21</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/ff5f4ab/src/pages/items/store/items.effects.ts#L21">src/pages/items/store/items.effects.ts:21</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="createaction_" class="tsd-anchor"></a>
 					<h3>create<wbr>Action$</h3>
-					<div class="tsd-signature tsd-kind-icon">create<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.createsuccessaction.html" class="tsd-signature-type">CreateSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.CREATE).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._database.post(payload)).switchMap((result:any)&#x3D;&gt; Observable.of(new Item.CreateSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
+					<div class="tsd-signature tsd-kind-icon">create<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.createsuccessaction.html" class="tsd-signature-type">CreateSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.CREATE).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._database.post(payload)).switchMap(result&#x3D;&gt; Observable.of(new Item.CreateSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/pages/items/store/items.effects.ts#L50">src/pages/items/store/items.effects.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/ff5f4ab/src/pages/items/store/items.effects.ts#L61">src/pages/items/store/items.effects.ts:61</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="loadaction_" class="tsd-anchor"></a>
 					<h3>load<wbr>Action$</h3>
-					<div class="tsd-signature tsd-kind-icon">load<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.loadsuccessaction.html" class="tsd-signature-type">LoadSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.LOAD).map&lt;Action, any&gt;(toPayload).switchMap&lt;any, Observable&lt;any&gt;&gt;((payload:any) &#x3D;&gt; this._database.get()// .map(res &#x3D;&gt; new Item.LoadSuccessAction(res))// .catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))).switchMap((result:any)&#x3D;&gt; Observable.of(new Item.LoadSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
+					<div class="tsd-signature tsd-kind-icon">load<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.loadsuccessaction.html" class="tsd-signature-type">LoadSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.LOAD).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._database.get()// .map(res &#x3D;&gt; new Item.LoadSuccessAction(res))// .catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))).switchMap(result&#x3D;&gt; Observable.of(new Item.LoadSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/pages/items/store/items.effects.ts#L26">src/pages/items/store/items.effects.ts:26</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/ff5f4ab/src/pages/items/store/items.effects.ts#L26">src/pages/items/store/items.effects.ts:26</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="removeaction_" class="tsd-anchor"></a>
 					<h3>remove<wbr>Action$</h3>
-					<div class="tsd-signature tsd-kind-icon">remove<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.removesuccessaction.html" class="tsd-signature-type">RemoveSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.REMOVE).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._database.delete(payload)).switchMap((result:any)&#x3D;&gt; Observable.of(new Item.RemoveSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
+					<div class="tsd-signature tsd-kind-icon">remove<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.removesuccessaction.html" class="tsd-signature-type">RemoveSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.REMOVE).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._database.delete(payload)).switchMap(result&#x3D;&gt; Observable.of(new Item.RemoveSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/pages/items/store/items.effects.ts#L43">src/pages/items/store/items.effects.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/ff5f4ab/src/pages/items/store/items.effects.ts#L54">src/pages/items/store/items.effects.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="updateaction_" class="tsd-anchor"></a>
 					<h3>update<wbr>Action$</h3>
-					<div class="tsd-signature tsd-kind-icon">update<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.updatesuccessaction.html" class="tsd-signature-type">UpdateSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.UPDATE).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._database.put(payload)).switchMap((result:any)&#x3D;&gt; Observable.of(new Item.UpdateSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
+					<div class="tsd-signature tsd-kind-icon">update<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_items_store_items_actions_.updatesuccessaction.html" class="tsd-signature-type">UpdateSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_items_store_items_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Item.ItemsActions.UPDATE).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._database.put(payload)).switchMap(result&#x3D;&gt; Observable.of(new Item.UpdateSuccessAction(result))).catch(err &#x3D;&gt; Observable.of(new Item.ErrorAction(err)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/b077fef/src/pages/items/store/items.effects.ts#L36">src/pages/items/store/items.effects.ts:36</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/ff5f4ab/src/pages/items/store/items.effects.ts#L47">src/pages/items/store/items.effects.ts:47</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>::: Currently not working :::
+							Start Observable data on Todo added (realTime database)</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>

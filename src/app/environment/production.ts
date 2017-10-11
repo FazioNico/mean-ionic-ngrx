@@ -3,7 +3,7 @@
  * @Date:   09-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 07-10-2017
+ * @Last modified time: 11-10-2017
  */
 
  import { IEnvironment } from "./env-model";
@@ -13,6 +13,7 @@
    ionicEnvName: 'prod',
 
    // TODO: Change wuth your own prod environment variable
+   // and add file to .gitignore
    // Front-end
    apiEndpoint: 'http://localhost:8080',
  };

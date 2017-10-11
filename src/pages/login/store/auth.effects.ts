@@ -3,7 +3,7 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 30-09-2017
+ * @Last modified time: 11-10-2017
  */
 
  import { Injectable } from "@angular/core";
@@ -43,7 +43,7 @@
        .ofType(Auth.AuthActions.CHECK_AUTH)
        .switchMap<Action, Observable<any>>(() =>  this._auth.isAuth())
        .switchMap<Observable<any>, Observable<Action>>((_result:any) => {
-         console.log('CHECK_AUTH -->',_result)
+         //console.log('CHECK_AUTH -->',_result)
          if (_result._id) {
            return Observable.of(new Auth.CheckAuthSuccessAction(_result))
          } else {

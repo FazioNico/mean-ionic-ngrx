@@ -24,7 +24,7 @@
 
   <!-- un-comment this code to enable service worker
   <script>
-    if ('serviceWorker' in navigator) {
+    if ('serviceWorker' in navigator && ['localhost', '127'].indexOf(location.hostname) === -1) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('service worker installed'))
         .catch(err => console.log('Error', err));

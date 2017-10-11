@@ -16,9 +16,6 @@
 
  import { AppStateI, RecucerStateI } from '../app-stats';
 
- // Do not re-declare process: it's already declare in EnvironmentModule
- // export declare const process: any; // Typescript compiler will complain without this
-
  // Only root reducer state without lazy module state.
  const reducers:RecucerStateI = {
    loading: fromLoading.reducer,
@@ -28,4 +25,4 @@
  };
 
  export const reducer:ActionReducerMap<AppStateI> = reducers;
- export const metaReducers: MetaReducer<AppStateI>[] = (process.env.IONIC_ENV !== 'prod' || process.env.NODE_ENV !== 'prod' ) ? [storeFreeze]: [];
+ export const metaReducers: MetaReducer<AppStateI>[] = (__DEV__) ? [storeFreeze]: [];

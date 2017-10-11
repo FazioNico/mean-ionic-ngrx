@@ -3,7 +3,7 @@
  * @Date:   16-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-04-2017
+ * @Last modified time: 11-10-2017
  */
 
  Error.stackTraceLimit = Infinity;
@@ -19,7 +19,7 @@
  require('zone.js/dist/async-test');
  require('zone.js/dist/fake-async-test');
 
- var appContext = require.context('../src', true, /\.spec\.ts/);
+ var appContext = require.context('../../../src', true, /\.spec\.ts/);
 
  appContext.keys().forEach(appContext);
 

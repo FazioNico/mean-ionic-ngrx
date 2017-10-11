@@ -64,15 +64,19 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<p><img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="80"><img src="https://camo.githubusercontent.com/a083a6650043b70297ab9655569d56ed0d300687/687474703a2f2f616d7665722e6c742f77702d636f6e74656e742f75706c6f6164732f323031362f30372f4d617468656d617469632d506c7573322e69636f" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"></p>
-				<h1 id="mean-ionic-ngrx-lazy-load">MEAN Ionic NgRx Lazy Load</h1>
+				<p><img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="80"><img src="https://camo.githubusercontent.com/a083a6650043b70297ab9655569d56ed0d300687/687474703a2f2f616d7665722e6c742f77702d636f6e74656e742f75706c6f6164732f323031362f30372f4d617468656d617469632d506c7573322e69636f" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/768px-GraphQL_Logo.svg.png" height="80px"></p>
+				<h1 id="mean-ionic-ngrx-lazy-load-graphql-rest-server-api">MEAN Ionic NgRx Lazy Load + GraphQL/REST Server API</h1>
 				<p><a href="https://travis-ci.org/FazioNico/mean-ionic-ngrx"><img src="https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/FazioNico/mean-ionic-ngrx"><img src="https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg" alt="dependencies Status"></a> <a href="https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev"><img src="https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg" alt="devDependencies Status"></a> <a href="https://snyk.io/test/github/fazionico/mean-ionic-ngrx"><img src="https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg" alt="Known Vulnerabilities"></a></p>
-				<blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)</blockquote>
+				<blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects) &amp; GraphQL/REST Server  API and many more...</blockquote>
 				<h2 id="overview">Overview</h2>
-				<p>MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS with Ionic  Framework to provide multi platform application.</p>
-				<p>It&#39;s a simple todo application exemple with server-side Users JWT authentification &amp; using ReactiveX API (ngrx/Store + ngrx/Effects)</p>
+				<p>MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS.</p>
+				<ul>
+					<li><b>Front-End:</b> Ionic Framework to provide multi platform application.</li>
+					<li><b>Back-End:</b> Express GraphQL API + Express REST API</li>
+				</ul>
+				<p>It&#39;s a simple todo application exemple with REST server-side for Users authentification with JWT + GraphQL server-side for request all others datas.
+				Front side is building with Angular and Ionicframework and using ReactiveX API (ngrx/Store + ngrx/Effects) to provide a better and simply datas management. Front side using Apollo Client provider to work with GraphQL server-side + Angular HttpModule to work with REST server-side.</p>
 				<p>Hop is help you to start your project on the right way.</p>
-				<h4 id="-i-b-work-in-proccess-do-not-use-right-now-b-i-"><i><b>work in proccess... do not use right now!!</b></i></h4>
 				<h2 id="prerequisites">Prerequisites</h2>
 				<ul>
 					<li>NVM - <a href="https://github.com/creationix/nvm">Download</a> &amp; Install Node Version Manage</li>
@@ -83,10 +87,13 @@
 					<li><a href="https://ionicframework.com/">Ionic 3</a> &amp; <a href="https://cordova.apache.org/">Cordova</a> - Latest stable version install in Global <code>$ npm install -g ionic cordova</code></li>
 					<li><a href="http://typedoc.org/">TypeDoc</a> - Latest stable version install in Global <code>$ npm install -g typedoc</code></li>
 					<li><a href="https://karma-runner.github.io">Karma</a> - Latest stable version install in Global <code>$ npm install -g karma-cli</code></li>
+					<li><a href="http://www.protractortest.org/#/">Protractor</a> - Latest stable version install in Global <code>$ npm install -g protractor &amp;&amp; webdriver-manager update</code></li>
 					<li><a href="http://gulpjs.com/">Gulp</a> - Latest stable version install in Global <code>$ npm install -g gulp</code></li>
 					<li><a href="heroku.com">Heroku</a> - Download &amp; Install latest stable version.</li>
 					<li>Good knowledge of <a href="http://reactivex.io/">ReactiveX API</a> &amp; <a href="https://github.com/ngrx">NgRx</a></li>
 					<li><a href="http://extension.remotedev.io/">Redux DevTools Extension</a> - Install Plugin for Chrome - Debugging application&#39;s state changes &amp; provides power-ups for your Redux development workflow.</li>
+					<li>Good knowledge of <a href="http://graphql.org/">GraphQL</a> language.</li>
+					<li>Good knowledge of Apollo Client &amp; Server Side: <a href="https://www.apollodata.com/">Apollo Docs</a>.</li>
 					<li>And you should also have git installed to a better working flow.</li>
 				</ul>
 				<h2 id="get-started">Get Started</h2>
@@ -119,41 +126,51 @@
 					<li><code>$ npm run docs</code></li>
 				</ul>
 				<p>open <code>./docs/index.html</code> to read documentation</p>
+				<h2 id="server-graphql-api-endpoints">Server GraphQL API Endpoints</h2>
+				<ul>
+					<li>server dev runing on <code>http://localhost:8080/graphql</code></li>
+					<li>server prod runing on <code>http://YOUR_HOST/graphql</code> (or https)</li>
+					<li>use GraphIQL UI to get full server documentation and many more... open browser with <code>http://localhost:8080/graphiql</code></li>
+				</ul>
 				<h2 id="server-rest-api-endpoints">Server REST API Endpoints</h2>
+				<ul>
+					<li>server dev runing on <code>http://localhost:8080/rest</code></li>
+					<li>server prod runing on <code>http://YOUR_HOST/rest</code> (or https)</li>
+				</ul>
 				<pre><code><span class="hljs-string">TODOS</span> <span class="hljs-string">Endpoints</span>
 
-<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/todos</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/rest/todos</span>
 <span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
 <span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span> <span class="hljs-string">/</span> <span class="hljs-string">$_POST</span>
 
-<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/todos/:id</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/rest/todos/:id</span>
 <span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
 <span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span> <span class="hljs-string">/</span> <span class="hljs-string">$_POST</span> <span class="hljs-string">/</span> <span class="hljs-string">$_DELETE</span>
 
 
 <span class="hljs-string">AUTH</span> <span class="hljs-string">Endpoints</span>
 
-<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/auth</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/rest/auth</span>
 <span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
 <span class="hljs-attr">  methode:</span> <span class="hljs-string">$_POST</span>
 
-<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/isauth</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/rest/isauth</span>
 <span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span><span class="hljs-string">/true</span>
 <span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span>
 
-<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/signup</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/rest/signup</span>
 <span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">false</span>
 <span class="hljs-attr">  methode:</span> <span class="hljs-string">$_POST</span>
 
 
 <span class="hljs-string">USERS</span> <span class="hljs-string">Endpoints</span>
 
-<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/users</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/rest/users</span>
 <span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span>
 
 
-<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/users/:id</span>
+<span class="hljs-attr">  path:</span> <span class="hljs-attr">http://localhost:8080/rest/users/:id</span>
 <span class="hljs-attr">  autenticate:</span> <span class="hljs-literal">true</span>
 <span class="hljs-attr">  methode:</span> <span class="hljs-string">$_GET</span>
 </code></pre><h2 id="documentation">Documentation</h2>
@@ -193,6 +210,9 @@
 						<span>Internals</span>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_app_apollo_client_.html">"src/app/apollo.client"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_app_app_component_.html">"src/app/app.component"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -230,6 +250,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_pages_items_items_.html">"src/pages/items/items"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_pages_items_items_gql_.html">"src/pages/items/items.gql"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_pages_items_items_module_.html">"src/pages/items/items.module"</a>
@@ -286,6 +309,9 @@
 						<a href="modules/_src_providers_alert_service_alert_service_.html">"src/providers/alert-<wbr>service/alert-<wbr>service"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_src_providers_apollo_service_apollo_service_.html">"src/providers/apollo-<wbr>service/apollo-<wbr>service"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_src_providers_http_service_http_service_.html">"src/providers/http-<wbr>service/http.service"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -322,10 +348,7 @@
 						<span>Externals</span>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_server_app_modules_mongodb_users_user_model_.html">"server/app/modules/mongodb/users/user.model"</a>
-					</li>
-					<li class=" tsd-kind-external-module tsd-is-external">
-						<a href="modules/_server_app_modules_mongodb_users_user_schema_.html">"server/app/modules/mongodb/users/user.schema"</a>
+						<a href="modules/_server_app_models_user_models_.html">"server/app/models/user.models"</a>
 					</li>
 					<li class=" tsd-kind-external-module tsd-is-external">
 						<a href="modules/_src_store_reducers_index_.html">"src/store/reducers/index"</a>

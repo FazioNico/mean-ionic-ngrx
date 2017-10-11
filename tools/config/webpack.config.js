@@ -3,7 +3,7 @@
 * @Date:   09-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 07-10-2017
+ * @Last modified time: 11-10-2017
 */
 
 var webpack = require('webpack');
@@ -14,6 +14,10 @@ config.dev.plugins.push(
   new webpack.EnvironmentPlugin({
     'IONIC_ENV': JSON.stringify(process.env.IONIC_ENV),
     'NODE_ENV': 'dev'
+  }),
+  new webpack.DefinePlugin({
+      __DEV__: process.env.IONIC_ENV === 'dev',
+      __PROD__: process.env.IONIC_ENV === 'prod'
   })
 )
 config.prod.plugins.push(
@@ -21,6 +25,10 @@ config.prod.plugins.push(
   new webpack.EnvironmentPlugin({
     'IONIC_ENV': JSON.stringify(process.env.IONIC_ENV),
     'NODE_ENV': 'prod'
+  }),
+  new webpack.DefinePlugin({
+      __DEV__: process.env.IONIC_ENV === 'dev',
+      __PROD__: process.env.IONIC_ENV === 'prod'
   })
 );
 config.dev.module.loaders.push(

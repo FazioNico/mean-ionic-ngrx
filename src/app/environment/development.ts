@@ -3,7 +3,7 @@
  * @Date:   09-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-10-2017
+ * @Last modified time: 11-10-2017
  */
 
  import { IEnvironment } from "./env-model";
@@ -14,6 +14,5 @@
 
    // Front-end
    apiEndpoint: 'http://localhost:8080',
-   apiType: 'graphql'
 
  };

@@ -29,7 +29,8 @@ import { MyApp } from './app.component';
 // for smaller final CSS bundle (PWA tips)
 const ionicAppConfig:Object = {
   tabsPlacement: 'bottom',
-  mode: 'md' // here we exclude from css bundle all other platform style. You've choise with: md|ios|wp
+  mode: 'md', // here we exclude from css bundle all other platform style. You've choise with: md|ios|wp
+  iconMode: 'md'
 };
 
 @NgModule({

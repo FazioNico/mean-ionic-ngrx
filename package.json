@@ -12,7 +12,7 @@
     "prod": "NODE_ENV=prod ionic serve --prod",
     "dev": "npm run server:dev & ionic serve --dev",
     "server:prod": "tsc server/server.ts --outDir ./platforms/server && NODE_ENV=prod node ./platforms/server/server.js ",
-    "server:dev": "npm run mongod & tsc server/server.ts -w --outDir ./platforms/server & nodemon ./platforms/server/server.js --dev  --ignore src/ --ignore www/ --ignore .tmp/",
+    "server:dev": "npm run mongod & tsc server/server.ts -w --outDir ./platforms/server & nodemon ./platforms/server/server.js --dev  --ignore src/ --ignore www/ --ignore tools/ --ignore .tmp/",
     "mongod": "$HOME/Applications/mongodb/bin/mongod --dbpath $HOME/Applications/mongodb/data/db",
     "deploy:client": "npm run build:browser && gulp deploy",
     "deploy:server": "npm run build:server && node ./tools/tasks/deploy.server.js",
@@ -21,9 +21,10 @@
     "build:ios": "NODE_ENV=prod ionic cordova build ios --prod",
     "copy.files": "cp ./server/package.json ./platforms/server/package.json && cp ./server/.gitignore ./platforms/server/.gitignore",
     "docs": "npm run typedoc -- --out docs/ --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
+    "typedoc": "typedoc",
     "helper.cmd": "node ./tools/helper.cmd.js",
-    "e2e": "protractor ./test-config/protractor.conf.js",
-    "test": "karma start test-config/karma.conf.js"
+    "e2e": "protractor ./tools/config/test/protractor.conf.js",
+    "test": "karma start ./tools/config/test/karma.conf.js"
   },
   "dependencies": {
     "@angular/common": "4.4.3",
@@ -59,7 +60,7 @@
     "graphql-tools": "^2.2.1",
     "ionic-angular": "3.7.1",
     "ionicons": "3.0.0",
-    "jsonwebtoken": "^8.0.1",
+    "jsonwebtoken": "^8.1.0",
     "mongodb": "^2.2.27",
     "mongoose": "^4.10.0",
     "morgan": "^1.8.2",
@@ -120,7 +121,8 @@
   "version": "0.0.5",
   "config": {
     "ionic_purge_decorators": false,
-    "ionic_webpack": "./tools/config/webpack.config.js"
+    "ionic_webpack": "./tools/config/webpack.config.js",
+    "ionic_sass": "./tools/config/ionic.sass.js"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
