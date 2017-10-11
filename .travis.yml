@@ -21,8 +21,8 @@ node_js:
 
 nv:
   global:
-    - __DEV__ =false
-    - __PROD_ =true
+    - __DEV__=false
+    - __PROD__=true
 
 before_script:
 - export DISPLAY=:99.0
