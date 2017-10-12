@@ -41,7 +41,6 @@
     "@ionic-native/status-bar": "4.3.0",
     "@ionic/storage": "2.0.1",
     "@ngrx/effects": "^4.0.5",
-    "@ngrx/entity": "github:ngrx/entity-builds",
     "@ngrx/store": "^4.0.3",
     "@ngrx/store-devtools": "^4.0.0",
     "apollo-angular": "^0.13.2",
