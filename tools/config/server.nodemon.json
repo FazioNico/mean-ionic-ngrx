@@ -1,0 +1,15 @@
+{
+  "verbose": true,
+  "ignore": [
+    "*.test.js",
+    "src",
+    "www",
+    "tools",
+    ".tmp",
+    "*.json",
+    "*.ts",
+    "*.config.js"
+  ],
+  "watch": "./platforms/server/server.js",
+  "delay": "2500"
+}
