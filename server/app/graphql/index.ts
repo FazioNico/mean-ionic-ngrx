@@ -3,7 +3,7 @@
 * @Date:   15-08-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-10-2017
+ * @Last modified time: 13-10-2017
 */
 
 
@@ -19,6 +19,8 @@ import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { makeExecutableSchema } from 'graphql-tools'
 import { typeDefs } from "./types";
 import { resolvers } from "./resolvers";
+
+import { log }  from "../log";
 
 const app:express.Application = express();
 // console.log(typeDefs)
@@ -48,11 +50,11 @@ export class GraphqlApi {
     //     }
     //   })
     // )
-    .use('/graphql', graphqlExpress(req=> ({
+    .use('/graphql', log, graphqlExpress(req=> ({
       schema:schemas,
       context: req
     })))
-    .use('/graphiql', graphiqlExpress({
+    .use('/graphiql', log, graphiqlExpress({
       endpointURL: '/graphql',
       subscriptionsEndpoint: `ws://localhost:8080/subscriptions`,
     }));

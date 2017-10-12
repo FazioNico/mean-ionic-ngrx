@@ -3,17 +3,16 @@
  * @Date:   16-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 06-10-2017
+ * @Last modified time: 12-10-2017
  */
 
  import { async, fakeAsync, TestBed, tick, ComponentFixture } from '@angular/core/testing';
  import { IonicModule, Loading, LoadingController } from 'ionic-angular';
  import { LoadingControllerMock, ConfigMock, PlatformMock } from 'ionic-mocks';
+ import {} from 'jasmine';
 
  import { StatusBar } from '@ionic-native/status-bar';
  import { SplashScreen } from '@ionic-native/splash-screen';
-
- import {} from 'jasmine';
 
  import { MyApp } from './app.component';
 
@@ -111,7 +110,7 @@
 
         expect(loadingSpinner.dismiss).toHaveBeenCalled();
   }));
-  
+
    //
   //  /**
   //   * NgRx Testing Reducer: AuthCheck

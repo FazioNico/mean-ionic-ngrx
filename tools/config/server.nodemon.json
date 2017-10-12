@@ -10,6 +10,5 @@
     "*.ts",
     "*.config.js"
   ],
-  "watch": "./platforms/server/server.js",
-  "delay": "2500"
+  "watch": "server.js"
 }

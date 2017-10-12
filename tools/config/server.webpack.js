@@ -3,7 +3,7 @@
  * @Date:   11-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 12-10-2017
+ * @Last modified time: 13-10-2017
  */
 
 const path = require('path');
@@ -16,17 +16,19 @@ var webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ModuleConcatPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
+const NodemonPlugin = require( 'nodemon-webpack-plugin' );
 
+// import nodemon config object
+const NodemonOptions = require('./server.nodemon.json')
 
 // define server config
 const SERVER_CONFIG = {
   entry_path: path.resolve()+'/server', // server entry folder
   entry_file: path.resolve()+'/server/server.ts', // server entry start file
   output: path.resolve()+'/platforms/server', // server output folder
-  devServer: path.resolve()+'/platforms/server/server.js'  // server output start file
 }
 
-// define common webpack config for "prod" and "dev"
+// define common webpack config for "prod" and "dev" environment
 const commonConfig = {
   entry: SERVER_CONFIG.entry_file,
   target: 'node',
@@ -36,7 +38,7 @@ const commonConfig = {
   output: {
       filename: 'server.js', // output file
       path: SERVER_CONFIG.output,
-      libraryTarget: "commonjs"
+      libraryTarget: "commonjs",
   },
   resolve: {
       // Add in `.ts` and `.tsx` as a resolvable extension.
@@ -57,11 +59,6 @@ function getProdLoaders() {
 
 // define webpack devConfig options
 const devConfig = {
-    devServer: {
-      contentBase: SERVER_CONFIG.devServer,
-      compress: true,
-      port: 8080
-    },
     module: {
         loaders: [{
             // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
@@ -76,6 +73,9 @@ const devConfig = {
             },
         }]
     },
+    plugins: [
+      new NodemonPlugin(NodemonOptions)
+    ]
 };
 
 // define webpack prodConfig options

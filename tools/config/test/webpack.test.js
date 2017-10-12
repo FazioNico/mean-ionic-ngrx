@@ -3,7 +3,7 @@
  * @Date:   16-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 12-10-2017
  */
 
 
@@ -51,13 +51,13 @@
       // use this to remove: WARNING in ./~/ionic-angular/util/ng-module-loader.js
       new webpack.ContextReplacementPlugin(
          /ionic-angular/,
-         path.resolve(__dirname, './src'),
+         root('./src'),
          {}
       ),
       // use this to remove: WARNING in ./~/@angular/core/@angular/core.es5.js
       new webpack.ContextReplacementPlugin(
         /angular(\\|\/)core(\\|\/)@angular/,
-        path.resolve(__dirname, './src'),
+        root('./src'),
         {}
       ),
       new webpack.EnvironmentPlugin({
