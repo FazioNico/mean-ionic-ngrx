@@ -20,7 +20,7 @@
     "jsonwebtoken": "^7.4.1",
     "mongoose": "^4.10.2",
     "morgan": "^1.8.2",
-    "subscriptions-transport-ws": "^0.9.1",
+    "subscriptions-transport-ws": "^0.9.1"
   },
   "engines": {
     "node": "~7.0.0"

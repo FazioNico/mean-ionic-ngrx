@@ -15,6 +15,8 @@ const path = require('path');
 var webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ModuleConcatPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
+
 
 // define server config
 const SERVER_CONFIG = {
@@ -29,7 +31,7 @@ const commonConfig = {
   entry: SERVER_CONFIG.entry_file,
   target: 'node',
   externals: [
-      /^[a-z\-0-9]+$/ // Ignore node_modules folder
+    /^[a-z\-0-9]+$/ // Ignore node_modules folder
   ],
   output: {
       filename: 'server.js', // output file
@@ -69,7 +71,8 @@ const devConfig = {
             ],
             loader: 'awesome-typescript-loader',
             options: {
-                configFileName: SERVER_CONFIG.entry_path+'/tsconfig.json'
+                configFileName: SERVER_CONFIG.entry_path+'/tsconfig.json',
+                sourceMap: true
             },
         }]
     },
@@ -86,7 +89,8 @@ const prodConfig = {
         { from: SERVER_CONFIG.entry_path+'/package.json'},
         { from: SERVER_CONFIG.entry_path+'/.gitignore' },
         { from: SERVER_CONFIG.entry_path+'/README.md' },
-      ])
+      ]),
+      new webpack.optimize.ModuleConcatenationPlugin()
     ],
 };
 

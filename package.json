@@ -14,7 +14,7 @@
     "server:prod-tsc": "tsc server/server.ts --outDir ./platforms/server && NODE_ENV=prod node ./platforms/server/server.js ",
     "server:prod": "npm run build:server && NODE_ENV=prod node ./platforms/server/server.js ",
     "server:dev-tsc": "npm run mongod & tsc server/server.ts -w --outDir ./platforms/server & nodemon ./platforms/server/server.js --dev  --ignore src/ --ignore www/ --ignore tools/ --ignore .tmp/",
-    "server:dev": "npm run mongod & webpack --watch --config ./tools/config/server.webpack.js & nodemon --config ./tools/config/server.nodemon.json ./platforms/server/server.js",
+    "server:dev": "npm run mongod & webpack --watch --config ./tools/config/server.webpack.js --env.dev & nodemon --config ./tools/config/server.nodemon.json ./platforms/server/server.js",
     "mongod": "$HOME/Applications/mongodb/bin/mongod --dbpath $HOME/Applications/mongodb/data/db",
     "deploy:client": "npm run build:browser && gulp deploy",
     "deploy:server": "npm run build:server && node ./tools/tasks/deploy.server.js",
