@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 15-10-2017
 */
 
 import { Injectable } from "@angular/core";
@@ -34,11 +34,11 @@ export class ErrorEffects {
     .switchMap(err => Observable.of(new Err.ErrorDisplayAction(err)))
 
 
-  @Effect() hdisplayErrorAction$ = this.action$
+  @Effect() displayErrorAction$ = this.action$
       .ofType(Err.ErrorActions.ERROR_DISPLAY)
       .map<Action, any>(toPayload)
-      .switchMap((payload:Observable<any>) => this._alert.doDisplayAlert(payload))
-      .switchMap((payload:Observable<any>)=>
+      .switchMap((payload) => this._alert.doDisplayAlert(payload))
+      .switchMap((payload)=>
         (payload)
           ? Observable.of(new Err.ErrorDisplaySuccessAction())
           : Observable.of(new Err.ErrorAction())

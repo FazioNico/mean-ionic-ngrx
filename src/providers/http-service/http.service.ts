@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-10-2017
+ * @Last modified time: 15-10-2017
 */
 
 import { Injectable, Inject } from '@angular/core';
@@ -23,9 +23,9 @@ See https://angular.io/docs/ts/latest/guide/dependency-injection.html
 for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export  class HttpService {
+export abstract class HttpService {
 
-  private apiEndPoint:string;
+  private readonly apiEndPoint:string;
   public path:string = '';
   private storage:any;
 
@@ -36,7 +36,7 @@ export  class HttpService {
     this.apiEndPoint = this.envVariables.apiEndpoint + '/rest'
   }
 
-  get():Observable<any>{
+  protected get():Observable<any>{
     this.checkStorage();
     // Define Heders request
     let headers:Headers = new Headers({'cache-control': 'no-cache','x-access-token': this.storage});
@@ -46,7 +46,7 @@ export  class HttpService {
                     .map(res => this.extractData(res))
   }
 
-  post(body:any):Observable<any>{
+  protected post(body:any):Observable<any>{
     this.checkStorage();
     let headers:Headers = new Headers({'cache-control': 'no-cache','x-access-token': this.storage, 'Content-Type': 'application/json'});
     let options:RequestOptions = new RequestOptions({ headers: headers });
@@ -54,7 +54,7 @@ export  class HttpService {
                     .map(res => this.extractData(res)) // return response as json
   }
 
-  put(body:any):Observable<any>{
+  protected put(body:any):Observable<any>{
     this.checkStorage();
     let url:string = `${this.apiEndPoint}${this.path}/${body._id}`; //see mdn.io/templateliterals
     let headers:Headers = new Headers({'Content-Type': 'application/json'});
@@ -63,7 +63,7 @@ export  class HttpService {
                     .map(res => this.extractData(res))
   }
 
-  delete(_id:string):Observable<any>{
+  protected delete(_id:string):Observable<any>{
     this.checkStorage();
     let url:string =`${this.apiEndPoint}${this.path}/${_id}`;
     let headers:Headers = new Headers({'Content-Type': 'application/json'});
@@ -73,7 +73,7 @@ export  class HttpService {
   }
 
 
-  getMock(_params):Observable<any> {
+  protected getMock(_params):Observable<any> {
     let datas:any[] = [
       {
         _id: 1,
@@ -94,7 +94,7 @@ export  class HttpService {
   }
 
   /* Check if localstorage exist with datas */
-  checkStorage():void|Observable<any>{
+  private checkStorage():void|Observable<any>{
     this.storage = JSON.parse(localStorage.getItem(STORAGE_ITEM))
     // if storage not found
     if(!this.storage){
@@ -103,7 +103,7 @@ export  class HttpService {
   }
 
   /* Methode to formate data output */
-  extractData(res: any):any {
+  private extractData(res: any):any {
     let body = res.json();
     //return body.data || { };
     return body || {};

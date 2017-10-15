@@ -3,16 +3,18 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 10-10-2017
+ * @Last modified time: 15-10-2017
 */
 
-import { Component } from '@angular/core';
+import { Component, Injector, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Rx';
 
 import { AuthStoreService } from '../login/store/auth-store.service';
 import { ICurrentUserState } from '../login/store/currentUser.reducer';
+import { canEnterIfAuthenticated } from '../../decorators';
 
+@canEnterIfAuthenticated
 @IonicPage({
   name: 'HomePage',
   segment: 'index'
@@ -23,25 +25,21 @@ import { ICurrentUserState } from '../login/store/currentUser.reducer';
 })
 export class HomePage {
 /**
- * Exemple how to use store in components without store
+ * Exemple how to use store in components without attached store
  */
   public readonly storeInfo:Observable<ICurrentUserState>;
 
   constructor(
     private readonly navCtrl: NavController,
-    private readonly navParams: NavParams,
-    private readonly authStore:AuthStoreService
+    @Inject(AuthStoreService) private readonly authStore:AuthStoreService,
+    public injector: Injector // required to use @canEnterIfAuthenticated
   ) {
-    // add this to all page need to be login
-    if(!this.navParams.get('checkAuth')){
-      this.navCtrl.setRoot('LoginPage')
-      return
-    }
     // manage store state
     this.storeInfo = this.authStore.getCurrentUser()
   }
 
   goPage(page:string):void{
+    console.log('page->',page)
     this.navCtrl.push('ItemsPage')
   }
 

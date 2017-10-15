@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 14-10-2017
 */
 
 
@@ -52,5 +52,5 @@ export class ItemsStoreService extends StoreService {
     return this.getTodos()
     .map((state:IItemsState)=> state.filter((item:ITodo) => item._id === record._id))[0]
   }
-  
+
 }

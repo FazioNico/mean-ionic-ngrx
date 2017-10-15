@@ -3,13 +3,14 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 02-10-2017
+ * @Last modified time: 15-10-2017
 */
 
-import { Action } from '@ngrx/store';
 import { NgRxAction } from '../../../store/ngrx.actions';
 import { IAuthCheckedState } from "./authChecked.reducer";
 import { ICurrentUserState } from "./currentUser.reducer";
+
+import { HttpServerResponse } from "../login.service";
 
 export const AuthActions = {
   CHECK_AUTH: '[Auth] Check Auth Requested',
@@ -28,18 +29,18 @@ export const AuthActions = {
   ERROR: '[Auth] Error'
 }
 
-export class CheckAuthAction extends NgRxAction<any> implements Action { type = AuthActions.CHECK_AUTH; }
-export class CheckAuthSuccessAction extends NgRxAction<IAuthCheckedState> implements Action { type = AuthActions.CHECK_AUTH_SUCCESS; }
-export class CheckAuthNoUserSuccessAction extends NgRxAction<IAuthCheckedState> implements Action { type = AuthActions.CHECK_AUTH_NO_USER; }
+export class CheckAuthAction extends NgRxAction<any> { type = AuthActions.CHECK_AUTH; }
+export class CheckAuthSuccessAction extends NgRxAction<any> { type = AuthActions.CHECK_AUTH_SUCCESS; }
+export class CheckAuthNoUserSuccessAction extends NgRxAction<IAuthCheckedState> { type = AuthActions.CHECK_AUTH_NO_USER; }
 
 export class LoginAction extends NgRxAction<any> { type = AuthActions.LOGIN; }
-export class LoginSuccessAction extends NgRxAction<ICurrentUserState> { type = AuthActions.LOGIN_SUCCESS; }
+export class LoginSuccessAction extends NgRxAction<HttpServerResponse> { type = AuthActions.LOGIN_SUCCESS; }
 
 export class LogoutAction extends NgRxAction<any> { type = AuthActions.LOGOUT; }
-export class LogoutSuccessAction extends NgRxAction<any> { type = AuthActions.LOGOUT_SUCCESS; }
+export class LogoutSuccessAction extends NgRxAction<HttpServerResponse> { type = AuthActions.LOGOUT_SUCCESS; }
 
 export class CreateAction extends NgRxAction<any>{ type = AuthActions.CREATE; }
-export class CreateSuccessAction extends NgRxAction<any> { type = AuthActions.CREATE_SUCCESS; }
+export class CreateSuccessAction extends NgRxAction<HttpServerResponse> { type = AuthActions.CREATE_SUCCESS; }
 
 export class TokenSaveAction extends NgRxAction<any>{ type = AuthActions.TOKEN_SAVE; }
 export class TokenSaveSuccessAction extends NgRxAction<any> { type = AuthActions.TOKEN_SAVE_SUCCESS; }

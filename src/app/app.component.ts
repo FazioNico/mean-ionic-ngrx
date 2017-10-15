@@ -3,11 +3,11 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 07-10-2017
+ * @Last modified time: 15-10-2017
  */
 
 import { Component, ViewChild, OnInit } from '@angular/core';
-import { Platform, Nav, Loading, LoadingController } from 'ionic-angular';
+import { Platform, Nav, Loading, LoadingController, App } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -22,14 +22,14 @@ import { AppStateI } from "../store/app-stats";
 export class MyApp implements OnInit{
 
   public rootPage:string;
-  public storeInfo:Observable<any>;
   public loadingSpinner:Loading;
   @ViewChild(Nav) nav:Nav;
 
   constructor(
-    platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
+    public app:App,
+    public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
     private store: Store<AppStateI>,
     public loadingCtrl: LoadingController
   ) {

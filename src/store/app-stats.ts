@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 05-10-2017
+ * @Last modified time: 15-10-2017
 */
 
 import { Action } from "@ngrx/store";
@@ -23,7 +23,6 @@ export interface AppStateI {
   //currentUser?: ICurrentUserState, // added with lazy loading
   error?: IErrorState
   //dataArray?:IDatasState // added with lazy loading
-  dataObject?: Object
 };
 
 
@@ -35,5 +34,4 @@ export interface RecucerStateI {
   //currentUser?: (state: ICurrentUserState, action: Action) => ICurrentUserState,
   error?: (state: IErrorState, action: Action) => IErrorState,
   // dataArray?: (state: IDatasState, action: Action) => IDatasState, // added with lazy loading
-  dataObject?: (state: Object, action: Action) => Object
 };

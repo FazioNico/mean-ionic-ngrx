@@ -3,7 +3,7 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 15-10-2017
  */
 
  import { Injectable } from "@angular/core";
@@ -27,37 +27,31 @@
 
    @Effect() loginAction$ = this.action$
        .ofType(Auth.AuthActions.LOGIN)
-       .map<Action, any>(toPayload)
-       .switchMap((payload:Observable<any>) => this._auth.doAuth(payload))
-       .switchMap((result:any)=> {
-         if(result.success === true){
-           return Observable.of(new Auth.LoginSuccessAction(result))
-         }
-         else {
-           return Observable.of(new Auth.ErrorAction(result))
-         }
-       })
+       .map(toPayload)
+       .switchMap((payload:any) => this._auth.doAuth(payload))
+       .switchMap(result=>
+          (result.success === true)
+            ? Observable.of(new Auth.LoginSuccessAction(result))
+            : Observable.of(new Auth.ErrorAction(result))
+        )
 
 
    @Effect() checkMainAction$ = this.action$
        .ofType(Auth.AuthActions.CHECK_AUTH)
-       .switchMap<Action, Observable<any>>(() =>  this._auth.isAuth())
-       .switchMap<Observable<any>, Observable<Action>>((_result:any) => {
-         //console.log('CHECK_AUTH -->',_result)
-         if (_result._id) {
-           return Observable.of(new Auth.CheckAuthSuccessAction(_result))
-         } else {
-           return Observable.of(new Auth.CheckAuthNoUserSuccessAction())
-         }
-       })
+       .switchMap(_ =>this._auth.isAuth())
+       .switchMap(res =>
+              (res._id)
+                ? Observable.of(new Auth.CheckAuthSuccessAction(res))
+                : Observable.of(new Auth.CheckAuthNoUserSuccessAction())
+       )
        .catch((res: any) => Observable.of(new Auth.ErrorAction(res)))
 
 
    @Effect() logoutAction$ = this.action$
        .ofType(Auth.AuthActions.LOGOUT)
-       .switchMap<Action, any>(() => this._auth.doLogout())
+       .switchMap(() => this._auth.doLogout())
        // If successful, dispatch success action
-       .switchMap<Action, any>(action =>Observable.concat(
+       .switchMap(action =>Observable.concat(
           Observable.of(new Auth.TokenDeleteAction()),
           Observable.of(new Auth.LogoutSuccessAction())
        ))
@@ -68,17 +62,13 @@
    @Effect() createUserAction$ = this.action$
        .ofType(Auth.AuthActions.CREATE)
        .map<Action, any>(toPayload)
-       .switchMap((payload:Observable<any>) => this._auth.doCreateUser(payload))
-       .switchMap((_result:any) => {
-         //console.log('-->',_result)
-         if(_result.success === true){
-           return Observable.of(new Auth.CreateSuccessAction(_result))
-         }
-         else {
-           return Observable.of(new Auth.ErrorAction(_result))
-         }
-       })
-       .catch((err: any) => Observable.of(new Auth.ErrorAction(err.message)))
+       .switchMap((payload:any) => this._auth.doCreateUser(payload))
+       .switchMap(_result =>
+          (_result.success === true)
+            ? Observable.of(new Auth.CreateSuccessAction(_result))
+            : Observable.of(new Auth.ErrorAction(_result))
+        )
+       .catch((err: any) => Observable.of(new Auth.ErrorAction(err)))
 
 
    @Effect() userSuccessAction$ = this.action$
@@ -88,19 +78,14 @@
        )
        .map<Action, any>(toPayload)
        .switchMap((payload:Observable<any>) => this._auth.saveToken(payload))
-       .switchMap<any, any>(payload =>{
-         //console.log('-->',payload)
-         if(payload){
-
-           return Observable.concat(
-            Observable.of(new Auth.TokenSaveSuccessAction(payload)),
-            Observable.of(new Auth.CheckAuthAction())
-           )
-         }
-         else {
-          return Observable.of(new Auth.ErrorAction())
-         }
-       })
+       .switchMap<any, any>(payload =>
+          (payload)
+            ? Observable.concat(
+                Observable.of(new Auth.TokenSaveSuccessAction(payload)),
+                Observable.of(new Auth.CheckAuthAction())
+              )
+            : Observable.of(new Auth.ErrorAction())
+       )
        .catch((err: any) => Observable.of(new Auth.ErrorAction(err.message)))
 
  }

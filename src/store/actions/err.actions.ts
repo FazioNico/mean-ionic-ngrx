@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 30-09-2017
+ * @Last modified time: 15-10-2017
  */
 
 import { Injectable } from '@angular/core';
@@ -19,3 +19,8 @@ export const ErrorActions = {
 export class ErrorDisplayAction extends NgRxAction<any> implements Action { type = ErrorActions.ERROR_DISPLAY; }
 export class ErrorDisplaySuccessAction extends NgRxAction<any> implements Action { type = ErrorActions.ERROR_DISPLAY_SUCCESS; }
 export class ErrorAction extends NgRxAction<any> { type = ErrorActions.ERROR_DISPLAY_FAILED; }
+
+export type TErrorActions =
+ErrorDisplayAction |
+ErrorDisplaySuccessAction |
+ErrorAction ;

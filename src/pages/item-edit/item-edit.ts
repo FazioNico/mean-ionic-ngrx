@@ -3,23 +3,21 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 15-10-2017
  */
 
-import { Component } from '@angular/core';
+import { Component, Inject, Injector } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { ITodo } from "../items/store/items.state";
 
 import 'rxjs/add/operator/map';
 
 import { ItemsStoreService } from '../items/store/items-store.service';
+import { canEnterIfAuthenticated } from '../../decorators';
 
-/**
- * Generated class for the ItemEdit page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+@canEnterIfAuthenticated
 @IonicPage({
   name: 'ItemEditPage',
   segment: 'items/:id',
@@ -32,7 +30,7 @@ import { ItemsStoreService } from '../items/store/items-store.service';
 export class ItemEdit {
 
   private updatedState:boolean = false;
-  private todo:any;
+  private todo:ITodo;
   private form: FormGroup;
   private todoDate:string; // date as a string value in ISO format
 
@@ -40,7 +38,8 @@ export class ItemEdit {
     private navCtrl: NavController,
     private navParams: NavParams,
     private fb: FormBuilder,
-    private itemsStore: ItemsStoreService
+    @Inject(ItemsStoreService) private readonly itemsStore:ItemsStoreService,
+    public injector: Injector // required to use @canEnterIfAuthenticated
   ) {
     // get todo item from navParams
     this.todo = this.navParams.get('todo')
@@ -81,7 +80,7 @@ export class ItemEdit {
 
   saveTodo():void{
     // use the form datas
-    let updated:any = this.form.value
+    let updated:ITodo = this.form.value
     // convert new ISO Date to timestampe (number) to store into our bdd
     let newDate:number = new Date(updated.deadline).getTime()
     // add ID param to the updated todo

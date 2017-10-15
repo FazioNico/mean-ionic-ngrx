@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 10-10-2017
+ * @Last modified time: 14-10-2017
 */
 
 
@@ -23,8 +23,8 @@ export const ItemsActions = {
   ERROR: '[Todo] Error'
 }
 
-export class LoadAction extends NgRxAction<any> implements Action { type = ItemsActions.LOAD; }
-export class LoadSuccessAction extends NgRxAction<IItemsState> implements Action { type = ItemsActions.LOAD_SUCCESS; }
+export class LoadAction extends NgRxAction<any> { type = ItemsActions.LOAD; }
+export class LoadSuccessAction extends NgRxAction<IItemsState> { type = ItemsActions.LOAD_SUCCESS; }
 
 export class CreateAction extends NgRxAction<any>{ type = ItemsActions.CREATE; }
 export class CreateSuccessAction extends NgRxAction<ITodo> { type = ItemsActions.CREATE_SUCCESS; }

@@ -3,7 +3,7 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-10-2017
+ * @Last modified time: 15-10-2017
 */
 
 import * as mongoose from 'mongoose';
@@ -91,7 +91,20 @@ export const userController = {
           newuser.save((err, doc:IUserModel) => {
       			if(err) return console.log(err);
             console.log('User saved successfully', doc);
-            res.json({ success: true, message: 'User created successfully', user: doc});
+            // creat token auth
+            var token = jwt.sign({_id:doc._id,email:doc.email}, CONFIG.secretTokent, {
+              expiresIn: CONFIG.jwtExpire // expires in 24 hours
+            });
+            // console.log('XXXXX token-> ', token)
+            doc.password = null;
+            // return the information including token as JSON
+            res.json({
+              success: true,
+              message: 'User created successfully',
+              user: doc,
+              token: token
+            });
+            //res.json({ success: true, message: 'User created successfully', user: doc});
       		})
         })
 

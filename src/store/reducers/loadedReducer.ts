@@ -3,18 +3,19 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 15-10-2017
 */
 
-import { Action } from "@ngrx/store";
-import { AuthActions } from '../../pages/login/store/auth.actions';
-import { ItemsActions } from "../../pages/items/store/items.actions";
+import { AuthActions, TAuthActions } from '../../pages/login/store/auth.actions';
+import { ItemsActions, TItemsActions } from "../../pages/items/store/items.actions";
 
 export interface ILoadedState extends Boolean {};
-
 export const intitialState:ILoadedState = false;
 
-export function reducer (state:ILoadedState = intitialState, action:any):ILoadedState {
+export function reducer (
+  state:ILoadedState = intitialState,
+  action:TAuthActions|TItemsActions
+):ILoadedState {
   //console.log('LOADED REDUCER-> ', action);
   switch (action.type) {
     case ItemsActions.LOAD: {

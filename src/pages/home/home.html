@@ -1,19 +1,20 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      Ionic NgRx Lazy Loading
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  <h1>Hello {{ (storeInfo | async)?.email }}</h1>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-  <div center>
-    <button ion-button (click)="goPage('ItemsPage')">go items</button>
-    <button ion-button color="danger" (click)="onLogout()">logout</button>
-  </div>
-</ion-content>
+  <ion-header>
+    <ion-navbar color="primary">
+      <ion-title>
+        Ionic NgRx Lazy Loading
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content *ngIf="(storeInfo|async);let user" padding>
+    <h1>Hello {{ user?.email }}</h1>
+    The world is your oyster.
+    <p>
+      If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
+    </p>
+    <div center>
+      <button ion-button (click)="goPage('ItemsPage')">go items</button>
+      <button ion-button color="danger" (click)="onLogout()">logout</button>
+    </div>
+  </ion-content>

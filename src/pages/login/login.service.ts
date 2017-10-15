@@ -3,7 +3,7 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-10-2017
+ * @Last modified time: 15-10-2017
 */
 
 import { Injectable, Inject } from '@angular/core';
@@ -15,7 +15,7 @@ import 'rxjs/add/operator/map';
 import { HttpService } from "../../providers/http-service/http.service";
 import { EnvVariables } from '../../app/environment/environment.token';
 import { IEnvironment } from "../../app/environment/env-model";
-
+import { ICurrentUserState } from "./store/currentUser.reducer";
 const STORAGE_ITEM:string = 'authTokenTest';
 
 /*
@@ -24,6 +24,13 @@ Generated class for the AuthService provider.
 See https://angular.io/docs/ts/latest/guide/dependency-injection.html
 for more info on providers and Angular 2 DI.
 */
+
+export interface HttpServerResponse extends Response {
+  message?:string,
+  success?:boolean,
+  token?:string,
+  user?:ICurrentUserState
+}
 
 @Injectable()
 export class LoginService extends HttpService {
@@ -34,7 +41,7 @@ export class LoginService extends HttpService {
 
   constructor(
     public http: Http,
-    @Inject(EnvVariables) public envVariables:IEnvironment
+    @Inject(EnvVariables) public readonly envVariables:IEnvironment
   ) {
     super(http,envVariables);
   }
@@ -43,12 +50,12 @@ export class LoginService extends HttpService {
     return this.dellToken()
   }
 
-  isAuth():Observable<{}|Response>{
+  isAuth():Observable<ICurrentUserState>{
     this.path = this._isAuthUrl
     return this.get()
   }
 
-  doAuth(_creds:any) :Observable<Response> {
+  doAuth(_creds:any) :Observable<HttpServerResponse> {
     this.path = this._authUrl
     return this.post({
       email:_creds.email,
@@ -56,14 +63,14 @@ export class LoginService extends HttpService {
     })
   }
 
-  doCreateUser(_payload):Observable<Response> {
+  doCreateUser(_payload):Observable<HttpServerResponse> {
     this.path = this._signUpUrl
     return this.post(_payload)
   }
 
   /* Token managers Methodes */
   saveToken(providerResponse: any):Observable<string>  {
-    //console.log(providerResponse.token)
+    console.log(providerResponse)
     return Observable.fromPromise(
       Promise.resolve(localStorage.setItem(STORAGE_ITEM, JSON.stringify(providerResponse.token)))
       .then(_=> providerResponse.token)

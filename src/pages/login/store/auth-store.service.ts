@@ -3,11 +3,12 @@
 * @Date:   30-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 02-10-2017
+ * @Last modified time: 15-10-2017
 */
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 
 import { StoreService } from '../../../store/store.service';
@@ -26,15 +27,15 @@ export class AuthStoreService extends StoreService {
   ) { super() }
 
 
-  dispatchCheckAuthAction() {
+  dispatchCheckAuthAction():void {
     this.dispatchAction(new auth.CheckAuthAction());
   }
 
-  dispatchLoginAction(record: any) {
+  dispatchLoginAction(record: any):void {
     this.dispatchAction(new auth.LoginAction(record));
   }
 
-  dispatchLogoutAction() {
+  dispatchLogoutAction():void {
     this.dispatchAction(new auth.LogoutAction());
   }
 
@@ -42,30 +43,35 @@ export class AuthStoreService extends StoreService {
     this.dispatchAction(new auth.CreateAction(record));
   }
 
-  dispatchTokenSaveAction() {
+  dispatchTokenSaveAction():void {
     this.dispatchAction(new auth.TokenSaveAction());
   }
 
-  dispatchTokenDeleteAction() {
+  dispatchTokenDeleteAction():void {
     this.dispatchAction(new auth.TokenDeleteAction());
   }
 
-  // prevent error implementation
+  // prevent error implementation of unused methodes
   dispatchLoadAction(params:{path:string}):void{}
   dispatchUpdateAction(record:any):void{}
   dispatchRemoveAction(id:string|number):void{}
 
   // Accessor sample of how to select piece of the state
-  getCurrentUser() {
+  getCurrentUser():Observable<ICurrentUserState> {
     this.STATE = 'currentUser'
     return this.storeSelectFeatureState()
     .map((state: ICurrentUserState) => state);
   }
 
-  getAuthCheck(){
-    this.STATE = 'authChecked'
+  getAuthCheck():Observable<IAuthCheckedState>{
+    this.STATE = 'authCheck'
     return this.storeSelectFeatureState()
-    .map((state: IAuthCheckedState) => state);
+    .map((state: IAuthCheckedState) => {
+      return state})
   }
-
+  isAuthenticated():IAuthCheckedState {
+    let isAuthenticated:IAuthCheckedState = false ;
+    this.getAuthCheck().subscribe(isAuth => isAuthenticated = isAuth);
+    return isAuthenticated  ;
+  }
 }

@@ -3,26 +3,24 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 03-10-2017
+ * @Last modified time: 15-10-2017
  */
 
- import { Action } from "@ngrx/store";
- import { AuthActions } from '../../pages/login/store/auth.actions';
- import { ErrorActions } from '../actions/err.actions';
- import { ItemsActions } from "../../pages/items/store/items.actions";
+ import { AuthActions, TAuthActions } from '../../pages/login/store/auth.actions';
+ import { ErrorActions , TErrorActions} from '../actions/err.actions';
+ import { ItemsActions, TItemsActions } from "../../pages/items/store/items.actions";
 
  export interface IqueryParamsState {
      path:string
      params?:Object
  };
-
  export const intitialState:IqueryParamsState = {
    path: '/'
  }
 
  export function reducer (
    state:IqueryParamsState = intitialState,
-   action:any
+   action:TAuthActions|TErrorActions|TItemsActions
  ):IqueryParamsState {
      switch (action.type) {
        case ItemsActions.LOAD: {

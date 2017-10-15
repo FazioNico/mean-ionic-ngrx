@@ -3,19 +3,20 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 05-10-2017
+ * @Last modified time: 15-10-2017
 */
 
-import { Action } from "@ngrx/store";
-import { AuthActions } from '../../pages/login/store/auth.actions';
-import { ErrorActions } from '../actions/err.actions';
-import { ItemsActions } from "../../pages/items/store/items.actions";
+import { AuthActions, TAuthActions } from '../../pages/login/store/auth.actions';
+import { ErrorActions, TErrorActions } from '../actions/err.actions';
+import { ItemsActions, TItemsActions } from "../../pages/items/store/items.actions";
 
 export interface IErrorState extends String {};
-
 export const intitialState:IErrorState = null
 
-export function reducer (state:IErrorState = intitialState, action:any):IErrorState {
+export function reducer (
+  state:IErrorState = intitialState,
+  action:TErrorActions|TItemsActions|TAuthActions
+):IErrorState {
   //console.log('ERROR REDUCER-> ', action);
   switch (action.type) {
     case ItemsActions.ERROR: {
