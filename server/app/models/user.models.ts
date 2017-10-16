@@ -3,13 +3,13 @@
 * @Date:   15-08-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-08-2017
+ * @Last modified time: 16-10-2017
 */
 
 import * as mongoose from 'mongoose';
 import * as bcrypt from "bcryptjs";
 
-const hash_password = ( password ) => {
+const hash_password = ( password:string ) => {
 	let salt = bcrypt.genSaltSync(); // enter number of rounds, default: 10
 	let hash = bcrypt.hashSync( password, salt );
 	return hash;
@@ -38,7 +38,7 @@ export const userSchema:mongoose.Schema = new mongoose.Schema({
      default: new Date()
   }
 });
-userSchema.methods.comparePassword = (password)=> {
+userSchema.methods.comparePassword = (password:string)=> {
 	if ( ! this.password ) {
 		return false;
 	}

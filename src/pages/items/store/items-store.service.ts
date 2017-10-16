@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 14-10-2017
+ * @Last modified time: 16-10-2017
 */
 
 
@@ -26,7 +26,7 @@ export class ItemsStoreService extends StoreService {
     protected store: Store<AppStateI>
   ) { super(); }
 
-  dispatchLoadAction(params) {
+  dispatchLoadAction(params:any) {
     this.dispatchAction(new items.LoadAction(params));
   }
 
@@ -38,7 +38,7 @@ export class ItemsStoreService extends StoreService {
     this.dispatchAction(new items.UpdateAction(record));
   }
 
-  dispatchRemoveAction(id) {
+  dispatchRemoveAction(id:string) {
     this.dispatchAction(new items.RemoveAction(id));
   }
 
@@ -48,9 +48,9 @@ export class ItemsStoreService extends StoreService {
     .map((state: IItemsState) => state);
   }
 
-  findById(record: {_id}):Observable<ITodo> {
+  findById(record: {_id:string}):Observable<ITodo> {
     return this.getTodos()
-    .map((state:IItemsState)=> state.filter((item:ITodo) => item._id === record._id))[0]
+    .map((state:IItemsState)=> state.find((item:ITodo) => item._id === record._id))
   }
 
 }

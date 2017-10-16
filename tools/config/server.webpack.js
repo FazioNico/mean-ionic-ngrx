@@ -3,9 +3,12 @@
  * @Date:   11-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 13-10-2017
+ * @Last modified time: 16-10-2017
  */
 
+/**
+* Server Webpack config v.0.1.0
+*/
 const path = require('path');
 // all webpack import working cause we use Ionicframewok in front-side
 // Ionic allready have install all default webpack dependencies into our node_modules

@@ -3,7 +3,7 @@
 * @Date:   09-10-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 16-10-2017
 */
 
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
@@ -54,6 +54,7 @@ import { ApolloClient, createNetworkInterface } from 'apollo-client';
  * Apollo Client v.1.9.3
  * with subscriptions-transport-ws <= 0.8.3
  */
+// TODO: inject environment variable
 // Create GraphQL network Interface with your GraphQL server endpoint
 const networkInterface = createNetworkInterface({
   uri: 'http://localhost:8080/graphql'
@@ -66,7 +67,7 @@ networkInterface.use([{
       req.options.headers = {};  // Create the header object if needed.
     }
     // get the authentication token from local storage if it exists
-    req.options.headers.authorization = JSON.parse(localStorage.getItem('authTokenTest')) || null;
+    req.options.headers.authorization = JSON.parse(localStorage.getItem('authTokenTest')|| '') || null;
     next();
   }
 }]);

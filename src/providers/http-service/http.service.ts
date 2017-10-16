@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 16-10-2017
 */
 
 import { Injectable, Inject } from '@angular/core';
@@ -73,7 +73,7 @@ export abstract class HttpService {
   }
 
 
-  protected getMock(_params):Observable<any> {
+  protected getMock(_params:any):Observable<any> {
     let datas:any[] = [
       {
         _id: 1,
@@ -95,7 +95,8 @@ export abstract class HttpService {
 
   /* Check if localstorage exist with datas */
   private checkStorage():void|Observable<any>{
-    this.storage = JSON.parse(localStorage.getItem(STORAGE_ITEM))
+    let token:string|null = localStorage.getItem(STORAGE_ITEM)
+    this.storage = (token)?JSON.parse(token):null
     // if storage not found
     if(!this.storage){
       return {} as Observable<{}>

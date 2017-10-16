@@ -3,11 +3,10 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 16-10-2017
  */
 
  import { AuthActions, TAuthActions } from '../../pages/login/store/auth.actions';
- import { ErrorActions , TErrorActions} from '../actions/err.actions';
  import { ItemsActions, TItemsActions } from "../../pages/items/store/items.actions";
 
  export interface IqueryParamsState {
@@ -20,7 +19,7 @@
 
  export function reducer (
    state:IqueryParamsState = intitialState,
-   action:TAuthActions|TErrorActions|TItemsActions
+   action:TAuthActions|TItemsActions
  ):IqueryParamsState {
      switch (action.type) {
        case ItemsActions.LOAD: {

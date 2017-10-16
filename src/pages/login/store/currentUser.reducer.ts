@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 16-10-2017
 */
 
 import { AuthActions, TAuthActions } from './auth.actions';
@@ -14,13 +14,13 @@ import { IUserModel } from "../../../../server/app/models/user.models";
 // TODO: add & use ngrx Entities
 //export const adapter: EntityAdapter<User> = createEntityAdapter<ICurrentUserState>();
 
-export interface ICurrentUserState extends IUserModel {};
-export const intitialState:ICurrentUserState = null
+export interface ICurrentUserState extends IUserModel{};
+export const intitialState:ICurrentUserState | null = null
 
 export function reducer (
-  state:ICurrentUserState = intitialState,
+  state:ICurrentUserState | null = intitialState,
   action:TAuthActions
-):ICurrentUserState {
+):ICurrentUserState | null {
   switch (action.type) {
     case AuthActions.LOGIN_SUCCESS:{
       return Object.assign({}, state, )

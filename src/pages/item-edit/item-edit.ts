@@ -3,7 +3,7 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 16-10-2017
  */
 
 import { Component, Inject, Injector } from '@angular/core';
@@ -45,7 +45,7 @@ export class ItemEdit {
     this.todo = this.navParams.get('todo')
     if(this.todo){
         // converting todo.deadline to IOS Format for the Ionic DatePicker input
-        this.todoDate = new Date(+this.todo.deadline).toISOString()
+        this.todoDate = (this.todo.deadline)?new Date(+this.todo.deadline).toISOString(): new Date(Date.now()).toISOString()
         // create a FormGroup to edit todo with todo datas
         this.form = fb.group({
             description: [this.todo.description, Validators.minLength(2)],
@@ -82,7 +82,7 @@ export class ItemEdit {
     // use the form datas
     let updated:ITodo = this.form.value
     // convert new ISO Date to timestampe (number) to store into our bdd
-    let newDate:number = new Date(updated.deadline).getTime()
+    let newDate:number = (updated.deadline)? new Date(updated.deadline).getTime() : new Date(Date.now()).getTime()
     // add ID param to the updated todo
     updated._id = this.todo._id
     // add convert ISO Date format to the param deadline

@@ -3,9 +3,12 @@
  * @Date:   16-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 16-10-2017
  */
 
+ /**
+  * Ionic Karma test entry point v.0.0.1
+  */
  Error.stackTraceLimit = Infinity;
 
  require('core-js/es6');
