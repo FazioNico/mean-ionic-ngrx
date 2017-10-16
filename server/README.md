@@ -6,10 +6,10 @@
 @Last modified time: 09-04-2017
 -->
 
-# NodeJS Simple REST TS
+# NodeJS Simple GraphQL and REST server with Typescript
 Simple GraphQL + REST NodeJS server for MEAN Ionic with NgRx Starter Application.
 
-This is the output server builed by webpack from MEAN Ionic with NgRx.
+This is the source of server output builed by webpack from MEAN Ionic with NgRx root folder project.
 All dependencies and build process managed from the main project MEAN Ionic with NgRx.
 
-This server project is ready to deploy to Heroku or others host. 
+When is builded, this server project is ready to be deploy to Heroku or others host.

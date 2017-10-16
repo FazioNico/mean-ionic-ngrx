@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 16-10-2017
  */
 
  import { MetaReducer, ActionReducerMap } from '@ngrx/store';
@@ -21,7 +21,7 @@
    loading: fromLoading.reducer,
    loaded: fromLoaded.reducer,
    queryParams: fromQueryParams.reducer,
-   error: fromError.reducer
+   error: fromError.reducer 
  };
 
  export const reducer:ActionReducerMap<AppStateI> = reducers;

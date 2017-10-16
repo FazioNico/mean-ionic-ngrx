@@ -3,11 +3,10 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 14-10-2017
+ * @Last modified time: 16-10-2017
 */
 
 
-import { Action } from '@ngrx/store';
 import { NgRxAction } from '../../../store/ngrx.actions';
 import { ITodo, IItemsState } from "./items.state";
 
@@ -32,7 +31,7 @@ export class CreateSuccessAction extends NgRxAction<ITodo> { type = ItemsActions
 export class UpdateAction extends NgRxAction<any> { type = ItemsActions.UPDATE; }
 export class UpdateSuccessAction extends NgRxAction<ITodo> { type = ItemsActions.UPDATE_SUCCESS; }
 
-export class RemoveAction extends NgRxAction<{id}> { type = ItemsActions.REMOVE; }
+export class RemoveAction extends NgRxAction<string> { type = ItemsActions.REMOVE; }
 export class RemoveSuccessAction extends NgRxAction<{_id:string}> { type = ItemsActions.REMOVE_SUCCESS; }
 
 export class ErrorAction extends NgRxAction<any> { type = ItemsActions.ERROR; }

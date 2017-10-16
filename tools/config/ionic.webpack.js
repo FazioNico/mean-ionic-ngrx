@@ -3,8 +3,12 @@
 * @Date:   09-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 16-10-2017
 */
+
+/**
+ * Ionic Webpack config v.0.1.0
+ */
 
 var webpack = require('webpack');
 var config = require('@ionic/app-scripts/config/webpack.config.js')

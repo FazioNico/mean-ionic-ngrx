@@ -3,12 +3,15 @@
  * @Date:   11-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 16-10-2017
  */
 
  // See documentation:
  // => https://github.com/sass/node-sass
 
+ /**
+  * Ionic SASS config v.0.1.0
+  */
  module.exports = {
 
    /**

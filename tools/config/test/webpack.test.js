@@ -3,10 +3,12 @@
  * @Date:   16-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 12-10-2017
+ * @Last modified time: 16-10-2017
  */
 
-
+ /**
+  * Ionic Webpack test config v.0.0.2
+  */
  var webpack = require('webpack');
  var path = require('path');
 

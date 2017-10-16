@@ -3,7 +3,7 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 10-10-2017
+ * @Last modified time: 16-10-2017
  */
 
  import { Injectable } from "@angular/core";
@@ -26,10 +26,8 @@
    @Effect() loadAction$ = this.action$
        .ofType(Item.ItemsActions.LOAD)
        .map<Action, any>(toPayload)
-       .switchMap((payload:any) => this._database.get()
-                                                                    // .map(res => new Item.LoadSuccessAction(res))
-                                                                    // .catch(err => Observable.of(new Item.ErrorAction(err)))
-       )
+       .switchMap((payload:any) => this._database.get())
+       .take(1)
        .switchMap(result=> Observable.of(new Item.LoadSuccessAction(result)))
        .catch(err => Observable.of(new Item.ErrorAction(err)))
 

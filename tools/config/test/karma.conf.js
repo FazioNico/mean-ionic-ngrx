@@ -3,9 +3,11 @@
  * @Date:   16-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 21-04-2017
+ * @Last modified time: 16-10-2017
  */
-
+ /**
+  * Ionic Karma test config v.0.0.1
+  */
 var webpackConfig = require('./webpack.test.js');
 
 module.exports = function (config) {

@@ -3,12 +3,11 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 16-10-2017
 */
 
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
-import { Action } from '@ngrx/store';
 import { Effect, Actions, toPayload } from "@ngrx/effects";
 
 import * as Err from '../actions/err.actions';
@@ -30,13 +29,13 @@ export class ErrorEffects {
       Auth.AuthActions.ERROR,
       Items.ItemsActions.ERROR
     )
-    .map<Action, any>(toPayload)
+    .map(toPayload)
     .switchMap(err => Observable.of(new Err.ErrorDisplayAction(err)))
 
 
   @Effect() displayErrorAction$ = this.action$
       .ofType(Err.ErrorActions.ERROR_DISPLAY)
-      .map<Action, any>(toPayload)
+      .map(toPayload)
       .switchMap((payload) => this._alert.doDisplayAlert(payload))
       .switchMap((payload)=>
         (payload)

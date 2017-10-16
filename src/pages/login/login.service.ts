@@ -3,7 +3,7 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 16-10-2017
 */
 
 import { Injectable, Inject } from '@angular/core';
@@ -63,14 +63,14 @@ export class LoginService extends HttpService {
     })
   }
 
-  doCreateUser(_payload):Observable<HttpServerResponse> {
+  doCreateUser(_payload:{email:string, password:string}):Observable<HttpServerResponse> {
     this.path = this._signUpUrl
     return this.post(_payload)
   }
 
   /* Token managers Methodes */
   saveToken(providerResponse: any):Observable<string>  {
-    console.log(providerResponse)
+    //console.log(providerResponse)
     return Observable.fromPromise(
       Promise.resolve(localStorage.setItem(STORAGE_ITEM, JSON.stringify(providerResponse.token)))
       .then(_=> providerResponse.token)
