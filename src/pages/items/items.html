@@ -32,20 +32,13 @@
 
 
 <ion-content>
-  <!-- display errors here -->
-  <ion-row responsive-sm *ngIf="(storeInfo | async)?.error">
-    <ion-col>
-      <strong>
-          <h4  style="color:red">Error:&nbsp;{{ (storeInfo | async)?.error }}</h4>
-      </strong>
-    </ion-col>
-  </ion-row>
+
 
   <!-- if we have show the list of stuff -->
 
     <ion-list>
 
-      <ion-item-sliding #slidingItem *ngFor="let todo of (storeInfo | async)?.dataArray">
+      <ion-item-sliding #slidingItem *ngFor="let todo of (storeInfo | async)">
 
         <ion-item>
             <ion-label>{{ todo.description }}</ion-label>

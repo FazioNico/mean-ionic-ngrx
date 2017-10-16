@@ -3,10 +3,8 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 28-03-2017
+ * @Last modified time: 12-10-2017
 */
-
-/// <reference path="./@types/index.d.ts" />
 
 import * as express from 'express';
 import * as http  from "http";
@@ -15,12 +13,14 @@ import * as cors from 'cors';
 import * as path from 'path';
 import * as morgan from 'morgan';
 
-import { ServerRoutes }  from "./modules/routes/serverRoute";
-import { APIRoutes }  from "./modules/routes/apiRoute";
-import { DataBase }  from "./modules/database";
-import { log }  from "./modules/log";
+import { GraphqlApi } from "./graphql";
+import { RestApi }  from "./rest/apiRoute";
+import { DataBase }  from "./databases/mongoose";
+import { log }  from "./log";
 // Import secretTokenKey config
-import { SECRET_TOKEN_KEY } from "./config";
+import { CONFIG } from "./config";
+
+const PACKAGE = require("../package.json");
 
 export class Server{
 
@@ -51,33 +51,34 @@ export class Server{
     this.app
       // use bodyParser middleware to decode json parameters
       .use(bodyParser.json())
-      .use(bodyParser.json({type: 'application/vnd.api+json'}))
+      .use(bodyParser.json({limit: '50mb', type: 'application/vnd.api+json'}))
       // use bodyParser middleware to decode urlencoded parameters
-      .use(bodyParser.urlencoded({extended: false}))
+      .use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
       // secret variable for jwt
-      .set('superSecret', SECRET_TOKEN_KEY)
+      .set('superSecret', CONFIG.secretTokent)
       // use morgan to log requests to the console
       .use(morgan('dev'))
       // cors domaine origin
-      .use(cors())
+      .use(cors({ optionsSuccessStatus: 200 }))
   }
 
   private dbConnect(){
       // Load DB connection
       DataBase.connect()
-        .then(result =>{
+        .then(() =>{
           // Load all route
-          console.log(result)
           // Server Endpoints
-          this.app.use( new ServerRoutes().routes());
+          this.defaultServerRoute()
+          // GraphQL API Endpoints
+          this.app.use( new GraphqlApi(this.server).init());
           // REST API Endpoints
-          this.app.use( new APIRoutes().routes());
+          this.app.use( new RestApi().init());
         })
         .catch(error => {
           // DB connection Error => load only server route
           console.log(error)
           // Server Endpoints
-          this.app.use(new ServerRoutes().routes());
+          this.defaultServerRoute()
           return error
         })
         .then(error => {
@@ -105,6 +106,15 @@ export class Server{
       default:
         throw error;
     }
+  }
+
+  private defaultServerRoute(){
+    this.app.get( '/', log, (req, res) => {
+      res.json({
+        code: 200,
+        message: `${PACKAGE.name} - v.${PACKAGE.version} / ${PACKAGE.description} by ${PACKAGE.author}`
+      });
+    });
   }
 
   normalizePort(val: number|string): number|string|boolean {

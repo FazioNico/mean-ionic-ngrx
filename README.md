@@ -1,13 +1,17 @@
-<img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="http://code.runnable.com/images/provider-icons/icon-node.js.svg" width="80"><img src="http://amver.lt/wp-content/uploads/2016/07/Mathematic-Plus2.ico" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px">
+<img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="80"><img src="https://camo.githubusercontent.com/a083a6650043b70297ab9655569d56ed0d300687/687474703a2f2f616d7665722e6c742f77702d636f6e74656e742f75706c6f6164732f323031362f30372f4d617468656d617469632d506c7573322e69636f" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/768px-GraphQL_Logo.svg.png" height="80px">
 
-#  MEAN Ionic NgRx
-[![Build Status](https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master)](https://travis-ci.org/FazioNico/mean-ionic-ngrx) [![dependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx) [![devDependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev) [![Known Vulnerabilities](https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg)](https://snyk.io/test/github/fazionico/mean-ionic-ngrx) 
-<blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects)</blockquote>
+#  MEAN Ionic NgRx Lazy Load + GraphQL/REST Server API
+[![Build Status](https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master)](https://travis-ci.org/FazioNico/mean-ionic-ngrx) [![dependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx) [![devDependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev) [![Known Vulnerabilities](https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg)](https://snyk.io/test/github/fazionico/mean-ionic-ngrx) ![Version](https://img.shields.io/badge/version-0.1.0--rc.1-blue.svg)
+<blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects) & GraphQL/REST Server  API and many more...</blockquote>
 
 ## Overview
-MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS with Ionic  Framework to provide multi platform application.
+MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS.
 
-It's a simple todo application exemple with server-side Users JWT authentification & using ReactiveX API (ngrx/Store + ngrx/Effects)
+- <b>Front-End:</b> Ionic Framework to provide multi platform application.
+- <b>Back-End:</b> Express GraphQL API + Express REST API
+
+It's a simple todo application exemple with REST server-side for Users authentification with JWT + GraphQL server-side for request all others datas.
+Front side is building with Angular and Ionicframework and using ReactiveX API (ngrx/Store + ngrx/Effects) to provide a better and simply datas management. Front side using Apollo Client provider to work with GraphQL server-side + Angular HttpModule to work with REST server-side.
 
 Hop is help you to start your project on the right way.
 
@@ -20,10 +24,13 @@ Hop is help you to start your project on the right way.
 - [Ionic 3](https://ionicframework.com/) & [Cordova](https://cordova.apache.org/) - Latest stable version install in Global `$ npm install -g ionic cordova`
 - [TypeDoc](http://typedoc.org/) - Latest stable version install in Global `$ npm install -g typedoc`
 - [Karma](https://karma-runner.github.io) - Latest stable version install in Global `$ npm install -g karma-cli`
+- [Protractor](http://www.protractortest.org/#/) - Latest stable version install in Global `$ npm install -g protractor && webdriver-manager update`
 - [Gulp](http://gulpjs.com/) - Latest stable version install in Global `$ npm install -g gulp`
 - [Heroku](heroku.com) - Download & Install latest stable version.
 - Good knowledge of [ReactiveX API](http://reactivex.io/) & [NgRx](https://github.com/ngrx)
 - [Redux DevTools Extension](http://extension.remotedev.io/) - Install Plugin for Chrome - Debugging application's state changes & provides power-ups for your Redux development workflow.
+- Good knowledge of [GraphQL](http://graphql.org/) language.
+- Good knowledge of Apollo Client & Server Side: [Apollo Docs](https://www.apollodata.com/).
 - And you should also have git installed to a better working flow.
 
 ## Get Started
@@ -55,42 +62,50 @@ If you want, you can add your own build run script.
 
 open `./docs/index.html` to read documentation
 
+## Server GraphQL API Endpoints
+- server dev runing on `http://localhost:8080/graphql`
+- server prod runing on `http://YOUR_HOST/graphql` (or https)
+- use GraphIQL UI to get full server documentation and many more... open browser with `http://localhost:8080/graphiql`
+
 ## Server REST API Endpoints
+- server dev runing on `http://localhost:8080/rest`
+- server prod runing on `http://YOUR_HOST/rest` (or https)
+
 ````
 TODOS Endpoints
 
-  path: http://localhost:8080/todos
+  path: http://localhost:8080/rest/todos
   autenticate: false
   methode: $_GET / $_POST
 
-  path: http://localhost:8080/todos/:id
+  path: http://localhost:8080/rest/todos/:id
   autenticate: false
   methode: $_GET / $_POST / $_DELETE
 
 
 AUTH Endpoints
 
-  path: http://localhost:8080/auth
+  path: http://localhost:8080/rest/auth
   autenticate: false
   methode: $_POST
 
-  path: http://localhost:8080/isauth
+  path: http://localhost:8080/rest/isauth
   autenticate: false/true
   methode: $_GET
 
-  path: http://localhost:8080/signup
+  path: http://localhost:8080/rest/signup
   autenticate: false
   methode: $_POST
 
 
 USERS Endpoints
 
-  path: http://localhost:8080/users
+  path: http://localhost:8080/rest/users
   autenticate: true
   methode: $_GET
 
 
-  path: http://localhost:8080/users/:id
+  path: http://localhost:8080/rest/users/:id
   autenticate: true
   methode: $_GET
 

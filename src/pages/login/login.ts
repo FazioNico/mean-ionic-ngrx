@@ -1,27 +1,24 @@
 /**
- * @Author: Nicolas Fazio <webmaster-fazio>
- * @Date:   17-04-2017
- * @Email:  contact@nicolasfazio.ch
+* @Author: Nicolas Fazio <webmaster-fazio>
+* @Date:   17-04-2017
+* @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
- */
+ * @Last modified time: 11-10-2017
+*/
 
-import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { IonicPage, NavController } from 'ionic-angular';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs/Rx';
 
-import { Store, Action } from '@ngrx/store'
-
-import { MainActions } from '../../store/actions/mainActions';
-
-// import { AppStateI } from "../../store/app-stats";
+import { AuthStoreService } from './store/auth-store.service';
 
 /**
- * Generated class for the Login page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+* Generated class for the Login page.
+*
+* See http://ionicframework.com/docs/components/#navigation for more info
+* on Ionic pages and navigation.
+*/
 @IonicPage({
   name: 'LoginPage',
   segment: 'login'
@@ -30,58 +27,62 @@ import { MainActions } from '../../store/actions/mainActions';
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class Login {
-
+export class Login implements OnInit{
+  /**
+   * Exemple how to use store in components with store
+   */
+  public user:any|null;
   public loginBtn:boolean = true;
-  public userForm:any;
-  public loader:any;
-  public errorMessage:any;
+  public userForm:FormGroup;
 
   constructor(
     public navCtrl: NavController,
     private _formBuilder: FormBuilder,
-    public alertCtrl: AlertController,
-    public loadCtrl:LoadingController,
-    private store: Store<any>,
-    private mainActions: MainActions
+    public authStore: AuthStoreService
   ) {
     this.userForm = this._formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.minLength(5)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)])],
     });
+
+    // here we are monitoring the authstate
+    this.authStore.getCurrentUser().subscribe((currentState: any) => {
+      //console.log('state->', currentState)
+      if (currentState) {
+        if(!this.user){
+          //console.log('home')
+          this.navCtrl.setRoot('HomePage', {'checkAuth':true})
+        }
+        this.user = currentState;
+      }
+      else {
+        if(this.user){
+          this.user = null
+          this.navCtrl.setRoot('LoginPage')
+        }
+        //console.log('login')
+      }
+    });
   }
 
-  ionViewDidLoad() {
+  ngOnInit(){
+    this.authStore.dispatchCheckAuthAction()
   }
 
-  onLogin(){
+  onLogin():void{
     //this.submitted = true;
     if (this.userForm.valid) {
-      this.store.dispatch(<Action>this.mainActions.login(this.userForm));
+      this.authStore.dispatchLoginAction(this.userForm.value)
     }
   }
-  onSignup(){
+  onSignup():void{
     if (this.userForm.valid) {
-      this.store.dispatch(<Action>this.mainActions.create_user(this.userForm));
+      this.authStore.dispatchCreateAction(this.userForm.value)
     }
   }
 
-  toggleBtn(){
+  toggleBtn():void{
     this.loginBtn = !this.loginBtn
   }
 
-  /* ErrorHandler Methode */
-  showError(text:string,hideLoading:boolean=true):void {
-    if (hideLoading === true){
-      setTimeout(() => {
-        this.loader.dismiss();
-      });
-    }
-    let alert = this.alertCtrl.create({
-      title: 'Erreur',
-      subTitle: text,
-      buttons: ['OK']
-    });
-    alert.present();
-  }
 }

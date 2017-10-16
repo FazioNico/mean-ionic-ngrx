@@ -3,48 +3,38 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 20-04-2017
+ * @Last modified time: 15-10-2017
  */
 
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Injector } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { Store, Action } from '@ngrx/store'
 import { Observable } from 'rxjs/Rx';
+import { IItemsState, ITodo } from "./store/items.state";
+import { ItemsStoreService } from './store/items-store.service';
 
-import { AppStateI } from "../../store/app-stats";
-import { MainActions } from '../../store/actions/mainActions';
+import { canEnterIfAuthenticated } from '../../decorators';
 
-import { ITodo } from "../../providers/datas-service/datas-service";
-
-/**
- * Generated class for the Items page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+@canEnterIfAuthenticated
 @IonicPage({
   name: 'ItemsPage',
   segment: 'items'
 })
 @Component({
   selector: 'page-items',
-  templateUrl: 'items.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: 'items.html'
 })
 export class Items implements OnInit{
 
-  public user:any;
-  public storeInfo:Observable<AppStateI>;
+  private readonly storeInfo:Observable<IItemsState>;
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    private store: Store<any>,
-    private mainActions: MainActions
+    private readonly navCtrl: NavController,
+    private readonly navParams: NavParams,
+    private itemsStore:ItemsStoreService,
+    public injector: Injector // required to use @canEnterIfAuthenticated
   ) {
     // use the object in the template since it is an observable
-    this.storeInfo = this.store.select(state => state.dataArray)
+    this.storeInfo = this.itemsStore.getTodos();
   }
 
   ngOnInit():void {
@@ -52,22 +42,22 @@ export class Items implements OnInit{
   }
 
   /* Event Methode */
-  addTodo(todoInput:any):void {
-    this.store.dispatch(<Action>this.mainActions.create_data( { path: '/todos', params: todoInput.value} ));
+  addTodo(todoInput:HTMLInputElement):void {
+    this.itemsStore.dispatchCreateAction({description: todoInput.value})
     this.clearInput(todoInput);
   }
 
   toggleComplete(todo:ITodo):void {
     let updated = Object.assign({}, todo)
     updated.isComplete = !updated.isComplete
-    this.store.dispatch(<Action>this.mainActions.update_data( { path: '/todos', params: updated} ));
+    this.itemsStore.dispatchUpdateAction(updated)
   }
 
-  deleteTodo(todo:any):void {
-    this.store.dispatch(<Action>this.mainActions.delete_data( { path: '/todos', params: todo} ));
+  deleteTodo(todo:ITodo):void {
+    this.itemsStore.dispatchRemoveAction(todo._id)
   }
 
-  navToEdit(todo:any):void {
+  navToEdit(todo:ITodo):void {
     console.log(todo)
     this.navCtrl.push('ItemEditPage', {
       id: todo._id,
@@ -77,10 +67,12 @@ export class Items implements OnInit{
 
   /* Core Methode */
   doQuery():void {
-    this.store.dispatch(<Action>this.mainActions.get_data_array('/todos'));
+    // Dispatch action to GraphQL API.
+    // Params {path:string} is optional for GraphQL API but is require for REST API
+    this.itemsStore.dispatchLoadAction({path:'/todos'})
   }
 
-  clearInput(todoInput:any):void{
+  clearInput(todoInput:HTMLInputElement):void{
     todoInput.value = '';
   }
 

@@ -1,8 +1,14 @@
+// @Author: Nicolas Fazio <webmaster-fazio>
+// @Date:   20-04-2017
+// @Email:  contact@nicolasfazio.ch
+// @Last modified by:   webmaster-fazio
+// @Last modified time: 11-10-2017
+
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/v2/theming/
 $font-path: "../assets/fonts";
 
-@import "ionic.globals";
+// @import "ionic.globals";
 
 
 // Shared Variables
@@ -60,7 +66,7 @@ $colors: (
 // so that the above variables are used and Ionic's
 // default are overridden.
 
-@import "ionic.theme.default";
+@import "ionic.theme.default.md";
 
 
 // Ionicons

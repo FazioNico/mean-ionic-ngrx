@@ -1,42 +1,49 @@
 /**
- * @Author: Nicolas Fazio <webmaster-fazio>
- * @Date:   14-04-2017
- * @Email:  contact@nicolasfazio.ch
+* @Author: Nicolas Fazio <webmaster-fazio>
+* @Date:   14-04-2017
+* @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 20-04-2017
- */
+ * @Last modified time: 15-10-2017
+*/
 
-import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-
-import { Store, Action } from '@ngrx/store'
+import { Component, Injector, Inject } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Rx';
 
-import { AppStateI } from "../../store/app-stats";
-import { MainActions } from '../../store/actions/mainActions';
+import { AuthStoreService } from '../login/store/auth-store.service';
+import { ICurrentUserState } from '../login/store/currentUser.reducer';
+import { canEnterIfAuthenticated } from '../../decorators';
 
+@canEnterIfAuthenticated
+@IonicPage({
+  name: 'HomePage',
+  segment: 'index'
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  public user:any;
-  public storeInfo:Observable<AppStateI>;
+/**
+ * Exemple how to use store in components without attached store
+ */
+  public readonly storeInfo:Observable<ICurrentUserState>;
 
   constructor(
-    public navCtrl: NavController,
-    private store: Store<any>,
-    private mainActions: MainActions
+    private readonly navCtrl: NavController,
+    @Inject(AuthStoreService) private readonly authStore:AuthStoreService,
+    public injector: Injector // required to use @canEnterIfAuthenticated
   ) {
-    this.storeInfo = this.store.select((state:AppStateI) => state.currentUser )
+    // manage store state
+    this.storeInfo = this.authStore.getCurrentUser()
   }
 
-  goPage(page:string){
+  goPage(page:string):void{
+    console.log('page->',page)
     this.navCtrl.push('ItemsPage')
   }
 
   onLogout():void{
-    this.store.dispatch(<Action>this.mainActions.logout());
+    this.authStore.dispatchLogoutAction()
   }
 }

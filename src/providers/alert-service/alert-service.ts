@@ -3,13 +3,13 @@
  * @Date:   19-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 16-10-2017
  */
 
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import { AlertController } from 'ionic-angular';
+import { AlertController, Alert } from 'ionic-angular';
 
 /*
   Generated class for the AlertService provider.
@@ -20,6 +20,8 @@ import { AlertController } from 'ionic-angular';
 @Injectable()
 export class AlertService {
 
+  private alert:Alert;
+
   constructor(
     private alertCtrl: AlertController
   ) {
@@ -28,15 +30,15 @@ export class AlertService {
   /*
     Displaying State alert with Ionic AlertController
   */
-  doDisplayAlert(_payload):Observable<any>{
-    let alert = this.alertCtrl.create({
+  doDisplayAlert(_payload:any):Observable<boolean>{
+    this.alert = this.alertCtrl.create({
       title: 'Error',
-      subTitle: _payload,
+      subTitle: _payload.message || 'Error...',
       buttons: ['Dismiss']
     });
-    alert.present();
-    return Observable.create((observer) => {
-      observer.next({ type: 'ERROR_DISPLAYED' })
+
+    return Observable.create((observer:any) => {
+      this.alert.present().then(_=> observer.next(true))
     })
   }
 }

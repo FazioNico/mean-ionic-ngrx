@@ -3,26 +3,21 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 16-10-2017
  */
 
-import { Component } from '@angular/core';
+import { Component, Inject, Injector } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Store, Action } from '@ngrx/store'
+import { ITodo } from "../items/store/items.state";
+
 import 'rxjs/add/operator/map';
 
-import { MainActions } from '../../store/actions/mainActions';
+import { ItemsStoreService } from '../items/store/items-store.service';
+import { canEnterIfAuthenticated } from '../../decorators';
 
-import { ITodo } from '../../providers/datas-service/datas-service';
-
-/**
- * Generated class for the ItemEdit page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+@canEnterIfAuthenticated
 @IonicPage({
   name: 'ItemEditPage',
   segment: 'items/:id',
@@ -34,23 +29,23 @@ import { ITodo } from '../../providers/datas-service/datas-service';
 })
 export class ItemEdit {
 
-  public updatedState:boolean = false;
-  public todo:ITodo;
-  public form: FormGroup;
-  public todoDate:string; // date as a string value in ISO format
+  private updatedState:boolean = false;
+  private todo:ITodo;
+  private form: FormGroup;
+  private todoDate:string; // date as a string value in ISO format
 
   constructor(
-    public navCtrl: NavController,
-    public navParams: NavParams,
-    public fb: FormBuilder,
-    private store: Store<any>,
-    private mainActions: MainActions
+    private navCtrl: NavController,
+    private navParams: NavParams,
+    private fb: FormBuilder,
+    @Inject(ItemsStoreService) private readonly itemsStore:ItemsStoreService,
+    public injector: Injector // required to use @canEnterIfAuthenticated
   ) {
     // get todo item from navParams
     this.todo = this.navParams.get('todo')
     if(this.todo){
         // converting todo.deadline to IOS Format for the Ionic DatePicker input
-        this.todoDate = new Date(+this.todo.deadline).toISOString()
+        this.todoDate = (this.todo.deadline)?new Date(+this.todo.deadline).toISOString(): new Date(Date.now()).toISOString()
         // create a FormGroup to edit todo with todo datas
         this.form = fb.group({
             description: [this.todo.description, Validators.minLength(2)],
@@ -83,27 +78,23 @@ export class ItemEdit {
     }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ItemEdit');
-  }
-
   saveTodo():void{
     // use the form datas
-    let updated = this.form.value
+    let updated:ITodo = this.form.value
     // convert new ISO Date to timestampe (number) to store into our bdd
-    let newDate = new Date(updated.deadline).getTime()
+    let newDate:number = (updated.deadline)? new Date(updated.deadline).getTime() : new Date(Date.now()).getTime()
     // add ID param to the updated todo
     updated._id = this.todo._id
     // add convert ISO Date format to the param deadline
     updated.deadline = newDate
     // then send the todo ready to todoService
-    this.store.dispatch(<Action>this.mainActions.update_data( { path: '/todos', params: updated} ));
+    this.itemsStore.dispatchUpdateAction(updated)
     this.navCtrl.pop()
   }
 
   deleteTodo():void{
     // use item ID
-    this.store.dispatch(<Action>this.mainActions.delete_data( { path: '/todos', params: this.todo} ));
+    this.itemsStore.dispatchRemoveAction(this.todo._id)
     // pop() navigation
     this.navCtrl.pop()
   }
@@ -113,8 +104,8 @@ export class ItemEdit {
     this.navCtrl.pop()
   }
 
-  toogleClick(){
-    console.log(this.form.value.expire)
+  toogleClick():void{
+    //console.log(this.form.value.expire)
   }
 
 }

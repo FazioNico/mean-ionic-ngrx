@@ -3,88 +3,79 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 19-04-2017
+ * @Last modified time: 15-10-2017
 */
 
-import { Action } from "@ngrx/store";
-import { MainActions } from '../actions/mainActions';
+import { AuthActions, TAuthActions } from '../../pages/login/store/auth.actions';
+import { ItemsActions, TItemsActions } from "../../pages/items/store/items.actions";
 
-export interface ILoadedState  {
-  loaded: boolean;
-};
+export interface ILoadedState extends Boolean {};
+export const intitialState:ILoadedState = false;
 
-export const intitialState:ILoadedState = {
-  loaded: false
-}
-
-export function reducer (state:ILoadedState = intitialState, action:Action):ILoadedState {
+export function reducer (
+  state:ILoadedState = intitialState,
+  action:TAuthActions|TItemsActions
+):ILoadedState {
   //console.log('LOADED REDUCER-> ', action);
   switch (action.type) {
-    case MainActions.GET_DATAS_ARRAY: {
-      return Object.assign({}, state, { loaded: false})
+    case ItemsActions.LOAD: {
+      return false
     }
-    case MainActions.GET_DATAS_ARRAY_SUCCESS: {
-      return Object.assign({}, state, { loaded: true})
+    case ItemsActions.LOAD_SUCCESS: {
+      return true
     }
-    case MainActions.GET_DATAS_ARRAY_FAILED: {
-      return Object.assign({}, state, { loaded: false})
+    case ItemsActions.ERROR: {
+      return false
+    }
+    //
+    case ItemsActions.UPDATE: {
+      return false
+    }
+    case ItemsActions.UPDATE_SUCCESS: {
+      return true
+    }
+    //
+    case ItemsActions.REMOVE: {
+      return false
+    }
+    case ItemsActions.REMOVE_SUCCESS: {
+      return true
+    }
+    //
+    case ItemsActions.CREATE: {
+      return false
+    }
+    case ItemsActions.CREATE_SUCCESS: {
+      return true
+    }
+    //
+
+    case AuthActions.CHECK_AUTH_SUCCESS: {
+      return true
+    }
+    case AuthActions.CHECK_AUTH_NO_USER: {
+      return true
     }
 
-    case MainActions.UPDATE_DATA: {
-      return Object.assign({}, state, { loaded: false})
+    case AuthActions.LOGIN: {
+     return false
     }
-    case MainActions.UPDATE_DATA_SUCCESS: {
-      return Object.assign({}, state, { loaded: true})
+    case AuthActions.LOGIN_SUCCESS: {
+     return true
     }
-    case MainActions.UPDATE_DATA_FAILED: {
-      return Object.assign({}, state, { loaded: false})
+    // case AuthActions.LOGIN_FAILED: {
+    //  return false
+    // }
+
+    case AuthActions.LOGOUT: {
+      return false
+    }
+    case AuthActions.LOGOUT_SUCCESS: {
+      return true
     }
 
-    case MainActions.DELETE_DATA: {
-      return Object.assign({}, state, { loaded: false})
-    }
-    case MainActions.DELETE_DATA_SUCCESS: {
-      return Object.assign({}, state, { loaded: true})
-    }
-    case MainActions.DELETE_DATA_FAILED: {
-      return Object.assign({}, state, { loaded: false})
-    }
-
-    case MainActions.CREATE_DATA: {
-      return Object.assign({}, state, { loaded: false})
-    }
-    case MainActions.CREATE_DATA_SUCCESS: {
-      return Object.assign({}, state, { loaded: true})
-    }
-    case MainActions.CREATE_DATA_FAILED: {
-      return Object.assign({}, state, { loaded: false})
-    }
-
-    case MainActions.CHECK_AUTH_SUCCESS: {
-      return Object.assign({}, state, { loaded: true })
-    }
-    case MainActions.CHECK_AUTH_FAILED: {
-      return Object.assign({}, state, { loaded: false })
-    }
-    case MainActions.CHECK_AUTH_NO_USER: {
-      return Object.assign({}, state, { loaded: false })
-    }
-
-    case MainActions.LOGIN: {
-     return Object.assign({}, state, { loaded: false })
-    }
-    case MainActions.LOGIN_SUCCESS: {
-     return Object.assign({}, state, { loaded: true })
-    }
-    case MainActions.LOGIN_FAILED: {
-     return Object.assign({}, state, { loaded: false })
-    }
-
-    case MainActions.LOGOUT: {
-      return Object.assign({}, state, { loaded: false })
-    }
-    case MainActions.LOGOUT_SUCCESS: {
-      return Object.assign({}, state, { loaded: true })
+    case AuthActions.ERROR: {
+     return false
     }
     default: {
       return <ILoadedState>state;

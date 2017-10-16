@@ -1,32 +1,41 @@
 /**
- * @Author: Nicolas Fazio <webmaster-fazio>
- * @Date:   09-04-2017
- * @Email:  contact@nicolasfazio.ch
+* @Author: Nicolas Fazio <webmaster-fazio>
+* @Date:   09-04-2017
+* @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-04-2017
- */
+ * @Last modified time: 11-10-2017
+*/
 
- import { NgModule } from '@angular/core';
- import { EnvVariables } from './environment.token';
- import { devVariables } from '../../../environments/development';
- import { prodVariables } from '../../../environments/production';
- import { IEnvironment } from "../../../environments/env-model";
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { EnvVariables } from './environment.token';
+import { devVariables } from './development';
+import { prodVariables } from './production';
+import { IEnvironment } from "./env-model";
 
- declare const process: any; // Typescript compiler will complain without this
+export function environmentFactory():IEnvironment {
+  //  console.log(`test ENV config dev -> ${__DEV__}`)
+  //  console.log(`test ENV config prod > ${__PROD__}`)
+  let env:IEnvironment = (__PROD__)? prodVariables : devVariables;
+  env.ionicEnvName != 'prod'? console.info('env->', env) : console.info('env->', 'Production Mode');
+  return env
+}
 
- export function environmentFactory():IEnvironment {
-   let env:IEnvironment = process.env.IONIC_ENV === 'prod' ? prodVariables : devVariables;
-   process.env.IONIC_ENV != 'prod'? console.info('env->', env) : console.info("env-> ", env.environmentName);
-   if(process.env.NODE_ENV === 'prod') { env = prodVariables };
-   return env
- }
-
- @NgModule({
-   providers: [
-     {
-       provide: EnvVariables,
-       useFactory: environmentFactory
-     }
-   ]
- })
- export class EnvironmentsModule {}
+@NgModule({
+  providers: [
+    {
+      provide: EnvVariables,
+      useFactory: environmentFactory
+    }
+  ]
+})
+export class EnvironmentsModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: EnvironmentsModule,
+      providers: [     {
+        provide: EnvVariables,
+        useFactory: environmentFactory
+      }]
+    }
+  }
+}
