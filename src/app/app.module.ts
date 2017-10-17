@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 17-10-2017
  */
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -42,7 +42,7 @@ const ionicAppConfig:Object = {
     // Cause each imported module will be bootstraped
     // with main.js application file => no lazyloading.
     BrowserModule,
-    EnvironmentsModule.forRoot(), // import app environment variable
+    EnvironmentsModule.forRoot(), // import app environment variable in first.
     ApolloModule.forRoot(provideClient), // import apollo from root app with provided Client.
     NgRxStoreModule.forRoot(), // import AppCore NgRxStoreModule
     IonicModule.forRoot(MyApp, ionicAppConfig) // wrap Ionic app configuration

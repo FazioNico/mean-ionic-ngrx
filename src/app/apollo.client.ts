@@ -3,11 +3,12 @@
 * @Date:   09-10-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 17-10-2017
 */
 
 import { ApolloClient, createNetworkInterface } from 'apollo-client';
 // import {SubscriptionClient, addGraphQLSubscriptions} from 'subscriptions-transport-ws';
+import { environmentFactory} from './environment/environment.module';
 
 /**
  * Apollo CLient 2.0.0
@@ -54,10 +55,9 @@ import { ApolloClient, createNetworkInterface } from 'apollo-client';
  * Apollo Client v.1.9.3
  * with subscriptions-transport-ws <= 0.8.3
  */
-// TODO: inject environment variable
 // Create GraphQL network Interface with your GraphQL server endpoint
 const networkInterface = createNetworkInterface({
-  uri: 'http://localhost:8080/graphql'
+  uri: environmentFactory().apiEndpoint+'/graphql' //'http://localhost:8080/graphql' t
 });
 // Apply middleware to all http request:
 // add token from localstorage into headers.authorization
@@ -90,7 +90,7 @@ networkInterface.use([{
 // );
 
 // Apollo Client Interface definition
-const client = new ApolloClient({
+const client:ApolloClient = new ApolloClient({
   networkInterface //: networkInterfaceWithSubscriptions
 });
 // definefunction to return Apollo Client Interface
