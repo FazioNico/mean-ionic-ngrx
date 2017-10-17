@@ -34,22 +34,27 @@ Hop is help you to start your project on the right way.
 - And you should also have git installed to a better working flow.
 
 ## Get Started
-You have to check the [Todo before Get Started](#todo-before-get-started)
+- You have to check the [Todo before Get Started](#todo-before-get-started)
+- then follow Installation instruction
 
 ### Installation
+- see [Todo before get started](https://github.com/FazioNico/mean-ionic-ngrx#todo-before-get-started)
 - `$ nvm use 7`
 - `$ npm install`
 
 ### Start
-- `$ npm run start:dev` to start in dev mode
-- `$ npm run start:prod` to start in prod mode (you have to config your production environments variable)
+- `$ npm run dev` to start Front-End+Back-End in development mode
+- `$ npm run prod` to start Front-End in production mode (you have to config your production environments variable)
+
+Tips:
+- `$ npm run helper.cmd` to display all `package.json` script available with definition
 
 ### Build
-First add selected platform: `$ ionic platform add browser|ios|android` (one by one). Then you can build each platform with ionic CLI `$ ionic build browser|ios|android --prod`
+First add selected platform: `$ ionic cordova platform add browser|ios|android` (one by one). Then you can build each platform with ionic CLI `$ ionic build browser|ios|android --prod`
 
 And we have the following npm run script ready to use:
-- `$ npm run build:browser` to build app browser version
-- `$ npm run build:browser --prod` to build app browser version in Angular Prod mode
+- `$ npm run build:browser` to build app browser version with development environment variables
+- `$ npm run build:browser --prod` to build app browser version in Angular Prod mode with production environment variables
 
 If you want, you can add your own build run script.
 
@@ -116,7 +121,11 @@ App Documentations is generate by typeDoc. Use the following cmd to generate doc
 - `$ npm run docs` will generate Angular Application documentation and open the index doc in browser.
 
 ## Todo before get Started
-- you have to change `mongod` npm script into `./package.json`. Update mongod $path with your own.
+<b>Important:</b> You have to update/change/replace `mongod` npm script into main `./package.json` line 18 . Update mongod $path with your own path (or run `$npm run mongod` to check if mongo starting correctly).
+
+
+<b>To using in production mode:</b>
+- install Heroku CLI
 - create your own Heroku account and init your server project with the following cmd :
   - `git checkout master`
   - `$ heroku create`
@@ -124,7 +133,7 @@ App Documentations is generate by typeDoc. Use the following cmd to generate doc
   - optional: `$ git checkout <WORKING_BRANCH>`
 - add your own production variable environment into `./environments/production.ts`
 
-Heroku docs:
+<b>Heroku docs:</b>
 - get started doc for NodeJS
 [https://devcenter.heroku.com/articles/git](https://devcenter.heroku.com/articles/git)
 - how to use Heroku with NodeJS & Git [https://devcenter.heroku.com/articles/getting-started-with-nodejs](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction)

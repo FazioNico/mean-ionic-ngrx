@@ -3,7 +3,7 @@
 * @Date:   14-10-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 17-10-2017
 */
 
 // See docs for Typescript @decorator
@@ -39,12 +39,4 @@ export function deprecate(message: string = '{name}') {
     };
     return descriptor;
   };
-}
-
-export function test(target:Function) {
-  target.prototype.getApi = function () {
-    this.a = this.injector.get(EnvVariables)
-    console.log('aaa->',this.a)
-    return true;
-  }
 }
