@@ -1,5 +1,13 @@
+<!--
+@Author: Nicolas Fazio <webmaster-fazio>
+@Date:   17-10-2017
+@Email:  contact@nicolasfazio.ch
+@Last modified by:   webmaster-fazio
+@Last modified time: 20-10-2017
+-->
+
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ch.nicolasfazio.meanionicngrx662784" version="0.1.0-rc.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="ch.nicolasfazio.meanionicngrx662784" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" version="0.1.0-rc.3">
     <name>mean-ionic-ngrx</name>
     <description>Full MEAN stack with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects).</description>
     <author email="contact@nicolasfazio" href="http://nicolasfazio.ch/">Nicoals Fazio</author>

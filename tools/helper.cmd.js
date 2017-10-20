@@ -3,7 +3,7 @@
  * @Date:   07-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 07-10-2017
+ * @Last modified time: 20-10-2017
  */
 
  // Helper Script v.0.0.1
@@ -48,6 +48,12 @@
    console.log('')
    console.log('   Docs:')
    console.log('       [Front Docs]:         $ npm run docs')
+   console.log('')
+   console.log('')
+   console.log('   Release Project:')
+   console.log('       [major version]:      $ npm run release:maj')
+   console.log('       [minor version]:      $ npm run release:min')
+   console.log('       [patch version]       $ npm run release:patch')
    console.log('')
    console.log('')
    console.log("-----------------------------------------------------------------------------------------");
