@@ -24,6 +24,9 @@
     "docs": "npm run typedoc -- --out docs/ --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
     "typedoc": "typedoc",
     "helper.cmd": "node ./tools/helper.cmd.js",
+    "release:maj": "bash tools/tasks/release.project.sh major",
+    "release:min": "bash tools/tasks/release.project.sh minor",
+    "release:patch": "bash tools/tasks/release.project.sh patch",
     "e2e": "protractor ./tools/config/test/protractor.conf.js",
     "test": "karma start ./tools/config/test/karma.conf.js"
   },
@@ -87,7 +90,7 @@
     "gulp": "^3.9.1",
     "gulp-gh-pages": "^0.5.4",
     "html-loader": "^0.5.1",
-    "ionic": "3.13.1",
+    "ionic": "3.13.2",
     "ionic-mocks": "^1.0.3",
     "jasmine-core": "^2.8.0",
     "jasmine-spec-reporter": "^4.2.1",
