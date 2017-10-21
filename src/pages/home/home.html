@@ -8,13 +8,11 @@
   </ion-header>
 
   <ion-content *ngIf="(storeInfo|async);let user" padding>
-    <h1>Hello {{ user?.email }}</h1>
-    The world is your oyster.
-    <p>
-      If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-    </p>
+    <h1 translate [translateParams]="{value: user.email}">home.title</h1>
+    {{ 'home.slogan'|translate }}
+    <p [innerHTML]="'home.text'|translate"></p>
     <div center>
-      <button ion-button (click)="goPage('ItemsPage')">go items</button>
-      <button ion-button color="danger" (click)="onLogout()">logout</button>
+      <button ion-button (click)="goPage('ItemsPage')">{{'home.goItem'|translate}}</button>
+      <button ion-button color="danger" (click)="onLogout()">{{'home.logout'|translate}}</button>
     </div>
   </ion-content>
