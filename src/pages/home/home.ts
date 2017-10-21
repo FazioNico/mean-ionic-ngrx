@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 21-10-2017
 */
 
 import { Component, Injector, Inject } from '@angular/core';
@@ -32,7 +32,7 @@ export class HomePage {
   constructor(
     private readonly navCtrl: NavController,
     @Inject(AuthStoreService) private readonly authStore:AuthStoreService,
-    public injector: Injector // required to use @canEnterIfAuthenticated
+    public injector: Injector, // required to use @canEnterIfAuthenticated
   ) {
     // manage store state
     this.storeInfo = this.authStore.getCurrentUser()

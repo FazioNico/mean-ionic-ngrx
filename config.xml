@@ -1,9 +1,9 @@
 <!--
 @Author: Nicolas Fazio <webmaster-fazio>
-@Date:   17-10-2017
+@Date:   20-10-2017
 @Email:  contact@nicolasfazio.ch
 @Last modified by:   webmaster-fazio
-@Last modified time: 20-10-2017
+@Last modified time: 22-10-2017
 -->
 
 <?xml version='1.0' encoding='utf-8'?>
@@ -45,4 +45,5 @@
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <engine name="browser" spec="~4.1.0" />
+    <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
 </widget>

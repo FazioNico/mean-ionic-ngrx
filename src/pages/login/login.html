@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Login</ion-title>
+    <ion-title>{{'login.title'|translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -24,29 +24,29 @@
       <ion-list inset>
 
         <ion-item>
-          <ion-label>Username</ion-label>
+          <ion-label>{{'login.form.username'|translate}}</ion-label>
           <ion-input id="email" name="email" type="email" placeholder="your@email.ch" formControlName="email" required></ion-input>
         </ion-item>
 
         <ion-item>
-          <ion-label>Password</ion-label>
+          <ion-label>{{'login.form.password'|translate}}</ion-label>
           <ion-input id="password" name="password" type="password" placeholder="******" formControlName="password" required></ion-input>
         </ion-item>
 
       </ion-list>
     </form>
     <div *ngIf="loginBtn; else signupBtn">
-      <button ion-button block round (click)="onLogin()" [disabled]="!userForm.valid">Login</button>
+      <button ion-button block round (click)="onLogin()" [disabled]="!userForm.valid">{{'login.form.login'|translate}}</button>
       <p>
-        Dont've a account? <br>
-        <span (click)="toggleBtn()" class="primary">Go to signup</span>
+        {{'login.questionLogin'|translate}} <br>
+        <span (click)="toggleBtn()" class="primary">{{'login.goSignup'|translate}}</span>
       </p>
     </div>
     <ng-template #signupBtn>
-      <button ion-button block round (click)="onSignup()" [disabled]="!userForm.valid">Signup</button>
+      <button ion-button block round (click)="onSignup()" [disabled]="!userForm.valid">{{'login.form.signup'|translate}}</button>
       <p>
-        You've already an account? <br>
-        <span (click)="toggleBtn()" class="primary">Go to login</span>
+        {{'login.questionSignup'|translate}} <br>
+        <span (click)="toggleBtn()" class="primary">{{'login.goLogin'|translate}}</span>
       </p>
     </ng-template>
   </div>

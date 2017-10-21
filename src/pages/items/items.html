@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Items</ion-title>
+    <ion-title>{{'items.title'|translate}}</ion-title>
   </ion-navbar>
   <div id="addTodo" color="primary">
     <ion-item no-lines color="primary">
@@ -15,7 +15,7 @@
         #newTodo
         (keyup.enter)="addTodo(newTodo)"
         type="text"
-        placeholder="Add a new todo..." ></ion-input>
+        placeholder="{{'items.add_todo'|translate}}" ></ion-input>
       <button
         ion-button
         id="clearInput"

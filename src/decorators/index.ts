@@ -3,7 +3,7 @@
 * @Date:   14-10-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-10-2017
+ * @Last modified time: 22-10-2017
 */
 
 // See docs for Typescript @decorator
@@ -24,7 +24,7 @@ export function canEnterIfAuthenticated(target:Function) {
     if(!this.isAuth){
       window.location.href = './'
     }
-    return true;
+    return this.isAuth || true;
   }
 }
 
