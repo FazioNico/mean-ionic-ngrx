@@ -123,7 +123,7 @@
   "engines": {
     "node": "~7.0.0"
   },
-  "version": "0.3.0",
+  "version": "0.3.1",
   "config": {
     "ionic_purge_decorators": false,
     "ionic_webpack": "./tools/config/ionic.webpack.js",
