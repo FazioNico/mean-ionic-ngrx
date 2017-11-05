@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 21-10-2017
+ * @Last modified time: 05-11-2017
  */
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,9 +19,9 @@ import { EnvironmentsModule } from "./environment/environment.module";
 import { NgRxStoreModule } from "../store/store.module";
 
 // Import Apollo tools
-import { ApolloModule } from 'apollo-angular';
-import { provideClient } from "./apollo.client";
-
+// import { ApolloModule, Apollo } from 'apollo-angular';
+// import { provideClient, client } from "./apollo.client";
+import { GraphQLModule } from "./graphql.module";
 // Import i18n translate module
 import { I18nModule} from "../i18n/i18n.module";
 
@@ -46,7 +46,7 @@ const ionicAppConfig:Object = {
     // with main.js application file => no lazyloading.
     BrowserModule,
     EnvironmentsModule.forRoot(), // import app environment variable in first.
-    ApolloModule.forRoot(provideClient), // import apollo from root app with provided Client.
+    GraphQLModule, // import GarphQL module 
     I18nModule.forRoot(), // import i18n module
     NgRxStoreModule.forRoot(), // import AppCore NgRxStoreModule
     IonicModule.forRoot(MyApp, ionicAppConfig) // wrap Ionic app configuration

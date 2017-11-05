@@ -3,10 +3,16 @@
 * @Date:   09-10-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-10-2017
+ * @Last modified time: 05-11-2017
 */
 
-import { ApolloClient, createNetworkInterface } from 'apollo-client';
+/**
+ * !!!!!!!!!!!!!!!!
+ * Deprecate Files: use graphql.module.ts (Apollo v2.0.1)
+  * !!!!!!!!!!!!!!!!
+ */
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
 // import {SubscriptionClient, addGraphQLSubscriptions} from 'subscriptions-transport-ws';
 import { environmentFactory} from './environment/environment.module';
 
@@ -30,22 +36,31 @@ import { environmentFactory} from './environment/environment.module';
  */
 
 // import {SubscriptionClient} from 'subscriptions-transport-ws';
-// import { ApolloLink } from 'apollo-link';
-// import {HttpLink} from "apollo-link-http";
+import { ApolloLink } from 'apollo-link';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 // import WSLink from "apollo-link-ws";
-//
-// // GraphQL via Apollo
-// const httpLink = new HttpLink({ uri: 'http://localhost:8080/graphql' });
+
+// GraphQL via Apollo
+const httpLink = createHttpLink({ uri: 'http://localhost:8080/graphql' });
 // const wsLink = new WSLink({ uri: 'ws://localhost:8080/subscriptions' });
-// const middlewareLink = new ApolloLink((operation, forward) => {
-//   operation.setContext({
-//     headers: {
-//       authorization: JSON.parse(localStorage.getItem('authTokenTest')) || null
-//     }
-//   });
-//   return forward(operation)
-// })
-// const link = ApolloLink.from([middlewareLink.concat(httpLink), wsLink]);
+const middlewareLink = new ApolloLink((operation, forward:any) => {
+  operation.setContext({
+    headers: {
+      authorization: JSON.parse(localStorage.getItem('authTokenTest')|| '') || null
+    }
+  });
+  return forward(operation)
+})
+const link = ApolloLink.from([middlewareLink.concat(httpLink)/*, wsLink*/]);
+
+export const client = {
+  link: link,
+  cache: new InMemoryCache()
+};
+
+export function provideClient(): {link:ApolloLink, cache:InMemoryCache} {
+  return client;
+}
 // const realTime = new ApolloClient(link);
 // export function provideClient(): ApolloClient {
 //   return realTime;
@@ -56,21 +71,21 @@ import { environmentFactory} from './environment/environment.module';
  * with subscriptions-transport-ws <= 0.8.3
  */
 // Create GraphQL network Interface with your GraphQL server endpoint
-const networkInterface = createNetworkInterface({
-  uri: environmentFactory().apiEndpoint+'/graphql' //'http://localhost:8080/graphql' t
-});
-// Apply middleware to all http request:
-// add token from localstorage into headers.authorization
-networkInterface.use([{
-  applyMiddleware(req, next) {
-    if (!req.options.headers) {
-      req.options.headers = {};  // Create the header object if needed.
-    }
-    // get the authentication token from local storage if it exists
-    req.options.headers.authorization = JSON.parse(localStorage.getItem('authTokenTest')|| '') || null;
-    next();
-  }
-}]);
+// const networkInterface = createNetworkInterface({
+//   uri: environmentFactory().apiEndpoint+'/graphql' //'http://localhost:8080/graphql' t
+// });
+// // Apply middleware to all http request:
+// // add token from localstorage into headers.authorization
+// networkInterface.use([{
+//   applyMiddleware(req:any, next:any) {
+//     if (!req.options.headers) {
+//       req.options.headers = {};  // Create the header object if needed.
+//     }
+//     // get the authentication token from local storage if it exists
+//     req.options.headers.authorization = JSON.parse(localStorage.getItem('authTokenTest')|| '') || null;
+//     next();
+//   }
+// }]);
 
 /**
  * SubscriptionClient not working right now with
@@ -89,11 +104,11 @@ networkInterface.use([{
 //     wsClient
 // );
 
-// Apollo Client Interface definition
-const client:ApolloClient = new ApolloClient({
-  networkInterface //: networkInterfaceWithSubscriptions
-});
-// definefunction to return Apollo Client Interface
-export function provideClient(): ApolloClient {
-  return client;
-}
+// // Apollo Client Interface definition
+// const client:ApolloClient = new ApolloClient({
+//   networkInterface //: networkInterfaceWithSubscriptions
+// });
+// // definefunction to return Apollo Client Interface
+// export function provideClient(): ApolloClient {
+//   return client;
+// }
