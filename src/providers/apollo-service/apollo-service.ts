@@ -3,7 +3,7 @@
  * @Date:   09-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 11-10-2017
+ * @Last modified time: 05-11-2017
  */
 
 import { Injectable } from '@angular/core';
@@ -38,7 +38,8 @@ export abstract class ApolloServiceProvider {
     return this.apollo.watchQuery({
       query: this.queryList
     })
-    .map(res=> res.data)
+    .valueChanges
+    .map((res:any)=> res.data)
   }
 
   /**
