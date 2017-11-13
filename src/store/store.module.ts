@@ -3,11 +3,11 @@
 * @Date:   15-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 06-10-2017
+ * @Last modified time: 13-11-2017
 */
 
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 // Import ngrx Tools
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -39,7 +39,7 @@ const effects:Array<any> = [
 */
 @NgModule({
   imports: [
-    HttpModule,
+    HttpClientModule,
     StoreModule.forRoot(reducer, { metaReducers }),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([...effects]),

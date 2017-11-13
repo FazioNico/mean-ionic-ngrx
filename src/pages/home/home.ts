@@ -3,12 +3,12 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 21-10-2017
+ * @Last modified time: 13-11-2017
 */
 
 import { Component, Injector, Inject } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 
 import { AuthStoreService } from '../login/store/auth-store.service';
 import { ICurrentUserState } from '../login/store/currentUser.reducer';
