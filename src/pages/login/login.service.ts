@@ -3,14 +3,13 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 13-11-2017
 */
 
 import { Injectable, Inject } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
 import { HttpService } from "../../providers/http-service/http.service";
 import { EnvVariables } from '../../app/environment/environment.token';
@@ -40,7 +39,7 @@ export class LoginService extends HttpService {
   private readonly _signUpUrl:string = "/signup"
 
   constructor(
-    public http: Http,
+    public http: HttpClient,
     @Inject(EnvVariables) public readonly envVariables:IEnvironment
   ) {
     super(http,envVariables);

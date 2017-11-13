@@ -3,7 +3,7 @@
  * @Date:   17-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 13-11-2017
  */
 
 import { Component, Inject, Injector } from '@angular/core';
@@ -11,8 +11,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ITodo } from "../items/store/items.state";
-
-import 'rxjs/add/operator/map';
 
 import { ItemsStoreService } from '../items/store/items-store.service';
 import { canEnterIfAuthenticated } from '../../decorators';

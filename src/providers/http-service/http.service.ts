@@ -3,16 +3,17 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 13-11-2017
 */
 
 import { Injectable, Inject } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 import { EnvVariables } from '../../app/environment/environment.token';
 import { IEnvironment } from "../../app/environment/env-model";
+
+import { deprecate } from "../../decorators";
 
 const STORAGE_ITEM:string = 'authTokenTest';
 
@@ -30,7 +31,7 @@ export abstract class HttpService {
   private storage:any;
 
   constructor(
-    public http: Http,
+    public http: HttpClient,
     @Inject(EnvVariables) public envVariables:IEnvironment
   ) {
     this.apiEndPoint = this.envVariables.apiEndpoint + '/rest'
@@ -38,38 +39,58 @@ export abstract class HttpService {
 
   protected get():Observable<any>{
     this.checkStorage();
+    let token:string|null = localStorage.getItem(STORAGE_ITEM)
+    this.storage = (token)?JSON.parse(token):'';
+
     // Define Heders request
-    let headers:Headers = new Headers({'cache-control': 'no-cache','x-access-token': this.storage});
-    let options:RequestOptions = new RequestOptions({ headers: headers });
+    // new Headers({'cache-control': 'no-cache','x-access-token': this.storage})
+    let headers:HttpHeaders = new HttpHeaders()
+        .set('cache-control','no-cache')
+        .set('x-access-token',this.storage)
+    let options:any = { headers: headers }
     // post request
     return this.http.get(`${this.apiEndPoint}${this.path}`, options)
-                    .map(res => this.extractData(res))
   }
 
   protected post(body:any):Observable<any>{
     this.checkStorage();
-    let headers:Headers = new Headers({'cache-control': 'no-cache','x-access-token': this.storage, 'Content-Type': 'application/json'});
-    let options:RequestOptions = new RequestOptions({ headers: headers });
-    return this.http.post(`${this.apiEndPoint}${this.path}`, JSON.stringify(body), options)
-                    .map(res => this.extractData(res)) // return response as json
+    let token:string|null = localStorage.getItem(STORAGE_ITEM)
+    this.storage = (token)?JSON.parse(token):'';
+    let headers:HttpHeaders = new HttpHeaders()
+      headers
+        .set('cache-control','no-cache')
+        .set('x-access-token',this.storage)
+    if(this.storage){
+
+    }
+    let options:any = { headers: headers };
+    return this.http.post(`${this.apiEndPoint}${this.path}`, body, options)
   }
 
   protected put(body:any):Observable<any>{
     this.checkStorage();
+    let token:string|null = localStorage.getItem(STORAGE_ITEM)
+    this.storage = (token)?JSON.parse(token):'';
+
     let url:string = `${this.apiEndPoint}${this.path}/${body._id}`; //see mdn.io/templateliterals
-    let headers:Headers = new Headers({'Content-Type': 'application/json'});
-    let options:RequestOptions = new RequestOptions({ headers: headers });
+    let headers:HttpHeaders = new HttpHeaders()
+        .set('cache-control','no-cache')
+        .set('x-access-token',this.storage)
+    let options:any = { headers: headers };
     return this.http.put(url, JSON.stringify(body), options)
-                    .map(res => this.extractData(res))
   }
 
   protected delete(_id:string):Observable<any>{
     this.checkStorage();
+    let token:string|null = localStorage.getItem(STORAGE_ITEM)
+    this.storage = (token)?JSON.parse(token):'';
+
     let url:string =`${this.apiEndPoint}${this.path}/${_id}`;
-    let headers:Headers = new Headers({'Content-Type': 'application/json'});
-    let options:RequestOptions = new RequestOptions({ headers: headers });
+    let headers:HttpHeaders = new HttpHeaders()
+        .set('cache-control','no-cache')
+        .set('x-access-token',this.storage)
+    let options:any = { headers: headers };
     return this.http.delete(url, options)
-                    .map(res => this.extractData(res))
   }
 
 
@@ -94,16 +115,19 @@ export abstract class HttpService {
   }
 
   /* Check if localstorage exist with datas */
-  private checkStorage():void|Observable<any>{
+  checkStorage():void|Observable<any>{
     let token:string|null = localStorage.getItem(STORAGE_ITEM)
     this.storage = (token)?JSON.parse(token):null
     // if storage not found
     if(!this.storage){
-      return {} as Observable<{}>
+      return Observable.of({});
     }
   }
 
   /* Methode to formate data output */
+  @deprecate(`
+    Now using Angular 5 with HttpClientModule.
+    See Angular official doc for more infos:  https://angular.io/guide/http`)
   private extractData(res: any):any {
     let body = res.json();
     //return body.data || { };

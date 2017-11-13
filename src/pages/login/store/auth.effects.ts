@@ -3,12 +3,12 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 13-11-2017
  */
 
  import { Injectable } from "@angular/core";
  import { Response } from '@angular/http';
- import { Observable } from 'rxjs';
+ import { Observable } from 'rxjs/Observable';
 
  import { Action } from '@ngrx/store';
  import { Effect, Actions, toPayload } from "@ngrx/effects";
@@ -51,6 +51,7 @@
        .ofType(Auth.AuthActions.LOGOUT)
        .switchMap(() => this._auth.doLogout())
        // If successful, dispatch success action
+
        .switchMap(action =>Observable.concat(
           Observable.of(new Auth.TokenDeleteAction()),
           Observable.of(new Auth.LogoutSuccessAction())

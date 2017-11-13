@@ -3,7 +3,7 @@
  * @Date:   05-11-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 05-11-2017
+ * @Last modified time: 13-11-2017
  */
 
  import { NgModule } from '@angular/core';
@@ -16,7 +16,7 @@
  import { InMemoryCache } from 'apollo-cache-inmemory';
  // import WSLink from "apollo-link-ws";
  // import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
- 
+
  import { environmentFactory} from './environment/environment.module';
 
  // GraphQL via Apollo v.2.0.1
@@ -32,7 +32,7 @@
  })
  const link = ApolloLink.from([middlewareLink.concat(httpLink)/*, wsLink*/]);
 
- export const client = {
+ export const client:any = {
    link: link,
    cache: new InMemoryCache()
  };

@@ -3,14 +3,12 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 13-11-2017
 */
-
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import 'rxjs/add/operator/filter';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import { StoreService } from '../../../store/store.service';
 import { AppStateI } from '../../../store/app-stats';
@@ -48,7 +46,7 @@ export class ItemsStoreService extends StoreService {
     .map((state: IItemsState) => state);
   }
 
-  findById(record: {_id:string}):Observable<ITodo> {
+  findById(record: {_id:string}):Observable<ITodo|any> {
     return this.getTodos()
     .map((state:IItemsState)=> state.find((item:ITodo) => item._id === record._id))
   }

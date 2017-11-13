@@ -3,12 +3,11 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 05-11-2017
+ * @Last modified time: 13-11-2017
  */
 
 import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { Observable } from 'rxjs/Observable';
 
 import { Apollo } from 'apollo-angular';
 
