@@ -3,13 +3,12 @@
 * @Date:   30-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 13-11-2017
 */
 
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/filter';
 
 import { StoreService } from '../../../store/store.service';
 import { AppStateI } from '../../../store/app-stats';
