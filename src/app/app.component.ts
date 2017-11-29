@@ -3,7 +3,7 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 13-11-2017
+ * @Last modified time: 28-11-2017
  */
 
 import { Component, ViewChild, OnInit } from '@angular/core';
@@ -59,6 +59,7 @@ export class MyApp implements OnInit{
   dismissLoader():void{
     if(!this.loadingSpinner) return;
     this.loadingSpinner.dismiss();
+    this.loadingSpinner = null
   }
 
 }

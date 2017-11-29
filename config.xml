@@ -1,13 +1,5 @@
-<!--
-@Author: Nicolas Fazio <webmaster-fazio>
-@Date:   05-11-2017
-@Email:  contact@nicolasfazio.ch
-@Last modified by:   webmaster-fazio
-@Last modified time: 13-11-2017
--->
-
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="ch.nicolasfazio.meanionicngrx662784" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" version="0.3.2">
+<widget id="ch.nicolasfazio.meanionicngrx662784" version="0.3.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>mean-ionic-ngrx</name>
     <description>Full MEAN stack with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects).</description>
     <author email="contact@nicolasfazio" href="http://nicolasfazio.ch/">Nicoals Fazio</author>
@@ -38,12 +30,12 @@
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
+    <engine name="browser" spec="~4.1.0" />
     <plugin name="ionic-plugin-keyboard" spec="~2.2.1" />
     <plugin name="cordova-plugin-whitelist" spec="1.3.1" />
     <plugin name="cordova-plugin-console" spec="1.0.5" />
     <plugin name="cordova-plugin-statusbar" spec="2.2.1" />
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
-    <engine name="browser" spec="~4.1.0" />
     <plugin name="cordova-plugin-globalization" spec="~1.0.7" />
 </widget>
