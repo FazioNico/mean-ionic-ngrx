@@ -3,13 +3,15 @@
 * @Date:   25-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 08-10-2017
+ * @Last modified time: 15-12-2017
 */
 
 import * as express from 'express';
+
 import { userController }  from "./users.controller";
 import { log } from '../../../log';
 import {Authentication} from '../../../authentication';
+import { userDataValidator } from "./users.validator";
 
 const router = express.Router();
 
@@ -25,9 +27,9 @@ export class UsersRoutes {
         var controller = this._UsersController;
         // Public Endpoints:
         router.get('/setup', log, controller.setup)
-        router.post('/auth', log, controller.auth)
+        router.post('/auth', log, userDataValidator(), controller.auth)
         router.get('/isauth', log, controller.isAuth)
-        router.post('/signup', log, controller.signup)
+        router.post('/signup', log, userDataValidator(), controller.signup)
 
         // Use middleware to set private Endpoints:
         router.use(Authentication.authenticatedRoute);
