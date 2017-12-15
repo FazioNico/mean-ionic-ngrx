@@ -9,9 +9,12 @@
 import * as mongoose from 'mongoose';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
+import { validationResult } from 'express-validator/check';
 
 import { User, IUserModel } from '../../../models/user.models';
 import {Authentication} from '../../../authentication';
+import { userDataValidator } from "./users.validator";
+
 // Import config
 import { CONFIG } from "../../../config";
 
@@ -54,9 +57,13 @@ export const userController = {
     });
 	},
 
-	signup : (req,res) =>{
-    console.log('req.body-> ', req.body);
-		//(new User(<IUserModel>req.body))
+	signup : (req,res, next) =>{
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.mapped() })
+      // return res.render('error', { errors:  errors.mapped() })
+    }
+    //(new User(<IUserModel>req.body))
     // check existe user in DB
     // before add new user
     // find the user
@@ -144,9 +151,17 @@ export const userController = {
       else {
         res.json({ success: false, message: 'No user token finded'});
       }
-    });
+    })
+    .catch(
+      err=> res.json({ success: false, message: err|| 'No user token finded'})
+    );
 	},
   auth: (req,res)=> {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.mapped() })
+      // return res.render('error', { errors:  errors.mapped() })
+    }
     // find the user
     User.findOne({email: req.body.email}, (err, user:IUserModel)=> {
       if (err) throw err;
