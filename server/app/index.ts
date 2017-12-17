@@ -3,7 +3,7 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 12-10-2017
+ * @Last modified time: 17-12-2017
 */
 
 import * as express from 'express';
@@ -12,6 +12,7 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as path from 'path';
 import * as morgan from 'morgan';
+import * as helmet from 'helmet'
 
 import { GraphqlApi } from "./graphql";
 import { RestApi }  from "./rest/apiRoute";
@@ -21,6 +22,7 @@ import { log }  from "./log";
 import { CONFIG } from "./config";
 
 const PACKAGE = require("../package.json");
+
 
 export class Server{
 
@@ -49,6 +51,10 @@ export class Server{
 
   private middleware(){
     this.app
+      // use Helmet to help secure Express apps with various HTTP headers
+      .use(helmet())
+      // rmv server powered-by header
+      .disable('x-powered-by')
       // use bodyParser middleware to decode json parameters
       .use(bodyParser.json())
       .use(bodyParser.json({limit: '50mb', type: 'application/vnd.api+json'}))
@@ -60,6 +66,8 @@ export class Server{
       .use(morgan('dev'))
       // cors domaine origin
       .use(cors({ optionsSuccessStatus: 200 }))
+      // use to limit repeated requests to public APIs
+      .use(CONFIG.limiter)
   }
 
   private dbConnect(){
