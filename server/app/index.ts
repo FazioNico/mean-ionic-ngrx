@@ -12,7 +12,9 @@ import * as bodyParser from 'body-parser';
 import * as cors from 'cors';
 import * as path from 'path';
 import * as morgan from 'morgan';
-import * as helmet from 'helmet'
+import * as helmet from 'helmet';
+import * as hpp from 'hpp';
+import * as expressStatusMonitor from 'express-status-monitor';
 
 import { GraphqlApi } from "./graphql";
 import { RestApi }  from "./rest/apiRoute";
@@ -50,7 +52,14 @@ export class Server{
   }
 
   private middleware(){
+    // setup app middlewares
     this.app
+      // use express-status-monitor to add realtime monitoring app endpoint on DEV mode.
+      .use(
+        (!!process.env.NODE_ENV && process.env.NODE_ENV === 'prod')
+          ? (req,res,next)=> next() // not used to monitoring on PROD
+          : expressStatusMonitor() // enable only on DEV
+      )
       // use Helmet to help secure Express apps with various HTTP headers
       .use(helmet())
       // rmv server powered-by header
@@ -60,6 +69,8 @@ export class Server{
       .use(bodyParser.json({limit: '50mb', type: 'application/vnd.api+json'}))
       // use bodyParser middleware to decode urlencoded parameters
       .use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+      // use HPP to protect against HTTP Parameter Pollution attacks
+      .use(hpp())
       // secret variable for jwt
       .set('superSecret', CONFIG.secretTokent)
       // use morgan to log requests to the console
@@ -117,12 +128,13 @@ export class Server{
   }
 
   private defaultServerRoute(){
-    this.app.get( '/', log, (req, res) => {
-      res.json({
-        code: 200,
-        message: `${PACKAGE.name} - v.${PACKAGE.version} / ${PACKAGE.description} by ${PACKAGE.author}`
-      });
-    });
+    this.app
+        .get( '/', log, (req, res) => {
+          res.json({
+            code: 200,
+            message: `${PACKAGE.name} - v.${PACKAGE.version} / ${PACKAGE.description} by ${PACKAGE.author}`
+          });
+        })
   }
 
   normalizePort(val: number|string): number|string|boolean {
@@ -134,8 +146,17 @@ export class Server{
 
   bootstrap():void{
     this.server.on('error', this.onError);
-    this.server.listen(this.port, ()=>{
-    	console.log("Listnening on port " + this.port)
+    this.server.listen(this.port, (err)=>{
+      if (err) {
+        console.log('error occurred trying to listen on port ' + this.port);
+        return;
+      }
+      console.log("Listnening on port " + this.port)
+      // Find out which user used sudo through the environment variable
+      const SUDO_UID = parseInt(process.env.SUDO_UID);
+      // Set our server's uid to that user
+      if (SUDO_UID) process.setuid(SUDO_UID);
+      console.log('Server\'s UID is now ' + process.getuid());
     });
   }
 
