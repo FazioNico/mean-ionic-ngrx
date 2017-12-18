@@ -1,7 +1,7 @@
 {
   "name": "mean-ionic-ngrx",
   "author": "Nicolas Fazio",
-  "homepage": "http://nicoalsfazio.ch/",
+  "homepage": "https://nicoalsfazio.ch/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -10,7 +10,7 @@
     "ionic:serve": "ionic-app-scripts serve",
     "postinstall": "node tools/install.js && npm run helper.cmd",
     "prod": "NODE_ENV=prod ionic serve --prod",
-    "dev": "npm run server:dev & ionic serve --dev",
+    "dev": "npm run server:dev & ionic serve --dev --no-open",
     "server:prod-tsc": "tsc server/server.ts --outDir ./platforms/server && NODE_ENV=prod node ./platforms/server/server.js ",
     "server:prod": "npm run build:server && NODE_ENV=prod node ./platforms/server/server.js ",
     "server:dev-tsc": "npm run mongod & tsc server/server.ts -w --outDir ./platforms/server & nodemon ./platforms/server/server.js --dev  --ignore src/ --ignore www/ --ignore tools/ --ignore .tmp/",
@@ -63,7 +63,7 @@
     "express-rate-limit": "^2.11.0",
     "express-status-monitor": "^1.0.1",
     "express-validator": "^4.3.0",
-    "graphql": "^0.11.7",
+    "graphql": "^0.12.3",
     "graphql-server-express": "^1.1.3",
     "graphql-subscriptions": "^0.5.4",
     "graphql-tag": "^2.5.0",
@@ -81,6 +81,7 @@
     "rxjs": "5.5.2",
     "subscriptions-transport-ws": "^0.9.1",
     "sw-toolbox": "3.6.0",
+    "unfetch": "^3.0.0",
     "zone.js": "^0.8.18"
   },
   "devDependencies": {

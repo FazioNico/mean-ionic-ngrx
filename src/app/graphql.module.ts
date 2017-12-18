@@ -14,13 +14,14 @@
  import { createHttpLink } from 'apollo-link-http';
  import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
  import { InMemoryCache } from 'apollo-cache-inmemory';
+ import fetch from 'unfetch';
  // import WSLink from "apollo-link-ws";
  // import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
 
  import { environmentFactory} from './environment/environment.module';
 
  // GraphQL via Apollo v.2.0.1
- const httpLink = createHttpLink({ uri: environmentFactory().apiEndpoint+'/graphql'}); //'http://localhost:8080/graphql'
+ const httpLink = createHttpLink({ uri: environmentFactory().apiEndpoint+'/graphql',fetch: fetch}); //'http://localhost:8080/graphql'
  // const wsLink = new WSLink({ uri: 'ws://localhost:8080/subscriptions' });
  const middlewareLink = new ApolloLink((operation:any, forward:any) => {
    operation.setContext({

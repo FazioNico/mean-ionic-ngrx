@@ -17,10 +17,10 @@ import * as hpp from 'hpp';
 import * as expressStatusMonitor from 'express-status-monitor';
 
 import { GraphqlApi } from "./graphql";
-import { RestApi }  from "./rest/apiRoute";
-import { DataBase }  from "./databases/mongoose";
+import { RestApi }  from "./rest";
+import { Database }  from "./databases";
 import { log }  from "./log";
-// Import secretTokenKey config
+// Import server config
 import { CONFIG } from "./config";
 
 const PACKAGE = require("../package.json");
@@ -51,7 +51,7 @@ export class Server{
     this.app.use(express.static(this.root))
   }
 
-  private middleware(){
+  private middleware():void{
     // setup app middlewares
     this.app
       // use express-status-monitor to add realtime monitoring app endpoint on DEV mode.
@@ -81,9 +81,9 @@ export class Server{
       .use(CONFIG.limiter)
   }
 
-  private dbConnect(){
+  private dbConnect():void{
       // Load DB connection
-      DataBase.connect()
+      Database()
         .then(() =>{
           // Load all route
           // Server Endpoints
@@ -93,21 +93,26 @@ export class Server{
           // REST API Endpoints
           this.app.use( new RestApi().init());
         })
+        .then(_ => {
+          // Then catch 404
+          this.app.use((req, res)=>{
+            let message:any[] = [{error: 'Page not found'}]
+            res.status(404).json(message);
+          })
+        })
         .catch(error => {
           // DB connection Error => load only server route
           console.log(error)
           // Server Endpoints
           this.defaultServerRoute()
-          return error
-        })
-        .then(error => {
-          // Then catch 404 & db error connection
           this.app.use((req, res)=>{
             console.log(error)
             let message:any[] = (error)? [{error: 'Page not found'}, {error}] : [{error: 'Page not found'}]
             res.status(404).json(message);
           })
+          return error
         })
+
   }
 
   private onError(error: NodeJS.ErrnoException): void {

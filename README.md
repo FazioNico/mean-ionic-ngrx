@@ -44,6 +44,7 @@ Hop is help you to start your project on the right way.
 ### Start
 - `$ npm run dev` to start Front-End+Back-End in development mode
 - `$ npm run prod` to start Front-End in production mode (you have to config your production environments variable)
+- open browser at `http://localhost:8100`
 
 <b>Tips:</b>
 - `$ npm run helper.cmd` to display all `package.json` script available with definition
@@ -148,4 +149,4 @@ Feel free to contrib to my stack.
 
 
 ## About author
-Hi, i'm a Front-end developper living in Geneva Switzerland and i build hybrid mobile & web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website http://nicolasfazio.ch
+Hi, i'm a Front-end developper living in Geneva Switzerland and i build hybrid mobile & web applications for almost 15 years. You can follow me on Twitter @FazioNico or checkout my own website https://nicolasfazio.ch
