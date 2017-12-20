@@ -1,11 +1,11 @@
 <img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="80"><img src="https://camo.githubusercontent.com/a083a6650043b70297ab9655569d56ed0d300687/687474703a2f2f616d7665722e6c742f77702d636f6e74656e742f75706c6f6164732f323031362f30372f4d617468656d617469632d506c7573322e69636f" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/768px-GraphQL_Logo.svg.png" height="80px"><img src="https://www.libstick.io/svg/1032_apollo.svg" height="80px">
 
 #  MEAN Ionic NgRx Lazy Load + GraphQL/REST Server API
-[![Build Status](https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master)](https://travis-ci.org/FazioNico/mean-ionic-ngrx) [![dependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx) [![devDependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev) [![Known Vulnerabilities](https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg)](https://snyk.io/test/github/fazionico/mean-ionic-ngrx) ![Version](https://img.shields.io/badge/version-0.3.5-blue.svg)
+[![Build Status](https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master)](https://travis-ci.org/FazioNico/mean-ionic-ngrx) [![dependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx) [![devDependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev) [![Known Vulnerabilities](https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg)](https://snyk.io/test/github/fazionico/mean-ionic-ngrx) ![Version](https://img.shields.io/badge/version-0.3.6-blue.svg)
 <blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects) & GraphQL/REST Server  API and many more...</blockquote>
 
 ## Overview
-MEAN Ionic NgRx is my own TypeScript Full Stack MongoDB + ExpressJS + Angular + NodeJS.
+MEAN Ionic NgRx is a TypeScript Full Stack Starter with MongoDB + ExpressJS + Angular + NodeJS + Ionicframework and many more tools.
 
 - <b>Front-End:</b> Ionic Framework to provide multi platform application.
 - <b>Back-End:</b> Express GraphQL API + Express REST API
@@ -20,7 +20,6 @@ Hop is help you to start your project on the right way.
 - NodeJS 7 - Download & Install Node.js and the npm package manager with NVM `$ nvm install node 7`.
 - MongoDB - [Download](https://www.mongodb.com) & Install MongoDB, and make sure it's running on the default port (27017).
 - [Typescript](https://www.npmjs.com/package/typescript) Latest stable version install in Global `$ npm install -g typescript`
-- [Nodemon](https://nodemon.io/) Latest stable version install in Global `$ npm install -g nodemon`
 - [Ionic 3](https://ionicframework.com/) & [Cordova](https://cordova.apache.org/) - Latest stable version install in Global `$ npm install -g ionic cordova`
 - [TypeDoc](http://typedoc.org/) - Latest stable version install in Global `$ npm install -g typedoc`
 - [Karma](https://karma-runner.github.io) - Latest stable version install in Global `$ npm install -g karma-cli`
