@@ -114,7 +114,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L20">src/pages/login/store/auth.effects.ts:20</a></li>
+									<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L19">src/pages/login/store/auth.effects.ts:19</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -139,7 +139,7 @@
 					<div class="tsd-signature tsd-kind-icon">_auth<span class="tsd-signature-symbol">:</span> <a href="_src_pages_login_login_service_.loginservice.html" class="tsd-signature-type">LoginService</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L24">src/pages/login/store/auth.effects.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L23">src/pages/login/store/auth.effects.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -149,7 +149,7 @@
 					<div class="tsd-signature tsd-kind-icon">action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Actions</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L23">src/pages/login/store/auth.effects.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L22">src/pages/login/store/auth.effects.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -159,7 +159,7 @@
 					<div class="tsd-signature tsd-kind-icon">check<wbr>Main<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_login_store_auth_actions_.checkauthsuccessaction.html" class="tsd-signature-type">CheckAuthSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_login_store_auth_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Auth.AuthActions.CHECK_AUTH).switchMap(_ &#x3D;&gt;this._auth.isAuth()).switchMap(res &#x3D;&gt;(res._id)? Observable.of(new Auth.CheckAuthSuccessAction(res)): Observable.of(new Auth.CheckAuthNoUserSuccessAction())).catch((res: any) &#x3D;&gt; Observable.of(new Auth.ErrorAction(res)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L39">src/pages/login/store/auth.effects.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L38">src/pages/login/store/auth.effects.ts:38</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -169,7 +169,7 @@
 					<div class="tsd-signature tsd-kind-icon">create<wbr>User<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_login_store_auth_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Auth.AuthActions.CREATE).map&lt;Action, any&gt;(toPayload).switchMap((payload:any) &#x3D;&gt; this._auth.doCreateUser(payload)).switchMap(_result &#x3D;&gt;(_result.success &#x3D;&#x3D;&#x3D; true)? Observable.of(new Auth.CreateSuccessAction(_result)): Observable.of(new Auth.ErrorAction(_result))).catch((err: any) &#x3D;&gt; Observable.of(new Auth.ErrorAction(err)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L62">src/pages/login/store/auth.effects.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L62">src/pages/login/store/auth.effects.ts:62</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -179,7 +179,7 @@
 					<div class="tsd-signature tsd-kind-icon">login<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_login_store_auth_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Auth.AuthActions.LOGIN).map(toPayload).switchMap((payload:any) &#x3D;&gt; this._auth.doAuth(payload)).switchMap(result&#x3D;&gt;(result.success &#x3D;&#x3D;&#x3D; true)? Observable.of(new Auth.LoginSuccessAction(result)): Observable.of(new Auth.ErrorAction(result)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L28">src/pages/login/store/auth.effects.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L27">src/pages/login/store/auth.effects.ts:27</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -189,7 +189,7 @@
 					<div class="tsd-signature tsd-kind-icon">logout<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><a href="_src_pages_login_store_auth_actions_.logoutsuccessaction.html" class="tsd-signature-type">LogoutSuccessAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_login_store_auth_actions_.tokendeleteaction.html" class="tsd-signature-type">TokenDeleteAction</a><span class="tsd-signature-symbol"> | </span><a href="_src_pages_login_store_auth_actions_.erroraction.html" class="tsd-signature-type">ErrorAction</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Auth.AuthActions.LOGOUT).switchMap(() &#x3D;&gt; this._auth.doLogout())// If successful, dispatch success action.switchMap(action &#x3D;&gt;Observable.concat(Observable.of(new Auth.TokenDeleteAction()),Observable.of(new Auth.LogoutSuccessAction())))// If request fails, dispatch failed action.catch((err: any) &#x3D;&gt; Observable.of(new Auth.ErrorAction))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L50">src/pages/login/store/auth.effects.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L49">src/pages/login/store/auth.effects.ts:49</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -199,7 +199,7 @@
 					<div class="tsd-signature tsd-kind-icon">user<wbr>Success<wbr>Action$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Observable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;this.action$.ofType(Auth.AuthActions.CREATE_SUCCESS,Auth.AuthActions.LOGIN_SUCCESS).map&lt;Action, any&gt;(toPayload).switchMap((payload:Observable&lt;any&gt;) &#x3D;&gt; this._auth.saveToken(payload)).switchMap&lt;any, any&gt;(payload &#x3D;&gt;(payload)? Observable.concat(Observable.of(new Auth.TokenSaveSuccessAction(payload)),Observable.of(new Auth.CheckAuthAction())): Observable.of(new Auth.ErrorAction())).catch((err: any) &#x3D;&gt; Observable.of(new Auth.ErrorAction(err.message)))</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/7784770/src/pages/login/store/auth.effects.ts#L74">src/pages/login/store/auth.effects.ts:74</a></li>
+							<li>Defined in <a href="https://github.com/FazioNico/mean-ionic-ngrx/blob/56b97bb/src/pages/login/store/auth.effects.ts#L74">src/pages/login/store/auth.effects.ts:74</a></li>
 						</ul>
 					</aside>
 				</section>
