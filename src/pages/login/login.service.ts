@@ -26,7 +26,7 @@ for more info on providers and Angular 2 DI.
 
 export interface HttpServerResponse extends Response {
   message?:string,
-  success?:boolean,
+  code?:number,
   token?:string,
   user?:ICurrentUserState
 }
@@ -51,7 +51,7 @@ export class LoginService extends HttpService {
 
   isAuth():Observable<ICurrentUserState>{
     this.path = this._isAuthUrl
-    return this.get()
+    return this.get().map(res=> res.isAuth || {})
   }
 
   doAuth(_creds:any) :Observable<HttpServerResponse> {

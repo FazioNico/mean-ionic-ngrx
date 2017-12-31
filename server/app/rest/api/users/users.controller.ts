@@ -134,11 +134,11 @@ export const userController = {
         })
       }
       else {
-        return res.status(403).json(responseNormalizer(403, null, 'No user token finded'));
+        return res.status(200).json(responseNormalizer(403, null, 'No user token finded'));
       }
     })
     .catch(
-      err => res.status(403).json(responseNormalizer(403, err, 'No user token finded'))
+      err => res.status(200).json(responseNormalizer(403, err, 'No user token finded'))
     );
 	},
   auth: (req,res)=> {
