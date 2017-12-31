@@ -3,11 +3,11 @@
  * @Date:   11-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 31-12-2017
  */
 
 /**
-* Server Webpack config v.0.1.0
+* Server Webpack config v.0.1.1
 */
 const path = require('path');
 // all webpack import working cause we use Ionicframewok in front-side
@@ -87,7 +87,7 @@ const prodConfig = {
       loaders: getProdLoaders()
     },
     plugins: [
-      new webpack.optimize.UglifyJsPlugin(),
+      // new webpack.optimize.UglifyJsPlugin(),
       new CopyWebpackPlugin([
         { from: SERVER_CONFIG.entry_path+'/package.json'},
         { from: SERVER_CONFIG.entry_path+'/.gitignore' },
@@ -99,59 +99,20 @@ const prodConfig = {
 
 // export webpack config
 module.exports = (env)=> {
-  // define production check const
-  const isProduction = env.prod === true;
-  console.log('[info] Webpack build production mode-> ',isProduction);
-  // return new object assign with commonConfig + {env}Config
-  return (isProduction)
-    ? Object.assign({}, commonConfig, prodConfig)
-    : Object.assign({}, commonConfig, devConfig);
+  console.log('#################################################');
+  switch (true) {
+    case env.prod === true:
+      console.log('[info] Webpack build mode ==> prod');
+      return Object.assign({}, commonConfig, prodConfig);
+    case env.dev === true:
+      console.log('[info] Webpack build mode ==> dev');
+      return Object.assign({}, commonConfig, devConfig)
+    // Disable this for enable testing with webpack.
+    // Do not forget to define 'testConfig' to meke it work.
+    // case env.test === true:
+    //   console.log('[info] Webpack build mode ==> test');
+    //   return Object.assign({}, commonConfig, testConfig);
+  }
+  console.log('[info] Webpack build mode ==> default dev');
+  return Object.assign({}, commonConfig, devConfig);
 }
-
-/**
-* Previous used.
-* Now playing with env.variable to define prod or dev webpackconfig.
-*/
-// module.exports = {
-//     entry: path.resolve()+'/server/server.ts',
-//     devServer: {
-//       contentBase: path.resolve()+'/test-server-dist/server.js',
-//       compress: true,
-//       port: 8080
-//     },
-//     target: 'node',
-//     externals: [
-//         /^[a-z\-0-9]+$/ // Ignore node_modules folder
-//     ],
-//     output: {
-//         filename: 'server.js', // output file
-//         path: path.resolve()+'/test-server-dist',
-//         libraryTarget: "commonjs"
-//     },
-//     resolve: {
-//         // Add in `.ts` and `.tsx` as a resolvable extension.
-//         extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
-//         modules: [path.resolve('node_modules')]
-//     },
-//     // resolveLoader: {
-//     //     root: path.resolve(__dirname, 'node_modules')
-//     // },
-//     module: {
-//         loaders: [{
-//             // all files with a `.ts` or `.tsx` extension will be handled by `ts-loader`
-//             test: /\.tsx?$/,
-//             exclude:[
-//               path.resolve('node_modules')
-//             ],
-//             loader: 'awesome-typescript-loader',
-//             options: {
-//                 configFileName: path.resolve()+'/server/tsconfig.json'
-//             },
-//         }]
-//     },
-//     node: {
-//       fs: 'empty',
-//       net: 'empty',
-//       tls: 'empty'
-//     }
-// };
