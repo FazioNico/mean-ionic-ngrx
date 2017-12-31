@@ -3,12 +3,12 @@
 * @Date:   16-08-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 10-10-2017
+ * @Last modified time: 31-12-2017
 */
 
 import { verify } from 'jsonwebtoken';
 // Import secretTokenKey config
-import { CONFIG } from "./config";
+import { CONFIG, responseNormalizer } from "./config";
 import { IUserModel } from "./models/user.models";
 
 // declare var Promise:any;
@@ -43,7 +43,6 @@ export class Authentication {
       .catch(err => {
         return err
       })
-
     }
   }
 
@@ -56,10 +55,13 @@ export class Authentication {
         next();
       } else {
         console.log('unauthorized access! kicking the client out with 403');
-        res.status(403).json({
-          message: 'Error: You need to authenticate to access this part of the API',
-          success: false
-        });
+        res.status(403).json(
+          responseNormalizer(403,{error:'You need to authenticate to access this part of the API'})
+        );
+        // res.status(403).json({
+        //   message: 'Error: You need to authenticate to access this part of the API',
+        //   success: false
+        // });
       }
     })
 

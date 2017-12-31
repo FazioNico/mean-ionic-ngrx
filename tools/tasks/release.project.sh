@@ -9,7 +9,7 @@
 # @Last modified by:   webmaster-fazio
 # @Last modified time: 20-10-2017
 
-# release script v.0.0.1
+# release script v.0.0.2
 
 function checkVersion {
 	output=$(npm version ${release} --no-git-tag-version)
@@ -43,6 +43,15 @@ if [ -z "$1" ] || [ "$1" = "help" ]; then
 	exit
 fi
 
+# Check if current branch is "master" or "dev".
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "dev" ]; then
+	echo '######################################';
+	echo '[ERROR] Aborting script: You need to create a new freture branch for your changes.';
+  exit 1;
+fi
+
+# run release script:
 release=$1
 # establish branch and tag name variables
 devBranch=dev
@@ -57,26 +66,27 @@ if [ -d ".git" ]; then
 		# checkout release branch
 		git checkout -b $releaseBranch
 		#  bump files version
-		bumpXML "config.xml"
-		git add .
-		bumpPackage "package.json"
-		git add .
-		bumpMD "README.md"
+		bumpXML "config.xml";
+		bumpPackage "package.json";
+		bumpMD "README.md";
 		# create tags version
 		git add .
-		git commit -m "Bump to ${version}"
-		git tag -a "${output}" -m "Release ${version}"
+		git commit -m "Bump to ${version}";
+		git tag -a "${output}" -m "Release ${version}";
 		# merge release branch with the new version number into master
-		git checkout $masterBranch
-		git merge --no-ff $releaseBranch -m"Merge release $version"
+		git checkout $masterBranch;
+		git merge --no-ff $releaseBranch -m"Merge release $version";
 		# merge release branch with the new version number back into develop
-		git checkout $devBranch
-		git merge --no-ff $releaseBranch -m"Merge release $version"
+		git checkout $devBranch;
+		git merge --no-ff $releaseBranch -m"Merge release $version";
 		# remove release branch
-		git branch -d $releaseBranch
-    # if have a remote origin 
+		git branch -d $releaseBranch;
+		# replace to masterBranch
+		git checkout $masterBranch;
+    # if have a remote origin
 		if [ -d ".git/refs/remotes" ]; then
 			git push origin --tags
+			git push origin master
 			# npm publish ./
 		else
 			echo 'Create remote origin to push release tags'

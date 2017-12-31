@@ -9,15 +9,19 @@
 import * as express from 'express';
 import { TodosRoutes }  from "./api/todos/todosRoutes";
 import { UsersRoutes }  from "./api/users/users.routes";
+import { responseNormalizer, errorHandler } from "../config";
 
 const app = express();
 
 export class RestApi {
-
+  
     init() {
-        app.use("/rest/", new TodosRoutes().routes())
-        app.use("/rest/", new UsersRoutes().routes());
-        return app;
+      return app
+        .get("/rest", (req,res)=> {
+          res.json(responseNormalizer(200, null, 'REST API default endpoint'));
+        })
+        .use("/rest/", new TodosRoutes().routes())
+        .use("/rest/", new UsersRoutes().routes())
+        .use(errorHandler);
     }
-
 }

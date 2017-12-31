@@ -29,7 +29,7 @@
        .map(toPayload)
        .switchMap((payload:any) => this._auth.doAuth(payload))
        .switchMap(result=>
-          (result.success === true)
+          (result.code === 200)
             ? Observable.of(new Auth.LoginSuccessAction(result))
             : Observable.of(new Auth.ErrorAction(result))
         )
@@ -64,7 +64,7 @@
        .map<Action, any>(toPayload)
        .switchMap((payload:any) => this._auth.doCreateUser(payload))
        .switchMap(_result =>
-          (_result.success === true)
+          (_result.code === 200)
             ? Observable.of(new Auth.CreateSuccessAction(_result))
             : Observable.of(new Auth.ErrorAction(_result))
         )

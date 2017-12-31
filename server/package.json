@@ -10,6 +10,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
+    "compression": "^1.7.1",
     "cors": "^2.8.3",
     "express": "^4.15.3",
     "express-graphql": "^0.6.11",
@@ -30,6 +31,6 @@
   "engines": {
     "node": "~7.0.0"
   },
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "NodeJS Simple GraphQL & REST server API with ExpressJS + Mongoose"
 }

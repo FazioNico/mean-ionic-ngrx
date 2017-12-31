@@ -3,12 +3,12 @@
  * @Date:   15-12-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-12-2017
+ * @Last modified time: 31-12-2017
  */
 
-import { check, validationResult } from 'express-validator/check';
+import { check, validationResult, ValidationChain } from 'express-validator/check';
 
-export function userDataValidator()  {
+export function userDataValidator():ValidationChain[] {
   return [
     check('password', 'passwords must be at least 5 chars long and contain one number')
       .exists().withMessage('email is require')
