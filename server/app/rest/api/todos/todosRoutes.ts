@@ -3,7 +3,7 @@
 * @Date:   24-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 08-10-2017
+ * @Last modified time: 31-12-2017
 */
 
 import * as express from 'express';
@@ -20,15 +20,13 @@ export class TodosRoutes {
         this._TodosController = todoController;
     }
 
-    routes() {
-        var controller = this._TodosController;
-        router.get('/todos', log, controller.getItems)
-        router.get('/todos/:id', log, controller.getItem)
-        router.post('/todos', log, controller.addItem )
-        router.put('/todos/:id', log, controller.updateItem )
-        router.delete('/todos/:id', log, controller.deleteItem )
-
-        return router;
+    routes():express.Router {
+      var controller = this._TodosController;
+      return router
+        .get('/todos', log, controller.getItems)
+        .get('/todos/:id', log, controller.getItem)
+        .post('/todos', log, controller.addItem )
+        .put('/todos/:id', log, controller.updateItem )
+        .delete('/todos/:id', log, controller.deleteItem )
     }
-
 }

@@ -14,6 +14,6 @@ export class MongoosDataBase{
 
   static connect(){
     (<any>mongoose).Promise = global.Promise;
-    return mongoose.connect( CONFIG.database.HOST, {useMongoClient: true})
+    return mongoose.connect( CONFIG.database.HOST, {useMongoClient: true,poolSize: 3 })
   }
 }

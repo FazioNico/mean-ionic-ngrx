@@ -57,6 +57,7 @@
     "apollo-link-http": "^1.2.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.17.2",
+    "compression": "^1.7.1",
     "cors": "^2.8.3",
     "express": "^4.15.3",
     "express-graphql": "^0.6.11",

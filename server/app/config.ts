@@ -3,7 +3,7 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-12-2017
+ * @Last modified time: 31-12-2017
 */
 
 
@@ -51,4 +51,20 @@ export const CONFIG:IConfig = {
     max: 100, // limit each IP to 100 requests per windowMs
     delayMs: 0 // disable delaying - full speed until the max limit is reached
   })
+};
+
+export const errorHandler = (err, req, res, next) =>{
+  res.status(500).json({code:500, data:err, message:'Error Server'});
+};
+
+export const responseNormalizer = (code:number, data:object, message:string = '')=> {
+  if(data) return {
+    code,
+    ...data,
+    message
+  };
+  return {
+    code,
+    message
+  }
 };

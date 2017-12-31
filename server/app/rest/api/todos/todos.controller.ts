@@ -3,13 +3,13 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 09-10-2017
+ * @Last modified time: 31-12-2017
 */
 
 import * as mongoose from 'mongoose';
 import { Todo, ITodoModel } from '../../../models/todo.models';
-
-import {Authentication} from '../../../authentication';
+import { Authentication } from '../../../authentication';
+import { responseNormalizer } from "../../../config";
 
 const toObjectId = (_id: string): mongoose.Types.ObjectId =>{
     return mongoose.Types.ObjectId.createFromHexString(_id);
@@ -25,24 +25,27 @@ export const todoController = {
           .find({ user_id : _uid.toString() })
           .exec((err, docs:ITodoModel[]) => {
       			if(err) return console.log(err);
-      			res.json(docs);
+      			res.json(responseNormalizer(200,{todos:docs}));
       		})
       }
       else {
-        res.json('error');
+        res.status(403).json(responseNormalizer(403,{error:'Error getTodos: UnAuthorized access.'}));
       }
     })
+    .catch(
+      err => res.status(400).json(responseNormalizer(400,{error:'Error getTodos: UnAuthorized access.'}))
+    )
 	},
 	getItem : (req,res) => {
 		Todo.findById(toObjectId(req.params.id), (err, doc:ITodoModel) => {
-			if(err) return console.log(err);
-			res.json(doc);
+			if(err) return res.status(404).json(responseNormalizer(404, {error:err}, 'Error getTodo by ID: cannot find todo with ID: '+req.params.id+''));
+			res.json(responseNormalizer(200,{todo:doc}));
 		})
 	},
 	deleteItem : (req,res) => {
 		Todo.findByIdAndRemove(toObjectId(req.params.id),  (err, doc:ITodoModel) => {
-			if(err) return console.log(err);
-			res.json(doc);
+			if(err) return res.status(404).json(responseNormalizer(404, {error:err}, 'Error deleteTodo by ID: cannot delete todo with ID: '+req.params.id+''));
+			res.json(responseNormalizer(200,{todo:doc}));
 		})
 	},
 	addItem : (req,res) =>{
@@ -54,11 +57,12 @@ export const todoController = {
         newTodo.user_id = _uid;
     		(new Todo(<ITodoModel>newTodo)).save((err, doc:ITodoModel) => {
     			if(err) return console.log(err);
-    			res.json(doc);
+    			res.json(responseNormalizer(200,{todo:doc}));
     		})
       }
       else {
-        return console.log('error add item');
+        console.log('error add item');
+        return res.status(403).json(responseNormalizer(403,null, 'Error addTodos: UnAuthorized access.'))
       }
     })
 	},
@@ -66,15 +70,12 @@ export const todoController = {
 		let updateTodo = <ITodoModel>req.body;
 		delete updateTodo._id;
 		Todo.update({_id: toObjectId(req.params.id)}, updateTodo, (err, doc:ITodoModel)=>{
-			if(err) return console.log(err);
-
-      updateTodo._id = req.params.id;
-      let response = {
-        result:true,
-        response: updateTodo
+			if(err) {
+        console.log(err)
+        return res.status(404).json(responseNormalizer(404,null, 'Error updateTodo by ID: cannot find todo.'))
       };
-			res.json(response);
+      updateTodo._id = req.params.id;
+      res.json(responseNormalizer(200,{todo:updateTodo}))
 		})
 	},
-
 }

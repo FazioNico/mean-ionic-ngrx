@@ -3,13 +3,13 @@
 * @Date:   24-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-12-2017
+ * @Last modified time: 31-12-2017
 */
 
 // Custom log reporter v.0.0.2
 
 export const log = (req,res,next) => {
-    if(!!process.env.NODE_ENV && process.env.NODE_ENV === 'prod'){
+    if(!!process.env.NODE_ENV && process.env.NODE_ENV === 'prod' || process.env.NODE_ENV === 'test'){
       next()
       return;
     }

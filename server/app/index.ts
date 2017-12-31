@@ -3,7 +3,7 @@
 * @Date:   21-12-2016
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 17-12-2017
+ * @Last modified time: 31-12-2017
 */
 
 import * as express from 'express';
@@ -14,28 +14,29 @@ import * as path from 'path';
 import * as morgan from 'morgan';
 import * as helmet from 'helmet';
 import * as hpp from 'hpp';
+import * as compress from 'compression';
 import * as expressStatusMonitor from 'express-status-monitor';
 
 import { GraphqlApi } from "./graphql";
 import { RestApi }  from "./rest";
 import { Database }  from "./databases";
 import { log }  from "./log";
-// Import server config
-import { CONFIG } from "./config";
+import { CONFIG, responseNormalizer, errorHandler } from "./config";
 
 const PACKAGE = require("../package.json");
 
-
 export class Server{
-
-  private app:express.Application;
+  public app:express.Application;
   private server:http.Server;
   private root:string;
   private port:number|string|boolean;
-
+  public db:()=>Promise<any> = Database;
 
   constructor(){
     this.app = express();
+  }
+
+  init():void{
     this.server = http.createServer(this.app);
     this.config()
     this.middleware()
@@ -74,7 +75,15 @@ export class Server{
       // secret variable for jwt
       .set('superSecret', CONFIG.secretTokent)
       // use morgan to log requests to the console
-      .use(morgan('dev'))
+      .use(
+        (!!process.env.NODE_ENV && process.env.NODE_ENV === 'test')
+          ? (req,res,next)=>{
+              next()
+            }
+          : morgan('dev')
+      )
+      // enable gzip compression
+      .use(compress())
       // cors domaine origin
       .use(cors({ optionsSuccessStatus: 200 }))
       // use to limit repeated requests to public APIs
@@ -83,21 +92,21 @@ export class Server{
 
   private dbConnect():void{
       // Load DB connection
-      Database()
+      this.db()
         .then(() =>{
           // Load all route
           // Server Endpoints
           this.defaultServerRoute()
-          // GraphQL API Endpoints
-          this.app.use( new GraphqlApi(this.server).init());
-          // REST API Endpoints
-          this.app.use( new RestApi().init());
+          this.app
+            // GraphQL API Endpoints
+            .use( new GraphqlApi(this.server).init())
+            // REST API Endpoints
+            .use( new RestApi().init())
         })
         .then(_ => {
           // Then catch 404
           this.app.use((req, res)=>{
-            let message:any[] = [{error: 'Page not found'}]
-            res.status(404).json(message);
+            res.status(404).json(responseNormalizer(404, null, 'Page not found'));
           })
         })
         .catch(error => {
@@ -107,8 +116,8 @@ export class Server{
           this.defaultServerRoute()
           this.app.use((req, res)=>{
             console.log(error)
-            let message:any[] = (error)? [{error: 'Page not found'}, {error}] : [{error: 'Page not found'}]
-            res.status(404).json(message);
+            let data:any = (error)? [{error: 'Page not found'}, {error}] : [{error: 'Page not found'}]
+            res.status(404).json(responseNormalizer(404, {error:data}, 'Page not found'));
           })
           return error
         })
@@ -135,11 +144,9 @@ export class Server{
   private defaultServerRoute(){
     this.app
         .get( '/', log, (req, res) => {
-          res.json({
-            code: 200,
-            message: `${PACKAGE.name} - v.${PACKAGE.version} / ${PACKAGE.description} by ${PACKAGE.author}`
-          });
+          res.json(responseNormalizer(200, null, `${PACKAGE.name} - v.${PACKAGE.version} / ${PACKAGE.description} by ${PACKAGE.author}`));
         })
+        .use(errorHandler)
   }
 
   normalizePort(val: number|string): number|string|boolean {
@@ -160,9 +167,15 @@ export class Server{
       // Find out which user used sudo through the environment variable
       const SUDO_UID = parseInt(process.env.SUDO_UID);
       // Set our server's uid to that user
-      if (SUDO_UID) process.setuid(SUDO_UID);
+      if (!SUDO_UID) return;
+      process.setuid(SUDO_UID);
       console.log('Server\'s UID is now ' + process.getuid());
     });
   }
 
+  close():void{
+    this.server.close(res=> {
+      console.log('server close', res)
+    })
+  }
 }
