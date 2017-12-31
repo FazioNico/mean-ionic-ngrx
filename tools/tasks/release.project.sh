@@ -44,7 +44,7 @@ if [ -z "$1" ] || [ "$1" = "help" ]; then
 fi
 
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [[ "$BRANCH" = "master" ] || [ "$BRANCH" = "dev" ]]; then
+if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "dev" ]; then
   echo 'Aborting script. You need to create a new freture branch for your changes.';
 	echo $BRANCH;
   exit 1;
