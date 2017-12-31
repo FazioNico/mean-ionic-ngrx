@@ -9,7 +9,7 @@
 # @Last modified by:   webmaster-fazio
 # @Last modified time: 20-10-2017
 
-# release script v.0.0.1
+# release script v.0.0.2
 
 function checkVersion {
 	output=$(npm version ${release} --no-git-tag-version)
@@ -43,17 +43,15 @@ if [ -z "$1" ] || [ "$1" = "help" ]; then
 	exit
 fi
 
+# Check if current branch is "master" or "dev".
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "dev" ]; then
-  echo 'Aborting script. You need to create a new freture branch for your changes.';
-	echo $BRANCH;
+	echo '######################################';
+	echo '[ERROR] Aborting script: You need to create a new freture branch for your changes.';
   exit 1;
 fi
 
-echo 'Do stuff';
-echo $BRANCH;
-exit 1;
-
+# run release script:
 release=$1
 # establish branch and tag name variables
 devBranch=dev
