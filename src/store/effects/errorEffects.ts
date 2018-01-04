@@ -12,8 +12,6 @@ import { Observable } from 'rxjs/Observable';
 import { Effect, Actions, toPayload } from "@ngrx/effects";
 
 import * as Err from '../actions/err.actions';
-import * as Auth from '../../pages/login/store/auth.actions';
-import * as Items from '../../pages/items/store/items.actions';
 import { AlertService } from "../../providers/alert-service/alert-service";
 
 @Injectable()
@@ -27,8 +25,7 @@ export class ErrorEffects {
 
   @Effect() handleErrorAction$ = this.action$
     .ofType(
-      Auth.AuthActions.ERROR,
-      Items.ItemsActions.ERROR
+      Err.ErrorActions.ERROR_SHARED
     )
     .map(toPayload)
     .switchMap(err => Observable.of(new Err.ErrorDisplayAction(err)))

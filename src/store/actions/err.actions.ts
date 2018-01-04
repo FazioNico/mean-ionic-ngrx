@@ -3,12 +3,13 @@
  * @Date:   14-04-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 04-01-2018
  */
 
 import { NgRxAction } from '../ngrx.actions';
 
 export const ErrorActions = {
+  ERROR_SHARED: '[Err] Error',
   ERROR_DISPLAY: '[Err] Display Requested',
   ERROR_DISPLAY_SUCCESS: '[Err] Display Success',
   ERROR_DISPLAY_FAILED: '[Err] Display not working',

@@ -3,7 +3,7 @@
  * @Date:   27-09-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 13-11-2017
+ * @Last modified time: 04-01-2018
  */
 
  import { Injectable } from "@angular/core";
@@ -33,6 +33,7 @@
             ? Observable.of(new Auth.LoginSuccessAction(result))
             : Observable.of(new Auth.ErrorAction(result))
         )
+       .catch((err: any) => Observable.of(new Auth.ErrorAction(err)))
 
 
    @Effect() checkMainAction$ = this.action$
