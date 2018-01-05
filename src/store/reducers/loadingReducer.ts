@@ -3,85 +3,36 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 05-01-2018
 */
 
-import { AuthActions, TAuthActions } from '../../pages/login/store/auth.actions';
-import { ItemsActions, TItemsActions } from "../../pages/items/store/items.actions";
 import { ErrorActions, ErrorAction } from '../actions/err.actions';
 
 export interface ILoadingState extends Boolean {};
 export const intitialState:ILoadingState = false
 
+/**
+ * PATTERN DESIGN:
+ * This reducer will check each action definition to find 3 type of action.
+ *  - "Requested": will find if action contain "Requested" word and OPEN application loader (modal spinner)
+ *  - "Success": will find if action contain "Success" word and CLOSE application loader (modal spinner)
+ *  - "ErrorActions.ERROR_DISPLAY": will find if action === "ErrorActions.ERROR_DISPLAY" and CLOSE  application loader (modal spinner)
+ */
 export function reducer (
   state:ILoadingState = intitialState,
-  action:TAuthActions|TItemsActions|ErrorAction
+  action:ErrorAction
 ):ILoadingState {
-  switch (action.type) {
-    //
-    case ItemsActions.LOAD: {
+  switch (true) {
+
+    case action.type.includes('Requested'): {
       return true
     }
-    case ItemsActions.LOAD_SUCCESS: {
-      return false
-    }
-    case ItemsActions.ERROR: {
-      return false
-    }
-    //
-    case ItemsActions.UPDATE: {
-      return true
-    }
-    case ItemsActions.UPDATE_SUCCESS: {
-      return false
-    }
-    //
-    case ItemsActions.REMOVE: {
-      return true
-    }
-    case ItemsActions.REMOVE_SUCCESS: {
-      return false
-    }
-    //
-    case ItemsActions.CREATE: {
-      return true
-    }
-    case ItemsActions.CREATE_SUCCESS: {
+
+    case action.type.includes('Success'): {
       return false
     }
 
-    //
-    case AuthActions.CHECK_AUTH: {
-      return true
-    }
-    case AuthActions.CHECK_AUTH_SUCCESS: {
-      return false
-    }
-    // case AuthActions.CHECK_AUTH_FAILED: {
-    //   return false
-    // }
-    case AuthActions.CHECK_AUTH_NO_USER: {
-      return false
-    }
-
-    case AuthActions.LOGIN: {
-      return true
-    }
-    case AuthActions.LOGIN_SUCCESS: {
-      return false
-    }
-    // case AuthActions.LOGIN_FAILED: {
-    //   return false
-    // }
-
-    case AuthActions.LOGOUT: {
-      return true
-    }
-    case AuthActions.LOGOUT_SUCCESS: {
-      return false
-    }
-
-    case ErrorActions.ERROR_DISPLAY: {
+    case action.type === ErrorActions.ERROR_DISPLAY: {
       return false
     }
 

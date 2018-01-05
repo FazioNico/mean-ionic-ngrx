@@ -3,80 +3,39 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 05-01-2018
 */
-
-import { AuthActions, TAuthActions } from '../../pages/login/store/auth.actions';
-import { ItemsActions, TItemsActions } from "../../pages/items/store/items.actions";
+import { Action } from '@ngrx/store';
 
 export interface ILoadedState extends Boolean {};
 export const intitialState:ILoadedState = false;
 
+/**
+ * PATTERN DESIGN:
+ * This reducer will check each action definition to find 3 type of action.
+ *  - "Requested": will find if action contain "Requested" word.
+ *  - "Success": will find if action contain "Success" word.
+ *  - "Error": will find if action === "Error"
+ */
 export function reducer (
   state:ILoadedState = intitialState,
-  action:TAuthActions|TItemsActions
+  action:Action
 ):ILoadedState {
-  //console.log('LOADED REDUCER-> ', action);
-  switch (action.type) {
-    case ItemsActions.LOAD: {
-      return false
-    }
-    case ItemsActions.LOAD_SUCCESS: {
-      return true
-    }
-    case ItemsActions.ERROR: {
-      return false
-    }
-    //
-    case ItemsActions.UPDATE: {
-      return false
-    }
-    case ItemsActions.UPDATE_SUCCESS: {
-      return true
-    }
-    //
-    case ItemsActions.REMOVE: {
-      return false
-    }
-    case ItemsActions.REMOVE_SUCCESS: {
-      return true
-    }
-    //
-    case ItemsActions.CREATE: {
-      return false
-    }
-    case ItemsActions.CREATE_SUCCESS: {
-      return true
-    }
-    //
 
-    case AuthActions.CHECK_AUTH_SUCCESS: {
-      return true
+  switch (true) {
+
+    case action.type.includes('Requested'): {
+      return false
     }
-    case AuthActions.CHECK_AUTH_NO_USER: {
+
+    case action.type.includes('Success'): {
       return true
     }
 
-    case AuthActions.LOGIN: {
-     return false
-    }
-    case AuthActions.LOGIN_SUCCESS: {
-     return true
-    }
-    // case AuthActions.LOGIN_FAILED: {
-    //  return false
-    // }
-
-    case AuthActions.LOGOUT: {
+    case action.type.includes('Error'): {
       return false
     }
-    case AuthActions.LOGOUT_SUCCESS: {
-      return true
-    }
 
-    case AuthActions.ERROR: {
-     return false
-    }
     default: {
       return <ILoadedState>state;
     }

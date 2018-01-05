@@ -3,13 +3,20 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 16-10-2017
+ * @Last modified time: 05-01-2018
 */
 
 
 import { NgRxAction } from '../../../store/ngrx.actions';
 import { ITodo, IItemsState } from "./items.state";
 
+/**
+ * PATTERN DESIGN:
+ * Simply add special word to your action definition.
+ * Exemple:
+ * - Using "Requested" to OPEN global application loader (modal spinner)
+ * - Using "Success" to CLOSE global application loader (modal spinner)
+ */
 export const ItemsActions = {
   LOAD: '[Todo] LOAD Requested',
   LOAD_SUCCESS: '[Todo] LOAD Success',

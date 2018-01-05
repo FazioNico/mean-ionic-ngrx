@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 04-01-2018
+ * @Last modified time: 05-01-2018
 */
 
 import { ErrorActions, TErrorActions } from '../actions/err.actions';
@@ -11,6 +11,12 @@ import { ErrorActions, TErrorActions } from '../actions/err.actions';
 export interface IErrorState extends String {};
 export const intitialState:IErrorState|null = null
 
+/**
+ * PATTERN DESIGN:
+ * This reducer will check each action type contain word "Error"
+ * If finded: update action.type with "ErrorActions.ERROR_SHARED"
+ * to meke ErrorEffects working with all features state.
+ */
 export function reducer (
   state:IErrorState|null = intitialState,
   action:TErrorActions
@@ -24,7 +30,6 @@ export function reducer (
     }
 
     case ErrorActions.ERROR_DISPLAY_SUCCESS: {
-        console.log('intitialState->', intitialState)
       return intitialState
     }
 
