@@ -4,7 +4,7 @@
 # @Last modified by:   webmaster-fazio
 # @Last modified time: 05-01-2018
 
-# release script v.0.0.4
+# release script v.0.0.5
 
 function checkVersion {
 	output=$(npm version ${release} --no-git-tag-version)
@@ -34,19 +34,19 @@ function help {
 }
 
 function changelog(){
-	dateCommit=$(git log -1 --date=short --pretty=format:%cd)
-	firstTag=$(git tag | sort -r | head -1)
-	secondTag=$(git tag | sort -r | head -2 | awk '{split($0, tags, "\n")} END {print tags[1]}');
-	fileContent=$(<CHANGELOG.md);
+dateCommit=$(git log -1 --date=short --pretty=format:%cd)
+firstTag=$(git tag | sort -r | head -1)
+secondTag=$(git tag | sort -r | head -2 | awk '{split($0, tags, "\n")} END {print tags[1]}');
+fileContent=$(<CHANGELOG.md);
 
-	echo '
+echo '
 
-	## '$output' ('$dateCommit')' > CHANGELOG.md;
-	git log `git describe --tags --abbrev=0 HEAD^`..HEAD --pretty=format:'- [%h](https://github.com/FazioNico/mean-ionic-ngrx/commit/%H) %s' ${secondTag}..${firstTag}  --reverse --no-merges | grep "#log" >> CHANGELOG.md
-	echo '
-	'  >> CHANGELOG.md;
+## '$output' ('$dateCommit')' > CHANGELOG.md;
+git log `git describe --tags --abbrev=0 HEAD^`..HEAD --pretty=format:'- [%h](https://github.com/FazioNico/mean-ionic-ngrx/commit/%H) %s' ${secondTag}..${firstTag}  --reverse --no-merges | grep ": " >> CHANGELOG.md
+echo '
+'  >> CHANGELOG.md;
 
-	echo "$fileContent" >> CHANGELOG.md;
+echo "$fileContent" >> CHANGELOG.md;
 }
 
 if [ -z "$1" ] || [ "$1" = "help" ]; then
