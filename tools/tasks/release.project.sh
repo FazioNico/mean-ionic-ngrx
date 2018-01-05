@@ -1,15 +1,10 @@
 # @Author: Nicolas Fazio <webmaster-fazio>
-# @Date:   20-10-2017
+# @Date:   31-12-2017
 # @Email:  contact@nicolasfazio.ch
 # @Last modified by:   webmaster-fazio
-# @Last modified time: 20-10-2017
-# @Author: Nicolas Fazio <webmaster-fazio>
-# @Date:   20-10-2017
-# @Email:  contact@nicolasfazio.ch
-# @Last modified by:   webmaster-fazio
-# @Last modified time: 20-10-2017
+# @Last modified time: 05-01-2018
 
-# release script v.0.0.2
+# release script v.0.0.4
 
 function checkVersion {
 	output=$(npm version ${release} --no-git-tag-version)
@@ -38,14 +33,30 @@ function help {
 	echo "Usage: $(basename $0) [<newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease]"
 }
 
+function changelog(){
+	dateCommit=$(git log -1 --date=short --pretty=format:%cd)
+	firstTag=$(git tag | sort -r | head -1)
+	secondTag=$(git tag | sort -r | head -2 | awk '{split($0, tags, "\n")} END {print tags[1]}');
+	fileContent=$(<CHANGELOG.md);
+
+	echo '
+
+	## '$output' ('$dateCommit')' > CHANGELOG.md;
+	git log `git describe --tags --abbrev=0 HEAD^`..HEAD --pretty=format:'- [%h](https://github.com/FazioNico/mean-ionic-ngrx/commit/%H) %s' ${secondTag}..${firstTag}  --reverse --no-merges | grep "#log" >> CHANGELOG.md
+	echo '
+	'  >> CHANGELOG.md;
+
+	echo "$fileContent" >> CHANGELOG.md;
+}
+
 if [ -z "$1" ] || [ "$1" = "help" ]; then
 	help
 	exit
 fi
 
 # Check if current branch is "master" or "dev".
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ "$BRANCH" = "master" ] || [ "$BRANCH" = "dev" ]; then
+CURRENTBRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENTBRANCH" = "master" ] || [ "$CURRENTBRANCH" = "dev" ]; then
 	echo '######################################';
 	echo '[ERROR] Aborting script: You need to create a new freture branch for your changes.';
   exit 1;
@@ -69,6 +80,7 @@ if [ -d ".git" ]; then
 		bumpXML "config.xml";
 		bumpPackage "package.json";
 		bumpMD "README.md";
+		changelog;
 		# create tags version
 		git add .
 		git commit -m "Bump to ${version}";
@@ -87,6 +99,8 @@ if [ -d ".git" ]; then
 		if [ -d ".git/refs/remotes" ]; then
 			git push origin --tags
 			git push origin master
+			# delete current working branch
+			git branch -d $CURRENTBRANCH
 			# npm publish ./
 		else
 			echo 'Create remote origin to push release tags'
