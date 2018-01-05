@@ -1,7 +1,7 @@
 <img src="https://live.zoomdata.com/zoomdata/service/connection/types/icon/MONGO_MONGO?v=$%7Btimestamp%7D" width="80"><img src="http://apps.octoconsulting.com/images/expressIcon.png" width="80"><img src="https://material.angularjs.org/latest/img/icons/angular-logo.svg" width="80"><img src="https://cdn.worldvectorlogo.com/logos/nodejs-icon.svg" width="80"><img src="https://camo.githubusercontent.com/a083a6650043b70297ab9655569d56ed0d300687/687474703a2f2f616d7665722e6c742f77702d636f6e74656e742f75706c6f6164732f323031362f30372f4d617468656d617469632d506c7573322e69636f" style="margin:0px 15px" height="80px"><img src="http://cloudoki.com/images/frameworks/ionic.png" width="80"><img src="https://avatars2.githubusercontent.com/u/16272733?v=3&s=200" height="80px"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/GraphQL_Logo.svg/768px-GraphQL_Logo.svg.png" height="80px"><img src="https://www.libstick.io/svg/1032_apollo.svg" height="80px">
 
 #  MEAN Ionic NgRx Lazy Load + GraphQL/REST Server API
-[![Build Status](https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master)](https://travis-ci.org/FazioNico/mean-ionic-ngrx) [![dependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx) [![devDependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev) [![Known Vulnerabilities](https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg)](https://snyk.io/test/github/fazionico/mean-ionic-ngrx) ![Version](https://img.shields.io/badge/version-0.3.9-blue.svg)
+[![Build Status](https://travis-ci.org/FazioNico/mean-ionic-ngrx.svg?branch=master)](https://travis-ci.org/FazioNico/mean-ionic-ngrx) [![dependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx) [![devDependencies Status](https://david-dm.org/FazioNico/mean-ionic-ngrx/dev-status.svg)](https://david-dm.org/FazioNico/mean-ionic-ngrx?type=dev) [![Known Vulnerabilities](https://snyk.io/test/github/fazionico/mean-ionic-ngrx/badge.svg)](https://snyk.io/test/github/fazionico/mean-ionic-ngrx) ![Version](https://img.shields.io/badge/version-0.3.10-blue.svg)
 <blockquote>My own Full MEAN stack Starter kit with Ionic Framework and ReactiveX API (ngrx/Store + ngrx/Effects) & GraphQL/REST Server  API and many more...</blockquote>
 
 ## Overview
@@ -120,8 +120,12 @@ App Documentations is generate by typeDoc. Use the following cmd to generate doc
 - `$ npm run docs` will generate Angular Application documentation and open the index doc in browser.
 
 ## Todo before get Started
-<b>Important: You have to update/change/replace `mongod` npm script into main `./package.json` line 18 . Update mongod $path with your own path (or run `$npm run mongod` to check if mongo starting correctly).</b>
+<b>Important: You have to update/change/replace `mongod` npm script into main `./package.json` line 18 . Update mongod $path with your own path (or run `$npm run mongod` to check if mongo starting correctly) and replace Git repository link into `tools/tasks/release.project.sh` line 50 by your'own.</b>
 
+<b>Git Workflow</b>
+- To have better development workflow, using [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) model working.
+- To dynamicly add commit to CHANGELOG.md, add `#log` at the end of the commit.
+- To disable auto generate CHANGELOG.md, go to `tools/tasks/release.project.sh` and comment all `changelog()` content function or comment changelog call function in line 88 as `# changelog`.
 
 <b>To using in production mode:</b>
 - install Heroku CLI
