@@ -124,7 +124,7 @@ App Documentations is generate by typeDoc. Use the following cmd to generate doc
 
 <b>Git Workflow</b>
 - To have better development workflow, using [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) model working.
-- To dynamicly add commit to CHANGELOG.md, add `#log` at the end of the commit.
+- To dynamicly add commit to CHANGELOG.md, add `<core|update|features|fix>: ` at the begin of the commit. Script search `: ` to generate CHANGELOG.md
 - To disable auto generate CHANGELOG.md, go to `tools/tasks/release.project.sh` and comment all `changelog()` content function or comment changelog call function in line 88 as `# changelog`.
 
 <b>To using in production mode:</b>
