@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 13-11-2017
+ * @Last modified time: 05-01-2018
 */
 
 import { Injectable, Inject } from '@angular/core';
@@ -28,7 +28,7 @@ export abstract class HttpService {
 
   private readonly apiEndPoint:string;
   public path:string = '';
-  private storage:any;
+  public tokentStorage:string = '';
 
   constructor(
     public http: HttpClient,
@@ -39,57 +39,29 @@ export abstract class HttpService {
 
   protected get():Observable<any>{
     this.checkStorage();
-    let token:string|null = localStorage.getItem(STORAGE_ITEM)
-    this.storage = (token)?JSON.parse(token):'';
-
     // Define Heders request
-    // new Headers({'cache-control': 'no-cache','x-access-token': this.storage})
-    let headers:HttpHeaders = new HttpHeaders()
-        .set('cache-control','no-cache')
-        .set('x-access-token',this.storage)
-    let options:any = { headers: headers }
+    let options:any = { headers: this.getHeaders() }
     // post request
     return this.http.get(`${this.apiEndPoint}${this.path}`, options)
   }
 
   protected post(body:any):Observable<any>{
     this.checkStorage();
-    let token:string|null = localStorage.getItem(STORAGE_ITEM)
-    this.storage = (token)?JSON.parse(token):'';
-    let headers:HttpHeaders = new HttpHeaders()
-      headers
-        .set('cache-control','no-cache')
-        .set('x-access-token',this.storage)
-    if(this.storage){
-
-    }
-    let options:any = { headers: headers };
+    let options:any = { headers: this.getHeaders() }
     return this.http.post(`${this.apiEndPoint}${this.path}`, body, options)
   }
 
   protected put(body:any):Observable<any>{
     this.checkStorage();
-    let token:string|null = localStorage.getItem(STORAGE_ITEM)
-    this.storage = (token)?JSON.parse(token):'';
-
     let url:string = `${this.apiEndPoint}${this.path}/${body._id}`; //see mdn.io/templateliterals
-    let headers:HttpHeaders = new HttpHeaders()
-        .set('cache-control','no-cache')
-        .set('x-access-token',this.storage)
-    let options:any = { headers: headers };
+    let options:any = { headers: this.getHeaders() }
     return this.http.put(url, JSON.stringify(body), options)
   }
 
   protected delete(_id:string):Observable<any>{
     this.checkStorage();
-    let token:string|null = localStorage.getItem(STORAGE_ITEM)
-    this.storage = (token)?JSON.parse(token):'';
-
     let url:string =`${this.apiEndPoint}${this.path}/${_id}`;
-    let headers:HttpHeaders = new HttpHeaders()
-        .set('cache-control','no-cache')
-        .set('x-access-token',this.storage)
-    let options:any = { headers: headers };
+    let options:any = { headers: this.getHeaders() }
     return this.http.delete(url, options)
   }
 
@@ -115,13 +87,27 @@ export abstract class HttpService {
   }
 
   /* Check if localstorage exist with datas */
-  checkStorage():void|Observable<any>{
+  private checkStorage():void{
     let token:string|null = localStorage.getItem(STORAGE_ITEM)
-    this.storage = (token)?JSON.parse(token):null
-    // if storage not found
-    if(!this.storage){
-      return Observable.of({});
-    }
+    this.tokentStorage = (token)?JSON.parse(token):'';
+  }
+
+  /*
+  * Extendable methode to set Headers request.
+  * Can be extended with more HttpHeaders
+  * like this:
+  *   let extendedHeaders = this.getHeaders()
+  *                             .set(KEY,VALUE)
+  *
+  * or with extended class like this:
+  *   getHeaders():HttpHeaders{
+  *     return super.getHeaders().set(KEY,VALUE)
+  *   }
+  */
+  getHeaders():HttpHeaders{
+    return new HttpHeaders()
+        .set('cache-control','no-cache')
+        .set('x-access-token',this.tokentStorage)
   }
 
   /* Methode to formate data output */
