@@ -3,7 +3,7 @@
 * @Date:   14-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 05-01-2018
 */
 
 
@@ -18,7 +18,6 @@ export function reducer (
 ):IAuthCheckedState {
   switch (action.type) {
     case AuthActions.LOGIN_SUCCESS:{
-      console.log(state, action.payload)
       return true
     }
 

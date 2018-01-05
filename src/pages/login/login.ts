@@ -3,13 +3,14 @@
 * @Date:   17-04-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 13-11-2017
+ * @Last modified time: 05-01-2018
 */
 
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { AuthStoreService } from './store/auth-store.service';
 
@@ -34,6 +35,7 @@ export class Login implements OnInit{
   public user:any|null;
   public loginBtn:boolean = true;
   public userForm:FormGroup;
+  public authSubscribtion:Subscription;
 
   constructor(
     public navCtrl: NavController,
@@ -45,20 +47,33 @@ export class Login implements OnInit{
       password: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(10)])],
     });
 
-    // here we are monitoring the authstate
-    this.authStore.getCurrentUser().subscribe((currentState: any) => {
+    // here we are monitoring the authstate:
+    // we do a subscribe to manage state and we not unsubscribe on ionViewDidLeave()
+    // cause we need to manage user state in all application to kik user in app root if is unAuthenticate.
+    // Each time Login component will start, a new subscription will starting automaticly.
+    // We only stop subscribtion with `.unsubscribe()` when user LOST authentication during application proccessing.
+    this.authSubscribtion = this.authStore.getCurrentUser().subscribe((currentState: any) => {
       //console.log('state->', currentState)
       if (currentState) {
         if(!this.user){
-          //console.log('home')
-          this.navCtrl.setRoot('HomePage', {'checkAuth':true})
+          console.log('home')
+          this.navCtrl.setRoot('HomePage')
         }
+        // setup in memory `this.user` with current user.
         this.user = currentState;
       }
       else {
+        // if we have in memory `this.user`, current user have probably LOST authentication.
+        // We need to rezet `this.user` from memory cache and kik unauthenticate current user to the Login page with `.setRoot()`.
+        // .setRoot() will load a new LoginPage Module with new monitoring authstate.
+        // That's why we need to do `.unsubscribe()` from `this.authSubscribtion` to prevent errors.
         if(this.user){
           this.user = null
           this.navCtrl.setRoot('LoginPage')
+          // do not forget to unsubscribe from all subscribtion
+          // to prevent memory lag or bug.
+          // User management will restart on components new LoginPage starting
+          this.authSubscribtion.unsubscribe()
         }
         //console.log('login')
       }
