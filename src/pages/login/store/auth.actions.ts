@@ -3,7 +3,7 @@
 * @Date:   27-09-2017
 * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 15-10-2017
+ * @Last modified time: 05-01-2018
 */
 
 import { NgRxAction } from '../../../store/ngrx.actions';
@@ -12,19 +12,26 @@ import { ICurrentUserState } from "./currentUser.reducer";
 
 import { HttpServerResponse } from "../login.service";
 
+/**
+ * PATTERN DESIGN:
+ * Simply add special word to your action definition.
+ * Exemple:
+ * - Using "Requested" to OPEN global application loader (modal spinner)
+ * - Using "Success" to CLOSE global application loader (modal spinner)
+ */
 export const AuthActions = {
   CHECK_AUTH: '[Auth] Check Auth Requested',
   CHECK_AUTH_SUCCESS: '[Auth] Check Auth: user Success',
   CHECK_AUTH_NO_USER: '[Auth] Check Auth: no user Success',
   LOGIN: '[Auth] Login Requested',
   LOGIN_SUCCESS: '[Auth] Login Success',
-  LOGOUT: '[Auth] Logout Requested',
+  LOGOUT: '[Auth] Logout',
   LOGOUT_SUCCESS: '[Auth] Logout Success',
   CREATE: '[Auth] CREATE Requested',
   CREATE_SUCCESS: '[Auth] CREATE Success',
-  TOKEN_SAVE: '[Auth] TOKEN_SAVE Requested',
+  TOKEN_SAVE: '[Auth] TOKEN_SAVE',
   TOKEN_SAVE_SUCCESS: '[Auth] TOKEN_SAVE Success',
-  TOKEN_DELETE: '[Auth] TOKEN_REMOVE Requested',
+  TOKEN_DELETE: '[Auth] TOKEN_REMOVE',
   TOKEN_DELETE_SUCCESS: '[Auth] TOKEN_REMOVE Success',
   ERROR: '[Auth] Error'
 }
