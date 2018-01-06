@@ -3,7 +3,7 @@
  * @Date:   11-10-2017
  * @Email:  contact@nicolasfazio.ch
  * @Last modified by:   webmaster-fazio
- * @Last modified time: 31-12-2017
+ * @Last modified time: 06-01-2018
  */
 
 /**
@@ -16,7 +16,7 @@ const path = require('path');
 // If plugin do not exist, just add it to ou project package devDependencies
 // with $ npm install --save-dev WEBPACK_MODULE_PLUGIN_YOU_NEED
 var webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ModuleConcatPlugin = require('webpack/lib/optimize/ModuleConcatenationPlugin');
 const NodemonPlugin = require( 'nodemon-webpack-plugin' );
@@ -45,7 +45,7 @@ const commonConfig = {
   },
   resolve: {
       // Add in `.ts` and `.tsx` as a resolvable extension.
-      extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
+      extensions: ['.ts', '.tsx', '.js'],
       modules: [path.resolve('node_modules')]
   },
   node: {
@@ -54,11 +54,6 @@ const commonConfig = {
     tls: 'empty'
   }
 };
-
-// define function to return default loaders
-function getProdLoaders() {
-  return devConfig.module.loaders;
-}
 
 // define webpack devConfig options
 const devConfig = {
@@ -81,13 +76,24 @@ const devConfig = {
     ]
 };
 
+// define function to return default loaders
+function getProdLoaders() {
+  return devConfig.module.loaders;
+}
+
 // define webpack prodConfig options
 const prodConfig = {
     module: {
       loaders: getProdLoaders()
     },
     plugins: [
-      // new webpack.optimize.UglifyJsPlugin(),
+      new UglifyJsPlugin({
+        test: /\.js($|\?)/i,
+        sourceMap: false,
+        uglifyOptions: {
+            compress: true
+        }
+      }),
       new CopyWebpackPlugin([
         { from: SERVER_CONFIG.entry_path+'/package.json'},
         { from: SERVER_CONFIG.entry_path+'/.gitignore' },

@@ -126,13 +126,14 @@
     "ts-node": "^4.0.2",
     "typedoc": "^0.9.0",
     "typescript": "~2.4.2",
+    "uglifyjs-webpack-plugin": "^1.1.6",
     "webpack": "3.8.1",
     "webpack-bundle-analyzer": "~2.9.1"
   },
   "engines": {
     "node": "~7.0.0"
   },
-  "version": "0.3.12",
+  "version": "0.3.13",
   "config": {
     "ionic_purge_decorators": false,
     "ionic_webpack": "./tools/config/ionic.webpack.js",
