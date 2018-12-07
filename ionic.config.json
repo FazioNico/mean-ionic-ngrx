@@ -1,9 +1,0 @@
-{
-  "name": "mean-ionic-ngrx",
-  "app_id": "",
-  "type": "ionic-angular",
-  "integrations": {
-    "gulp": {},
-    "cordova": {}
-  }
-}
