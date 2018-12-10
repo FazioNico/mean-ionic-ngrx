@@ -14,10 +14,6 @@ process.on('uncaughtException', (err) => {
   console.error('Unhandled Exception', err);
 });
 
-// process.on('uncaughtRejection', (err, promise) => {
-//   console.error('Unhandled Rejection', err)
-// })
-
 // listen event on db ready
 mediator.on('db.ready', (db) => {
   let rep;
@@ -32,10 +28,10 @@ mediator.on('db.ready', (db) => {
         repo
       }).catch(err => err);
     })
-    .then(config => {
+    .then(service => {
       console.log(`Server started succesfully, running on port: ${CONFIG.serverConfig.port}  🎉`);
       console.log(`NODE_ENV: ${CONFIG.serverConfig.env_name}`);
-      config.server.on('close', () => {
+      service.server.on('close', () => {
         console.log('[API GATEWAY] Server close()');
       });
     })
