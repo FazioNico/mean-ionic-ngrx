@@ -29,18 +29,16 @@ export class AuthRouter {
     })
 
     .get('/isauth', MIDDLEWARES, async(req: express.Request, res: express.Response, next: express.NextFunction) => {
-
-    console.log('authenticatedRoute access 2', req.path, (req as any).decoded);
       let token: string = extractToken(req);
-      let user: any;
       // check if for loading user data flag
       if (req.query.loadUserData === undefined)
         return res.status(200).json({token});
       if (!((<any>req).decoded || {})._id)
         return next({code: 401, message: 'No user ID in Token'});
+      // build url to request other service
       const url = `${this.serverConfig.gateway_host}/users/${((<any>req).decoded || {})._id}`;
-      console.log('------- url ', url);
-      user = await fetch(
+      // do request to other microservice and handle props
+      const { user, code, message, stack } = await fetch(
         url,
         {
         method: 'GET',
@@ -49,11 +47,16 @@ export class AuthRouter {
           'x-access-token': token,
           'x-backend-token': this.serverConfig.backendToken,
         },
-      }).catch(err => err);
-      if (!user.status || user.status !== 200)
-        return next({code: 400, message: 'User check failed', stack: user});
-      user = await user.json();
+      })
+      .then(async(response) => await response.json().catch(err => err))
+      .catch(err => err);
+      // check existing datas form service response
+      // and return error message if unexisting
+      if (!user)
+        return next({code: code || 400, message: message || 'User check failed', stack: user});
+      // update token
       token = this.repo.getToken({_id: user.uid, email: user.email, password: ''});
+      // return existing datas
       return res.status(200).json({ user, token });
     })
 
@@ -61,6 +64,7 @@ export class AuthRouter {
     * @api {post} /auth Post to authenticate (login)
     */
     .post('/', async(req: express.Request, res: express.Response, next: express.NextFunction) => {
+      // handle errors
       if (!req.body.email) {
         return next({code: 400, message: 'Email not provided'});
       }
@@ -68,28 +72,28 @@ export class AuthRouter {
         return next({code: 400, message: 'Password not provided'});
       }
       const backendToken = this.serverConfig.backendToken;
+      // extract datas from repository response
       const {token = null, auth = null}  =  await this.repo.auth(req.body.email, req.body.password)
                                             .catch(err => err);
-
+      // handle unexisting token or datas from repository
       if (!token || !auth)
         return next({code: 400, message: 'Authentication failed no user or token found', stack: {auth, token}});
-
-      const user = await fetch(`${this.serverConfig.gateway_host}/users/${auth._id}`, {
-          method: 'GET',
-          headers: {
-            'content-type': 'application/json',
-            'x-access-token': token,
-            'x-backend-token': backendToken,
-          },
-        })
-        .then(
-          async (response) => (response.status === 200)
-            ? await response.json()
-            : next({code: 400, message: 'Authentication failed', stack: response})
-        )
-        .catch(err => err);
+      // do request to other microservice and handle props
+      const { user, message, code, stack } = await fetch(`${this.serverConfig.gateway_host}/users/${auth._id}`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          'x-access-token': token,
+          'x-backend-token': backendToken,
+        },
+      })
+      .then(async(response) => await response.json().catch(err => err))
+      .catch(err => err);
+      // check existing datas form service response
+      // and return error message if unexisting
       if (!user)
-        next({code: 400, message: 'Authentication failed'});
+        return next({code: code || 400, message: message || 'Authentication failed', stack});
+      // return existing datas
       return res.status(200).json({user, token});
     })
 
