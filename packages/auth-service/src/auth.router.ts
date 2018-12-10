@@ -3,6 +3,7 @@ import { AuthRepo } from './auth.repository';
 import fetch from 'node-fetch';
 import { CONFIG } from './config';
 import { extractToken } from './utils';
+import { Auth } from './auth.model';
 
 export class AuthRouter {
 
@@ -105,27 +106,25 @@ export class AuthRouter {
       if (!email || !password)
         return next({code: 400, message: 'Signin failed. Form fiels error'});
       const backendToken = this.serverConfig.backendToken;
-      // CREATE AUTH OBJ
-      const response = await this.repo.signin(req.body).catch(err => err);
-      console.log('----', response);
-      if (response.code && response.code !== 200) {
+      const response = await this.repo.signin({email, password}).catch(err => err);
+      const {auth = null, token = null} = response;
+      if (!auth || !token) {
         return next(response);
       }
-      const {auth = null, token = null} = response;
-      const data = Object.assign({}, {uid: auth._id}, req.body);
-
-      const userRequest = await fetch(`${this.serverConfig.gateway_host}/users`, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'content-type': 'application/json',
-          'x-access-token': token || '',
-          'x-backend-token': backendToken || '',
-        },
-      }).catch(err => err);
-      if (userRequest.status !== 200)
-        return next({code: 400, message: 'User creation failed', stack: userRequest});
-      const user = await userRequest.json();
+      // use class to create new user
+      const newUser = new Auth(req.body);
+      // user method to create user data
+      // and extract result
+      const {user, code, message, stack} = await newUser.createUser(
+        Object.assign({}, {uid: auth._id}, req.body),
+        this.serverConfig.gateway_host,
+        token,
+        backendToken
+      ).catch(err => err);
+      // check if have existing props with value
+      if (code && code !== 200)
+        return next({code, message, stack});
+      // return user object with token
       return res.status(200).json({user, token});
     })
 
