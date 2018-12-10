@@ -31,11 +31,11 @@ export class AuthGuard implements CanActivate {
         ),
         filter((state) => state.loading === false ),
         map((state) => {
-          if (state.auth) {
+          if (state.authCheck) {
             // console.warn('[AuthGuard] user auth');
             return true;
           }
-          // console.warn('[AuthGuard] user is not auth');
+          // console.warn('[AuthGuard] user is not auth', state);
           this.router.navigate(['/auth'], {queryParams: {returnUrl}});
           return false;
         }),

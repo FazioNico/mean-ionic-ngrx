@@ -25,12 +25,12 @@ export class NoGuard implements CanActivate {
         select(state => state),
         filter((state) => state.loading === false),
         map((state) => {
-          if (!state.auth) {
+          if (!state.authCheck) {
             // console.warn('[NoGuard] user not auth');
             return true;
           }
-          // console.warn('[NoGuard] user is auth');
-          (returnUrl)
+          console.warn('[NoGuard] user is auth', returnUrl && !returnUrl.includes('auth'));
+          (returnUrl && !returnUrl.includes('auth'))
             ? this.router.navigate([returnUrl])
             : this.router.navigate(['index']);
           return false;
