@@ -16,7 +16,12 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: 'app/features/auth/auth.module#AuthModule',
     canActivate: [NoGuard]
-  }
+  },
+  {
+    path: 'todos',
+    loadChildren: 'app/features/todos/todos.module#TodosModule',
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

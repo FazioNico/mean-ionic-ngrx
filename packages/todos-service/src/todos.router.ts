@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { TodosRepo } from './todos.repository';
+import { TodosRepo, toObjectId } from './todos.repository';
 import { CONFIG } from './config';
 import { extractToken } from './utils';
 
@@ -41,7 +41,11 @@ export class TodosRouter {
 
     .post('/', MIDDLEWARES, async(req: express.Request, res: express.Response, next: express.NextFunction) => {
       const token: string = extractToken(req) || null;
-      const newItem = await this.repo.create(req.body)
+      // handle unexisting user ID
+      const { _id = null } = ((<any>req).decoded || {});
+      if (!_id)
+        return next({code: 401, message: 'No user ID in Token', stack: (<any>req).decoded});
+      const newItem = await this.repo.create({...req.body, uid: _id})
                                      .catch(err => err);
       // handle error response from repository
       if (!newItem.todo) return next({code: 400, message: '{TodosRouter} Todo creation failed', stack: newItem});

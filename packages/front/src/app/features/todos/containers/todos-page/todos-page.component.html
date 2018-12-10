@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{ 'APP_TITLE' | translate}}
+    </ion-title>
+  </ion-toolbar>
+  <div id="addTodo" color="primary">
+    <ion-item no-lines color="primary">
+      <ion-input
+        #newTodo
+        (keyup.enter)="addTodo(newTodo)"
+        type="text"
+        placeholder="{{'todos.add_todo'|translate}}" ></ion-input>
+      <ion-button
+        id="clearInput"
+        clear
+        color="transparent"
+        large
+        item-right
+        (click)="clearInput(newTodo)">
+          <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </div>
+</ion-header>
+
+<ion-content>
+
+  <ion-list *ngIf="(todos$|async) as todos">
+    <ion-item-sliding *ngFor="let todo of todos">
+      <ion-item>
+        <ion-label>{{ todo.description }}</ion-label>
+        <ion-checkbox (click)="toggleComplete(todo)" [checked]="todo.isComplete"></ion-checkbox>
+        <ion-badge
+          item-right>{{ todo.deadline }}
+        </ion-badge>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="navToEdit(todo); slidingItem.close()">
+          <ion-icon name="create"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="deleteTodo(todo)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+    
+  </ion-list>
+</ion-content>

@@ -5,14 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomePageComponent } from './containers/home-page/home-page.component';
 import { HomeI18nModule } from './i18n/home-i18n.module';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [HomePageComponent],
   imports: [
-    CommonModule,
     HomeRoutingModule,
     HomeI18nModule,
-    IonicModule
+    SharedModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
