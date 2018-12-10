@@ -3,18 +3,22 @@ import {AbstractControl, ValidationErrors, ValidatorFn, Validators, FormGroup, F
 export namespace CustomValidators {
 
   export function emptyOrPattern(pattern: RegExp | string): ValidatorFn {
-    if (!pattern)
+    if (!pattern) {
       return Validators.nullValidator;
+    }
     return (control: AbstractControl): ValidationErrors | null => {
       if (typeof pattern === 'string') {
-        if (!pattern.startsWith('^'))
+        if (!pattern.startsWith('^')) {
           pattern = '^' + pattern;
-        if (!pattern.endsWith('$'))
+        }
+        if (!pattern.endsWith('$')) {
           pattern += '$';
+        }
         pattern = new RegExp(pattern);
       }
-      if (control.value && !pattern.test(control.value))
+      if (control.value && !pattern.test(control.value)) {
         return {'emptyOrPattern': {value: control.value}};
+      }
       return null;
     };
   }
@@ -28,8 +32,9 @@ export namespace CustomValidators {
 
   export function integerOnly(allowNegative = false): ValidatorFn {
     return (control: AbstractControl): {[key: string]: any} => {
-      if (control.value === null && control.value === undefined)
+      if (control.value === null && control.value === undefined) {
         return { 'integerOnly': { value: control.value } };
+      }
       const pattern = allowNegative ? '-?[0-9]*' : '[0-9]*';
       if (emptyOrPattern(pattern)(control)) {
         return {'integerOnly': {value: control.value}};
@@ -39,23 +44,27 @@ export namespace CustomValidators {
   }
 
   export function fromList(list: any[]): ValidatorFn {
-    if (!list)
+    if (!list) {
       return Validators.nullValidator;
+    }
     return (control: AbstractControl): {[key: string]: any} => {
-      if (list.find(item => item.toString() === control.value.toString()) === undefined)
+      if (list.find(item => item.toString() === control.value.toString()) === undefined) {
         return {'fromList': {value: control.value}};
+      }
       return null;
     };
   }
 
   let oneFromFormGroupRequiredValidation = false;
   export function oneFromFormGroupRequired(controlNames: string[]): ValidatorFn {
-    if (!controlNames)
+    if (!controlNames) {
       return Validators.nullValidator;
+    }
     return (control: AbstractControl): {[key: string]: any} => {
       // Don't validate until parent is defined
-      if (!control.parent)
+      if (!control.parent) {
         return null;
+      }
       // Get controls
       const ctrls: AbstractControl[] = [];
       for (const name of controlNames) {
@@ -77,13 +86,13 @@ export namespace CustomValidators {
 
   export function numberOnly(control: AbstractControl): {[key: string]: any} {
     if (control.value !== null && control.value !== undefined && control.value !== '' &&
-        (!isNaN(parseFloat(control.value)) && isFinite(control.value)))
+        (!isNaN(parseFloat(control.value)) && isFinite(control.value))) {
       return null;
+    }
     return {'numberOnly': {value: control.value}};
   }
 
   export function password(allowEmpty = false): ValidatorFn {
-    // https://github.com/agendach/backend/blob/master/lib/auth/src/auth.model.ts#L7
     const passwordRegex = /(?=.*[a-zA-Z])(?=.*[0-9]+).*/;
     return (control: AbstractControl): ValidationErrors | null  => {
       if (!passwordRegex.test(control.value) && !allowEmpty) {
@@ -94,7 +103,6 @@ export namespace CustomValidators {
     };
   }
   export function email(allowEmpty = false): ValidatorFn {
-    // https://github.com/agendach/backend/blob/master/lib/auth/src/auth.model.ts#L7
     const emailRegex = /\S+@\S+\.\S+/;
     return (control: AbstractControl): ValidationErrors | null  => {
       if (!emailRegex.test(control.value) && !allowEmpty) {
@@ -110,9 +118,9 @@ export namespace CustomValidators {
     Object.keys(form.controls).forEach(field => {
       const control = form.get(field);
       if (control) {
-        if (control instanceof FormGroup || control instanceof FormArray)
+        if (control instanceof FormGroup || control instanceof FormArray) {
           forceFormValidation(control);
-        else {
+        } else {
           // force status change
           if (control.errors) {
             const errors = control.errors;
