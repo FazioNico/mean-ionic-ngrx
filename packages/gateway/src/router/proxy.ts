@@ -1,5 +1,4 @@
 import * as express from 'express';
-// import { fetcher, IFetchResponse, httpErrorFactory } from '@agenda.ch/backend-utils';
 import * as http from 'http';
 
 interface IRequestOptions {

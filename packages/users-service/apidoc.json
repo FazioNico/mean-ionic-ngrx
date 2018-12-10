@@ -1,8 +1,8 @@
 {
-    "name": "Backend V3 - Agenda.ch",
+    "name": "Backend",
     "version": "0.0.0",
     "description": "REST API Documentations",
-    "title": "Backend V3 REST API Docs",
+    "title": "Backend REST API Docs",
     "url" : ""
   }
   

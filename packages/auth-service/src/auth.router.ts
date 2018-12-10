@@ -98,7 +98,7 @@ export class AuthRouter {
     })
 
     /**
-    * @api {post} /auth/signin Post to create an AuthUser with UserCOnfig, Account, AccountConfig, Agenda & Permissions
+    * @api {post} /auth/signin Post to create an AuthUser
     */
     .post('/signin', async(req: express.Request, res: express.Response, next: express.NextFunction) => {
       const {email, password} = req.body;

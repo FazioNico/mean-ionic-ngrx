@@ -1,5 +1,5 @@
 # Auth Microservice
-> Microservice for Agenda.ch Backend V3 managing `auth` collection
+> Microservice Backend managing `auth` collection
 
 ## Working without Docker
 ### Install

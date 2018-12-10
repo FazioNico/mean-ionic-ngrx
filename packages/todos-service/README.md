@@ -1,5 +1,5 @@
 # Auth Microservice
-> Microservice Backend managing `auth` collection
+> Microservice Backend managing `todos` collection
 
 ## Working without Docker
 ### Install
