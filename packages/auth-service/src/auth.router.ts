@@ -38,6 +38,7 @@ export class AuthRouter {
         return next({code: 401, message: 'No user ID in Token'});
       // build url to request other service
       const url = `${this.serverConfig.gateway_host}/users/${((<any>req).decoded || {})._id}`;
+      // TODO: use class with method like `/signin`
       // do request to other microservice and handle props
       const { user, code, message, stack } = await fetch(
         url,
@@ -79,6 +80,7 @@ export class AuthRouter {
       // handle unexisting token or datas from repository
       if (!token || !auth)
         return next({code: 400, message: 'Authentication failed no user or token found', stack: {auth, token}});
+      // TODO: use class with method like `/signin`
       // do request to other microservice and handle props
       const { user, message, code, stack } = await fetch(`${this.serverConfig.gateway_host}/users/${auth._id}`, {
         method: 'GET',
@@ -137,6 +139,7 @@ export class AuthRouter {
       if (!requestAuth.auth)
         return next({code: 400, message: 'User update failed'});
       result.auth = requestAuth.auth;
+      // TODO: use class with method like `/signin`
       const requestUser = await fetch(`${this.serverConfig.gateway_host}/users/${user._id}`, {
         method: 'PUT',
         body: JSON.stringify(user),
@@ -153,6 +156,7 @@ export class AuthRouter {
     })
 
     .delete('/:id', MIDDLEWARES, async(req, res, next) => {
+      // TODO: delete user data
       await this.repo.delete(req.params.id)
       .then(auth => res.status(200).json({auth: auth.auth}))
       .catch((err) => next({code: 400, message: err.message, stack: err.errorObj}));
