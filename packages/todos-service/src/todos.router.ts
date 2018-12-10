@@ -33,9 +33,20 @@ export class TodosRouter {
       const { _id = null } = ((<any>req).decoded || {});
       if (!_id)
         return next({code: 401, message: 'No user ID in Token', stack: (<any>req).decoded});
-      const { todos = []} = await this.repo.getAll(_id).catch(err => err);
+      const findItems = await this.repo.getAll(_id).catch(err => err);
+      if (!findItems.todos) return next({code: 400, message: '{TodosRouter} Failed to find toods', stack: findItems});
+      const { todos = null} = findItems;
       return res.status(200).json({todos, token });
-    });
+    })
 
+    .post('/', MIDDLEWARES, async(req: express.Request, res: express.Response, next: express.NextFunction) => {
+      const token: string = extractToken(req) || null;
+      const newItem = await this.repo.create(req.body)
+                                     .catch(err => err);
+      // handle error response from repository
+      if (!newItem.todo) return next({code: 400, message: '{TodosRouter} Todo creation failed', stack: newItem});
+      const { todo = null} = newItem;
+      res.status(200).json({todo, token});
+    });
   }
 }
