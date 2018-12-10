@@ -6,15 +6,7 @@ import { map } from 'rxjs/operators';
 
 const STORAGE_ITEM = 'authToken';
 
-/*
-Generated class for the HttpService provider.
-See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-for more info on providers and Angular 2 DI.
-*/
-@Injectable({
-  providedIn: 'root'
-})
-export abstract class HttpService {
+export abstract class GenericHttpService {
 
   public readonly apiEndPoint: string;
   // public path = '';

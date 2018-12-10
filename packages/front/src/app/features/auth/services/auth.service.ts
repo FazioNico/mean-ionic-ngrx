@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable ,  of ,  from as fromPromise } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
-import { HttpService } from '@app/shared/services/http/http.service';
+import { GenericHttpService } from '@app/shared/services/generic-http/generic-http.service';
 
 /*
 Generated class for the AuthService provider.
@@ -20,7 +20,7 @@ export interface HttpServerResponse extends Response {
 }
 
 @Injectable()
-export class AuthService extends HttpService {
+export class AuthService extends GenericHttpService {
 
   private readonly _authUrl: string = '/auth';
   private readonly _isAuthUrl: string = '/auth/isauth';
