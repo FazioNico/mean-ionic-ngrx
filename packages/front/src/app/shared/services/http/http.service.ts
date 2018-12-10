@@ -117,8 +117,10 @@ export abstract class HttpService {
   *   }
   */
   getHeaders(): HttpHeaders {
-    return new HttpHeaders()
-        .set('cache-control', 'no-cache')
-        .set('x-access-token', this.tokentStorage);
+    const header = new HttpHeaders().set('cache-control', 'no-cache');
+    if (this.tokentStorage) {
+      header.set('x-access-token', this.tokentStorage);
+    }
+    return header;
   }
 }

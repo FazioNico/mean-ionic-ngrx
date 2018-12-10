@@ -10,7 +10,12 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    const storage = localStorage.getItem('authToken');
+    if (!storage) {
+      return next.handle(request).pipe(
+        catchError(this.handleError)
+      );
+    }
     request = request.clone({
       setHeaders: {
         // TODO: pass storage KEY with environement config
