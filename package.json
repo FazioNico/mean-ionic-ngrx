@@ -11,10 +11,6 @@
     "mongod": "$HOME/Applications/mongodb/bin/mongod --dbpath $HOME/Applications/mongodb/data/db",
     "docs": "npm run typedoc -- --out docs/ --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
     "typedoc": "typedoc",
-    "helper.cmd": "node ./tools/helper.cmd.js",
-    "release:maj": "bash tools/tasks/release.project.sh major",
-    "release:min": "bash tools/tasks/release.project.sh minor",
-    "release:patch": "bash tools/tasks/release.project.sh patch",
     "redis": "$HOME/Applications/redis/src/redis-server",
     "reinstall": "lerna run reinstall"
   },
