@@ -1,47 +1,41 @@
-/**
-* @Author: Nicolas Fazio <FazioNico>
-* @Date:   26-09-2017
-* @Email:  contact@nicolasfazio.ch
- * @Last modified by:   FazioNico
- * @Last modified time: 16-10-2017
-*/
-
-import { ItemsActions, TItemsActions } from './todos.actions';
-import { ITodo, IItemsState, intitialState /*, adapter*/ } from './todos.state';
+import { ItemsActions, TItemsActions, LoadSuccessAction, UpdateSuccessAction, RemoveSuccessAction } from './todos.actions';
+import { intitialState, ITodosState} from './todos.state';
+import { Todo } from '@app/shared/models/todos/todos.model';
 
 export function reducer (
-  state: IItemsState = intitialState,
+  state: ITodosState = intitialState,
   action: TItemsActions
-): IItemsState {
+): ITodosState {
   switch (action.type) {
     case ItemsActions.LOAD: {
       return Object.assign([], state);
     }
-    case ItemsActions.LOAD_SUCCESS: {
-      // return adapter.addMany(action.payload, state)
-      return Object.assign([], [...action.payload.todos]);
-    }
-    case ItemsActions.UPDATE_SUCCESS: {
-      return Object.assign([], [...state.map((item: ITodo) => {
-        return item._id === action.payload.todo._id ? action.payload.todo : item;
+    case ItemsActions.LOAD_SUCCESS:
+      const { payload: {todos = null} = {} } = <LoadSuccessAction>action;
+      return Object.assign([], [...todos]);
+
+    case ItemsActions.UPDATE_SUCCESS:
+      const { payload: {todo: updated = null} = {} } = <UpdateSuccessAction>action;
+      return Object.assign([], [...state.map((item: Todo) => {
+        return item._id === updated._id ? updated : item;
       })
     ]);
-    }
-    case ItemsActions.REMOVE_SUCCESS: {
-      return Object.assign([], [...state.filter((item: ITodo) => {
-        return item._id !== action.payload.todo._id;
+
+    case ItemsActions.REMOVE_SUCCESS:
+      const { payload: {todo: removed = null} = {} } = <RemoveSuccessAction>action;
+      return Object.assign([], [...state.filter((item: Todo) => {
+        return item._id !== removed._id;
       })]
     );
-    }
-    case ItemsActions.CREATE_SUCCESS: {
-      return Object.assign([], [...state, action.payload.todo]);
-    }
 
-    case 'LOGOUT_SUCCESS': {
+    case ItemsActions.CREATE_SUCCESS:
+      const { payload: {todo: newItem = null} = {} } = <RemoveSuccessAction>action;
+      return Object.assign([], [...state, newItem]);
+
+    case 'LOGOUT_SUCCESS':
       return Object.assign([], intitialState);
-    }
-    default: {
-      return <IItemsState>state;
-    }
+
+    default:
+      return <ITodosState>state;
   }
 }

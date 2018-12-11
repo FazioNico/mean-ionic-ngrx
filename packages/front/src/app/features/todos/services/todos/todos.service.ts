@@ -3,6 +3,7 @@ import { GenericHttpService } from '@app/shared/services/generic-http/generic-ht
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { Todo } from '@app/shared/models/todos/todos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class TodosService extends GenericHttpService {
     super(http);
   }
 
-  get(): Observable<any> {
+  get(): Observable<{todos: Todo[]}> {
     return super.get(this._todosUrl).pipe(
       map(res => res || {}),
       catchError(res => of({
@@ -25,7 +26,7 @@ export class TodosService extends GenericHttpService {
     );
   }
 
-  put(data): Observable<any> {
+  put(data): Observable<{todo: Todo}> {
     return super.put(`${this._todosUrl}/${data._id}`, data ).pipe(
       map(res => res || {}),
       catchError(res => of({
@@ -35,7 +36,7 @@ export class TodosService extends GenericHttpService {
     );
   }
 
-  delete(data): Observable<any> {
+  delete(data): Observable<{todo: Todo}> {
     return super.delete(`${this._todosUrl}/${data._id}`, data ).pipe(
       map(res => res || {}),
       catchError(res => of({
@@ -45,7 +46,7 @@ export class TodosService extends GenericHttpService {
     );
   }
 
-  post(data): Observable<any> {
+  post(data): Observable<{todo: Todo}> {
     return super.post(`${this._todosUrl}`, data ).pipe(
       map(res => res || {}),
       catchError(res => of({

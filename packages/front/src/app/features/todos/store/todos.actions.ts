@@ -8,7 +8,8 @@
 
 
 import { NgRxAction } from '@app/@store/app.ngrx.actions';
-import { ITodo, IItemsState } from '@app/features/todos/store/todos.state';
+import { ITodo, Todo } from '@app/shared/models/todos/todos.model';
+import { ITodosState } from '@app/features/todos/store/todos.state';
 
 /**
  * PATTERN DESIGN:
@@ -30,16 +31,16 @@ export const ItemsActions = {
 };
 
 export class LoadAction extends NgRxAction<any> { type = ItemsActions.LOAD; }
-export class LoadSuccessAction extends NgRxAction<IItemsState> { type = ItemsActions.LOAD_SUCCESS; }
+export class LoadSuccessAction extends NgRxAction<{todos: ITodo[]}> { type = ItemsActions.LOAD_SUCCESS; payload?: {todos: Todo[]}; }
 
 export class CreateAction extends NgRxAction<any> { type = ItemsActions.CREATE; }
-export class CreateSuccessAction extends NgRxAction<ITodo> { type = ItemsActions.CREATE_SUCCESS; }
+export class CreateSuccessAction extends NgRxAction<{todo: ITodo}> { type = ItemsActions.CREATE_SUCCESS; }
 
 export class UpdateAction extends NgRxAction<any> { type = ItemsActions.UPDATE; }
-export class UpdateSuccessAction extends NgRxAction<ITodo> { type = ItemsActions.UPDATE_SUCCESS; }
+export class UpdateSuccessAction extends NgRxAction<{todo: ITodo}> { type = ItemsActions.UPDATE_SUCCESS; }
 
 export class RemoveAction extends NgRxAction<string> { type = ItemsActions.REMOVE; }
-export class RemoveSuccessAction extends NgRxAction<{_id: string}> { type = ItemsActions.REMOVE_SUCCESS; }
+export class RemoveSuccessAction extends NgRxAction<{todo: ITodo}> { type = ItemsActions.REMOVE_SUCCESS; }
 
 export class ErrorAction extends NgRxAction<any> { type = ItemsActions.ERROR; }
 

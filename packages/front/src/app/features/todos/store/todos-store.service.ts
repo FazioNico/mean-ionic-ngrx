@@ -13,8 +13,9 @@ import { Observable } from 'rxjs';
 import { AppStoreService } from '@app/@store/app.store.service';
 import { AppState } from '@app/@store/app.state';
 import * as items from '@app/features/todos/store/todos.actions';
-import { IItemsState, ITodo } from '@app/features/todos/store/todos.state';
+import { ITodosState } from '@app/features/todos/store/todos.state';
 import { map } from 'rxjs/operators';
+import { Todo } from '@app/shared/models/todos/todos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,18 +25,18 @@ export class TodosStoreService extends AppStoreService {
   protected readonly STATE = 'todos';
 
   constructor(
-    protected store: Store<AppState>
+    protected store: Store<AppState & {todos: ITodosState}>
   ) { super(); }
 
   dispatchLoadAction(params: any) {
     this.dispatchAction(new items.LoadAction(params));
   }
 
-  dispatchCreateAction(record: any) {
+  dispatchCreateAction(record: Todo) {
     this.dispatchAction(new items.CreateAction(record));
   }
 
-  dispatchUpdateAction(record: any)  {
+  dispatchUpdateAction(record: Todo)  {
     this.dispatchAction(new items.UpdateAction(record));
   }
 
@@ -44,15 +45,15 @@ export class TodosStoreService extends AppStoreService {
   }
 
   // Accessor sample of how to select piece of the state
-  getTodos(): Observable<ITodo[]> {
+  getTodos(): Observable<Todo[]> {
     return this.storeSelectFeatureState().pipe(
-      map((state: IItemsState) => state)
+      map((state: ITodosState) => state)
     );
   }
 
-  findById(record: {_id: string}): Observable<ITodo|any> {
+  findById(record: {_id: string}): Observable<Todo|any> {
     return this.getTodos().pipe(
-      map((state: IItemsState) => state.find((item: ITodo) => item._id === record._id))
+      map((state: ITodosState) => state.find((item: Todo) => item._id === record._id))
     );
   }
 
