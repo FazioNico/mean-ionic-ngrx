@@ -17,7 +17,7 @@ export abstract class GenericHttpService {
   }
 
   protected get(_path: string): Observable<any> {
-    this.checkStorage();
+    // this.checkStorage();
     // Define Heders request
     const options: any = { headers: this.getHeaders() };
     // post request
@@ -28,7 +28,7 @@ export abstract class GenericHttpService {
   }
 
   protected getFrontend(_path: string): Observable<any> {
-    this.checkStorage();
+    // this.checkStorage();
     // Define Heders request
     const options: any = { headers: this.getHeaders() };
     // post request
@@ -38,7 +38,7 @@ export abstract class GenericHttpService {
   }
 
   protected post(_path: string, body: any): Observable<any> {
-    this.checkStorage();
+    // this.checkStorage();
     const options: any = { headers: this.getHeaders() };
     return this.http.post(`${this.apiEndPoint}${_path}`, body, options).pipe(map(res => {
       if ((res as any).token) { this.saveToken(res); }
@@ -47,7 +47,7 @@ export abstract class GenericHttpService {
   }
 
   protected put(_path: string, body: any): Observable<any> {
-    this.checkStorage();
+    // this.checkStorage();
     const url = `${this.apiEndPoint}${_path}`; // see mdn.io/templateliterals
     const options: any = { headers: this.getHeaders() };
     return this.http.put(url, body, options).pipe(
@@ -59,7 +59,7 @@ export abstract class GenericHttpService {
   }
 
   protected delete(_path: string, id?: string): Observable<any> {
-    this.checkStorage();
+    // this.checkStorage();
 
     const url = `${this.apiEndPoint}${_path}/${id}`;
     const options: any = { headers: this.getHeaders() };
@@ -90,8 +90,12 @@ export abstract class GenericHttpService {
   }
 
 
-  /* Check if localstorage exist with datas */
+  /*
+  * [Deprecated]: see token-interceptor.ts
+  * Check if localstorage exist with datas
+  * */
   checkStorage(): void {
+    console.warn('[Deprecated]: see token-interceptor.ts');
     const token: string|null = localStorage.getItem(STORAGE_ITEM);
     this.tokentStorage = token || '';
   }
@@ -110,9 +114,10 @@ export abstract class GenericHttpService {
   */
   getHeaders(): HttpHeaders {
     const header = new HttpHeaders().set('cache-control', 'no-cache');
-    if (this.tokentStorage) {
-      header.set('x-access-token', this.tokentStorage);
-    }
+    // if (this.tokentStorage) {
+    //   console.warn('[Deprecated]: see token-interceptor.ts');
+    //   header.set('x-access-token', this.tokentStorage);
+    // }
     return header;
   }
 }
