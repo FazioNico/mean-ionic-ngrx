@@ -36,14 +36,14 @@
       <div *ngIf="loginBtn; else signupBtn">
         <ion-button block round (click)="send()" [disabled]="!userForm.valid">{{'auth.form.login'|translate}}</ion-button>
         <p>
-          {{'auth.questionLogin'|translate}} <br>
+          {{'auth.questionLogin'|translate}} <br />
           <span (click)="toggleBtn()" class="primary">{{'auth.goSignup'|translate}}</span>
         </p>
       </div>
       <ng-template #signupBtn>
         <ion-button block round (click)="send()" [disabled]="!userForm.valid">{{'auth.form.signup'|translate}}</ion-button>
         <p>
-          {{'auth.questionSignup'|translate}} <br>
+          {{'auth.questionSignup'|translate}} <br />
           <span (click)="toggleBtn()" class="primary">{{'auth.goLogin'|translate}}</span>
         </p>
       </ng-template>
