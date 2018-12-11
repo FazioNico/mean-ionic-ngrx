@@ -26,6 +26,9 @@ export function reducer (
     case AuthActions.CREATE_SUCCESS: {
       return new User(Object.assign({},  action.payload.user ));
     }
+    case AuthActions.CHECK_AUTH_NO_USER: {
+      return intitialState;
+    }
     default: {
       return <ICurrentUserState>state;
     }

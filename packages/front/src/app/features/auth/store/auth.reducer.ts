@@ -19,7 +19,9 @@ export function reducer (
     case AuthActions.ERROR: {
       return false;
     }
-
+    case AuthActions.CHECK_AUTH_NO_USER: {
+      return false;
+    }
     case AuthActions.TOKEN_DELETE: {
       return Object.assign(intitialState);
     }
