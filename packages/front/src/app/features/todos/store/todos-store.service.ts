@@ -15,7 +15,7 @@ import { AppState } from '@app/@store/app.state';
 import * as items from '@app/features/todos/store/todos.actions';
 import { ITodosState } from '@app/features/todos/store/todos.state';
 import { map } from 'rxjs/operators';
-import { Todo } from '@app/shared/models/todos/todos.model';
+import { Todo, ITodo } from '@app/shared/models/todos/todos.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,7 @@ export class TodosStoreService extends AppStoreService {
     this.dispatchAction(new items.LoadAction(params));
   }
 
-  dispatchCreateAction(record: Todo) {
+  dispatchCreateAction(record: {description: string}) {
     this.dispatchAction(new items.CreateAction(record));
   }
 

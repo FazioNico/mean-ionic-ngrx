@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosStoreService } from '@app/features/todos/store/todos-store.service';
 import { Observable } from 'rxjs';
+import { Todo } from '@app/shared/models/todos/todos.model';
 
 @Component({
   selector: 'app-todos-page',
@@ -9,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class TodosPageComponent implements OnInit {
 
-  public todos$: Observable<any[]>;
+  public todos$: Observable<Todo[]>;
   constructor(
     private _todosStore: TodosStoreService
   ) { }
@@ -25,13 +26,13 @@ export class TodosPageComponent implements OnInit {
     this.clearInput(todoInput);
   }
 
-  toggleComplete(todo): void {
+  toggleComplete(todo: Todo): void {
     const updated = Object.assign({}, todo);
     updated.isComplete = !updated.isComplete;
     this._todosStore.dispatchUpdateAction(updated);
   }
 
-  deleteTodo(todo): void {
+  deleteTodo(todo: Todo): void {
     this._todosStore.dispatchRemoveAction(todo._id);
   }
 
