@@ -27,7 +27,7 @@
 <ion-content>
 
   <ion-list *ngIf="(todos$|async) as todos">
-    <ion-item-sliding *ngFor="let todo of todos">
+    <ion-item-sliding #slidingItem *ngFor="let todo of todos">
       <ion-item>
         <ion-label>{{ todo.description }}</ion-label>
         <ion-checkbox (click)="toggleComplete(todo)" [checked]="todo.isComplete"></ion-checkbox>

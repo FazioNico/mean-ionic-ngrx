@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      {{ 'APP_TITLE' | translate}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <h2>{{'item_edit.desc'|translate}}</h2>
+  <form [formGroup]="form">
+      <ion-textarea formControlName="description"></ion-textarea>
+      <ion-item>
+        <small>{{'item_edit.deadline'|translate}}: </small>
+        <ion-datetime formControlName="deadline" displayFormat="HH:mm - DD/MM/YY" pickerFormat="HH:mm DD MMM YY"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'item_edit.expired'|translate}}:</ion-label>
+        <ion-toggle formControlName="expire" (ionChange)="toogleClick()" ></ion-toggle>
+      </ion-item>
+
+      <p>
+        <small>{{'item_edit.state'|translate}}: {{ todo?.isComplete ? "Complete" : "Incomplete" }}</small>
+      </p>
+
+    <ion-row>
+      <ion-col width-40>
+        <button ion-button block (click)="saveTodo()">
+          {{'item_edit.save'|translate}}
+        </button>
+      </ion-col>
+      <ion-col width-40>
+        <button ion-button color="light" block (click)="cancel()">
+          {{'item_edit.cancel'|translate}}
+        </button>
+      </ion-col>
+      <ion-col width-20>
+        <button ion-button color="danger" block (click)="deleteTodo()">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+
+</ion-content>

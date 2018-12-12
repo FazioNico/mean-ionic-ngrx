@@ -36,7 +36,7 @@ export class TodosStoreService extends AppStoreService {
     this.dispatchAction(new items.CreateAction(record));
   }
 
-  dispatchUpdateAction(record: Todo)  {
+  dispatchUpdateAction(record: ITodo)  {
     this.dispatchAction(new items.UpdateAction(record));
   }
 
@@ -44,16 +44,20 @@ export class TodosStoreService extends AppStoreService {
     this.dispatchAction(new items.RemoveAction(id));
   }
 
+  dispatchErrorAction(error: {message: string}) {
+    this.dispatchAction(new items.ErrorAction(error));
+  }
+
   // Accessor sample of how to select piece of the state
-  getTodos(): Observable<Todo[]> {
+  getTodos(): Observable<ITodo[]> {
     return this.storeSelectFeatureState().pipe(
       map((state: ITodosState) => state)
     );
   }
 
-  findById(record: {_id: string}): Observable<Todo|any> {
+  findById(record: {_id: string}): Observable<ITodo> {
     return this.getTodos().pipe(
-      map((state: ITodosState) => state.find((item: Todo) => item._id === record._id))
+      map((state: ITodosState) => state.find((item: ITodo) => item._id === record._id))
     );
   }
 

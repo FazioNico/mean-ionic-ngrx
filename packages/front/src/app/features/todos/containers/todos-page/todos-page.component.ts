@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosStoreService } from '@app/features/todos/store/todos-store.service';
 import { Observable } from 'rxjs';
-import { Todo } from '@app/shared/models/todos/todos.model';
+import { Todo, ITodo } from '@app/shared/models/todos/todos.model';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todos-page',
@@ -12,11 +14,14 @@ export class TodosPageComponent implements OnInit {
 
   public todos$: Observable<Todo[]>;
   constructor(
-    private _todosStore: TodosStoreService
+    private _todosStore: TodosStoreService,
+    private _router: Router
   ) { }
 
   ngOnInit() {
-    this.todos$ = this._todosStore.getTodos();
+    this.todos$ = this._todosStore.getTodos().pipe(
+      map(todos => todos.map(t => new Todo(t)))
+    );
     this._todosStore.dispatchLoadAction({path: '/todos'});
   }
 
@@ -26,17 +31,22 @@ export class TodosPageComponent implements OnInit {
     this.clearInput(todoInput);
   }
 
-  toggleComplete(todo: Todo): void {
+  toggleComplete(todo: ITodo): void {
     const updated = Object.assign({}, todo);
     updated.isComplete = !updated.isComplete;
     this._todosStore.dispatchUpdateAction(updated);
   }
 
-  deleteTodo(todo: Todo): void {
+  deleteTodo(todo: ITodo): void {
     this._todosStore.dispatchRemoveAction(todo._id);
   }
 
   clearInput(todoInput: HTMLInputElement): void {
     todoInput.value = '';
+  }
+
+  navToEdit(todo: ITodo): void {
+    console.log('go edit ', todo._id);
+    this._router.navigate([`todos/${todo._id}`]);
   }
 }
