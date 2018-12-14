@@ -19,7 +19,7 @@ export class TodosEffects {
 
   @Effect() loadAction$ = this._action$.pipe(
       ofType(Todos.ItemsActions.LOAD),
-      switchMap(() => this._database.get()),
+      switchMap((action: any) => this._database.get(action.payload)),
       switchMap((result) => of(new Todos.LoadSuccessAction(result))),
       catchError((err: any) => of(new Todos.ErrorAction(err)))
   );

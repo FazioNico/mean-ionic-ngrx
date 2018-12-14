@@ -22,7 +22,7 @@ export class TodosPageComponent implements OnInit {
     this.todos$ = this._todosStore.getTodos().pipe(
       map(todos => todos.map(t => new Todo(t)))
     );
-    this._todosStore.dispatchLoadAction({path: '/todos'});
+    this._todosStore.dispatchLoadAction();
   }
 
   addTodo(todoInput: HTMLInputElement): void {

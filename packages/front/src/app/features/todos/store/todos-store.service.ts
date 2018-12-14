@@ -28,7 +28,7 @@ export class TodosStoreService extends AppStoreService {
     protected store: Store<AppState & {todos: ITodosState}>
   ) { super(); }
 
-  dispatchLoadAction(params: any) {
+  dispatchLoadAction(params: {path?: string} = {}) {
     this.dispatchAction(new items.LoadAction(params));
   }
 

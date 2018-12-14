@@ -30,7 +30,7 @@ export const ItemsActions = {
   ERROR: '[Todo] Error'
 };
 
-export class LoadAction extends NgRxAction<any> { type = ItemsActions.LOAD; }
+export class LoadAction extends NgRxAction<{path?: string}> { type = ItemsActions.LOAD; }
 export class LoadSuccessAction extends NgRxAction<{todos: ITodo[]}> { type = ItemsActions.LOAD_SUCCESS; payload?: {todos: Todo[]}; }
 
 export class CreateAction extends NgRxAction<any> { type = ItemsActions.CREATE; }
