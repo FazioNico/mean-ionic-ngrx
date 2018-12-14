@@ -76,6 +76,20 @@ export class TodosRepo {
   }
 
 
+  async getById(params: {userID: string, todoID: string}): Promise<{todos: ITodoDoc[] }> {
+    if (!this._connected) {
+      return Promise.reject('{TodosRepo} DB not connected');
+    }
+    const {userID = null, todoID = null} = params;
+    if (!userID || !todoID) {
+      return Promise.reject('No request params find');
+    }
+    const todos = await this._model.find({uid: toObjectId(userID), _id: toObjectId(todoID)});
+    if (!todos || todos instanceof Error)
+      return Promise.reject(`{TodosRepo} Load todos failed. Todos or Authorized user don't exist.`);
+    return {todos};
+  }
+
   async create(data): Promise<{todo: ITodoDoc}> {
     if (!this._connected) {
       return Promise.reject('{TodosRepo} DB not connected');
