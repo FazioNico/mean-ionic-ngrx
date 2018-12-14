@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ITodo } from '@app/shared/models/todos/todos.model';
+import { ITodo, Todo } from '@app/shared/models/todos/todos.model';
 import { Location } from '@angular/common';
 import { TodosStoreService } from '@app/features/todos/store/todos-store.service';
 import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
-import { tap, takeUntil, take, map } from 'rxjs/operators';
+import { tap, takeUntil, take, map, debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -24,7 +24,7 @@ export class EditItemPageComponent implements OnInit {
     private _route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     // build empty form
     this.form = this._fb.group({
       description: ['', Validators.minLength(2)],
@@ -41,15 +41,38 @@ export class EditItemPageComponent implements OnInit {
     }
     // Load todo data from store if existing
     // or do request to backend serve
-    this._todosStore.findById({_id: id}).pipe(
-      tap(todo => console.log(todo)),
-      tap((todo) => (todo)
-        ? this.form.patchValue(todo)
-        : null
-      ),
-      tap(() => console.log(this.form.value))
+    const todo = await this._todosStore.findById({_id: id}).pipe(
+      take(1),
+      tap((t) => (t)
+        ? this.form.patchValue(t)
+        : this._todosStore.dispatchLoadAction({path: `/${id}`})
+      )
     )
-    .toPromise();
+    .toPromise().catch(err => err);
+    if (todo instanceof Error) {
+      this._todosStore.dispatchErrorAction(todo || {message: 'Unexisting Item'});
+    }
+    if (!todo) {
+      // to request to backend server
+      this.loadItem(id);
+    }
+  }
+
+  async loadItem(id) {
+    const todo = await this._todosStore.findById({_id: id}).pipe(
+      debounceTime(1500),
+      take(1),
+      tap((t) => (t)
+        ? this.form.patchValue(new Todo(t))
+        : this._todosStore.dispatchLoadAction({path: `/${id}`})
+      ),
+    )
+    .toPromise().catch(err => err);
+    if (! todo || todo instanceof Error) {
+      console.log('Error--->', todo);
+      this._todosStore.dispatchErrorAction(todo || {message: 'Unexisting Item'});
+    }
+    return todo;
   }
 
   saveTodo(): void {
