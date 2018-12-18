@@ -12,16 +12,14 @@ import { map } from 'rxjs/operators';
 })
 export class TodosPageComponent implements OnInit {
 
-  public todos$: Observable<Todo[]>;
+  public todos$: Observable<ITodo[]>;
   constructor(
     private _todosStore: TodosStoreService,
     private _router: Router
   ) { }
 
   ngOnInit() {
-    this.todos$ = this._todosStore.getTodos().pipe(
-      map(todos => todos.map(t => new Todo(t)))
-    );
+    this.todos$ = this._todosStore.getTodos();
     this._todosStore.dispatchLoadAction();
   }
 
@@ -32,8 +30,8 @@ export class TodosPageComponent implements OnInit {
   }
 
   toggleComplete(todo: ITodo): void {
-    const updated = Object.assign({}, todo);
-    updated.isComplete = !updated.isComplete;
+    const updated = new Todo(todo) ;
+    updated.toggleState();
     this._todosStore.dispatchUpdateAction(updated);
   }
 
