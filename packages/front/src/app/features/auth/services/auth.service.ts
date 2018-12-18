@@ -1,7 +1,7 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable ,  of ,  from as fromPromise } from 'rxjs';
+import { Observable ,  of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 import { GenericHttpService } from '@app/shared/services/generic-http/generic-http.service';

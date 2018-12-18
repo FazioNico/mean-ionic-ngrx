@@ -4,7 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Observable , of } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
-import { AlertController, ToastController } from '@ionic/angular';
+import { ToastController } from '@ionic/angular';
 
 import { Action } from '@ngrx/store';
 import { Effect, Actions, ofType } from '@ngrx/effects';

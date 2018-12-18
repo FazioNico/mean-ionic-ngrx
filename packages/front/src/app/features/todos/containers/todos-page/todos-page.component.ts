@@ -3,7 +3,6 @@ import { TodosStoreService } from '@app/features/todos/store/todos-store.service
 import { Observable } from 'rxjs';
 import { Todo, ITodo } from '@app/shared/models/todos/todos.model';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todos-page',

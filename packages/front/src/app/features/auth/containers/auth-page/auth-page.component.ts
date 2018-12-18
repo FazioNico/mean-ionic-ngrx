@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthStoreService } from '@app/features/auth/store/auth-store.service';
 import { CustomValidators } from '@app/shared/validators';
 
@@ -9,7 +8,7 @@ import { CustomValidators } from '@app/shared/validators';
   templateUrl: './auth-page.component.html',
   styleUrls: ['./auth-page.component.css']
 })
-export class AuthPageComponent {
+export class AuthPageComponent implements OnInit {
 
 
   public user: any | null;
@@ -20,6 +19,9 @@ export class AuthPageComponent {
     private readonly _formBuilder: FormBuilder,
     private readonly _store: AuthStoreService
   ) {
+  }
+
+  ngOnInit() {
     this.userForm = this._formBuilder.group({
       email: ['demo@demo.ch', Validators.compose([Validators.required, Validators.email, CustomValidators.email()])],
       password: ['A123456', Validators.compose([Validators.required, Validators.minLength(6), CustomValidators.password()])],

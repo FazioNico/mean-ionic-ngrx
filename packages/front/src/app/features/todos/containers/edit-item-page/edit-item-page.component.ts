@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ITodo, Todo } from '@app/shared/models/todos/todos.model';
 import { Location } from '@angular/common';
 import { TodosStoreService } from '@app/features/todos/store/todos-store.service';
-import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
-import { tap, takeUntil, take, map, debounceTime } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { tap, take, debounceTime } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({

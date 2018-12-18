@@ -15,7 +15,7 @@ import { AppState } from '@app/@store/app.state';
 import * as items from '@app/features/todos/store/todos.actions';
 import { ITodosState } from '@app/features/todos/store/todos.state';
 import { map } from 'rxjs/operators';
-import { Todo, ITodo } from '@app/shared/models/todos/todos.model';
+import { ITodo } from '@app/shared/models/todos/todos.model';
 
 @Injectable({
   providedIn: 'root'

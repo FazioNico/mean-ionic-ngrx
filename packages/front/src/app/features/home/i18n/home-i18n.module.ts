@@ -8,11 +8,9 @@
 
 import { NgModule } from '@angular/core';
 
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { HomeI18nService } from "./home-i18n.service";
+import { HomeI18nService } from './home-i18n.service';
 import { locale as english } from './langues/home.en';
 import { locale as french } from './langues/home.fr';
 
@@ -26,7 +24,7 @@ import { locale as french } from './langues/home.fr';
 export class HomeI18nModule {
   constructor(
     private translationLoader: HomeI18nService
-  ){
+  ) {
       this.translationLoader.loadTranslations(english, french);
   }
 }

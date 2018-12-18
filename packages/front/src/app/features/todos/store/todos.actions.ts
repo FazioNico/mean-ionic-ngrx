@@ -9,7 +9,6 @@
 
 import { NgRxAction } from '@app/@store/app.ngrx.actions';
 import { ITodo, Todo } from '@app/shared/models/todos/todos.model';
-import { ITodosState } from '@app/features/todos/store/todos.state';
 
 /**
  * PATTERN DESIGN:
