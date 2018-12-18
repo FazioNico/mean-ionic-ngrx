@@ -100,4 +100,18 @@ export class TodosRepo {
     return {todo};
   }
 
+  async update(data) {
+    if (!this._connected) {
+      return Promise.reject('{TodosRepo} DB not connected');
+    }
+    const { _id = null } = data;
+    if (!_id) {
+      return Promise.reject('{TodosRepo} Todo ID not found');
+    }
+    const todo = await this.model.findOneAndUpdate({_id: toObjectId(_id)}, data, {new: true});
+    if (todo instanceof Error)
+      return Promise.reject('{TodosRepo} Error with update Todo');
+    return {todo};
+  }
+
 }

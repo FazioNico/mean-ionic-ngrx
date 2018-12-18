@@ -79,6 +79,24 @@ export class TodosRouter {
       if (!newItem.todo) return next({code: 400, message: '{TodosRouter} Todo creation failed', stack: newItem});
       const { todo = null} = newItem;
       res.status(200).json({todo, token});
+    })
+
+    .put('/:id', MIDDLEWARES, async(req: express.Request, res: express.Response, next: express.NextFunction) => {
+      const token: string = extractToken(req) || null;
+      // handle unexisting user ID
+      const { _id: userId = null } = ((<any>req).decoded || {});
+      if (!userId)
+        return next({code: 401, message: 'No user ID in Token', stack: (<any>req).decoded});
+      // handle unexisting item ID
+      const { id: itemId = null } = ((<any>req).params || {});
+      if (!itemId)
+        return next({code: 401, message: 'No item ID in request params', stack: (<any>req).params});
+      const updateItem = await this.repo.update({...req.body, _id: itemId, uid: userId})
+                                     .catch(err => err);
+      // handle error response from repository
+      if (!updateItem.todo) return next({code: 400, message: '{TodosRouter} Todo creation failed', stack: updateItem});
+      const { todo = null} = updateItem;
+      res.status(200).json({todo, token});
     });
   }
 }
