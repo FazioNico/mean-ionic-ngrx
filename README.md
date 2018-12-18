@@ -87,11 +87,11 @@ AUTH Endpoints
   autenticate: false
   methode: $_POST
 
-  path: http://localhost:3000/isauth
+  path: http://localhost:3000/auth/isauth
   autenticate: false/true
   methode: $_GET
 
-  path: http://localhost:3000/signup
+  path: http://localhost:3000/auth/signin
   autenticate: false
   methode: $_POST
 
