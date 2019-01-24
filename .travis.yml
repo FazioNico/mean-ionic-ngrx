@@ -34,9 +34,9 @@ before_script:
 #
 
 before_install:
-  - nvm install node
-  - nvm use node
-  - npm install -g cordova ionic
+  - nvm install node 10
+  - nvm use node 10
+  - npm install -g typescript
   - npm install -g karma-cli
   - npm install -g webpack
   # - ionic state clear # Deprecate: remove from ionic >3.0.0
@@ -47,6 +47,6 @@ install: npm install
 
 
 script:
-  - karma start ./tools/config/test/karma.conf.js --single-run  # unit tests
+  - npm run test:ci
   # - ionic build broewser --prod
   # - protractor test-config/protractor.conf.js      # run e2e tests against ionic

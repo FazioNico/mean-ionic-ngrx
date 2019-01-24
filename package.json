@@ -10,6 +10,7 @@
     "lerna:changed": "lerna diff --help",
     "mongod": "$HOME/Applications/mongodb/bin/mongod --dbpath $HOME/Applications/mongodb/data/db",
     "docs": "npm run typedoc -- --out docs/ --exclude '**/*+(e2e|spec|index).ts' ./src/  && open docs/index.html",
+    "test:ci": "sh scripts/test-ci.sh",
     "typedoc": "typedoc",
     "redis": "$HOME/Applications/redis/src/redis-server",
     "reinstall": "lerna run reinstall"
