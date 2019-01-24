@@ -17,6 +17,13 @@ export const start = async (options): Promise<{server: http.Server}> => {
   if (!options.serverConfig.port) {
     Promise.reject(new Error('The server must be started with an available port'));
   }
+
+  const corsOptions = {
+    origin:  (origin, callback) => {
+      callback(null, true);
+    },
+    optionsSuccessStatus: 200
+  };
   const app: express.Application = express()
     // use Helmet to help secure Express apps with various HTTP headers
     .use(helmet())
@@ -37,7 +44,7 @@ export const start = async (options): Promise<{server: http.Server}> => {
     // enable gzip compression
     .use(compress())
     // cors domaine origin
-    .use(cors({optionsSuccessStatus: 200}))
+    .use(cors(corsOptions))
     // add serverConfigBackendToken + secretToken to app
     .use((req, res, next) =>  {
       (req as any).serverConfig = {};
@@ -57,11 +64,9 @@ export const start = async (options): Promise<{server: http.Server}> => {
     return {server};
 };
 
-
 export const catchErrors = (app, option): Promise<any> => {
   return Promise.resolve(
-    app
-        .use((err, req, res, next) => {
+    app.use((err, req, res, next) => {
           if (err && err.code) {
             const response: any = { message: err.message || err.toString(), code: err.code || 500, stack: err.stack };
             console.log(response.message, option.serverConfig.verbose);

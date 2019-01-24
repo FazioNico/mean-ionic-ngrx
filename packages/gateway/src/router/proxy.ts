@@ -22,8 +22,11 @@ interface IRequestOptions {
  */
 const proxyRequester = (repo) => express.Router().use(async (req: any, res, next) => {
   // extract desired url.path
-  const path: string = req.url.split('/').filter(param => param !== '').splice(1, 1).join('/');
-  console.log('[INFO]: Proxy requester. Find service: ', req.url.split('/')[1]);
+  const path: string = req.url.split('/')
+                              .filter(param => param !== '')
+                              .filter(param => param !== req.url.split('/')[1])
+                              .join('/');
+  // console.log('[INFO]: Proxy requester. Find service: ');
   // extract existing token
   const token: string = req.get('x-access-token') || req.get('authentication') || req.get('authorization') || undefined;
   const { serverConfig: { backendToken = null } = {}} = req;
@@ -47,23 +50,23 @@ const proxyRequester = (repo) => express.Router().use(async (req: any, res, next
     ? `${host}:${port}`
     : `http://${host}:${port}`;
   console.log('[INFO]: Send request proxy to -->', hostname + '/api/v2/' + path, req.method.toUpperCase());
-  console.log('[INFO]: with token -->', (token || '').length > 10);
-  console.log('[INFO]: with backendToken -->', (backendToken || '').length > 10);
-  const body = JSON.stringify(req.body || {});
-  console.log('[INFO]: with body -->',  (body || '').length > 1);
+  const body = JSON.stringify({...req.body || {}});
   // build request options
   const requestOptions: http.RequestOptions = {
     method: req.method.toUpperCase(),
-    hostname: hostname.split('//')[1].split(':')[0],
+    hostname: hostname.split('//').find(i => i.indexOf('http') < 0).split(':')[0],
     port: port || hostname.split(':')[2],
     path: '/api/v2/' + path,
     headers: {
-      'Content-type': 'application/json',
+      'Content-type': req.headers['content-type'] || 'application/json' ,
       'x-access-token': token || '',
       'x-backend-token': backendToken || '',
-      'Content-Length': body.length
+      // byteLength() => see: https://stackoverflow.com/questions/28344111/node-js-using-http-module-to-send-post-data-with-accented-characters-such-as-%C3%A4
+      'Content-Length': Buffer.byteLength(body, 'utf8') // body.length
     },
   };
+  // create prop to store response type
+  let responseType;
   // do request to services
   const responseProxy = await new Promise((resolve, reject) => {
     const request = http.request(requestOptions, (resp) => {
@@ -72,16 +75,24 @@ const proxyRequester = (repo) => express.Router().use(async (req: any, res, next
       resp.on('data', (chunk) => data += chunk);
       // The whole response has been received. Print out the result.
       resp.on('end', () => {
-        resolve(JSON.parse(data || null));
+        responseType = resp.headers['content-type'];
+        if (responseType && responseType.includes('application/json')) {
+          resolve(JSON.parse(data || null));
+        } else {
+          resolve(data || null);
+        }
       });
     })
-    .on('error', (err) => reject(err));
+    .on('error', (err) => reject(err || {}));
     request.write(body);
     request.end();
   }).catch(err => err);
   // update responseStatus
   if (responseProxy.status || responseProxy.code) responseStatus = responseProxy.status || responseProxy.code;
-  return res.status(responseStatus).json(responseProxy);
+  // use response type to set Header response
+  if (responseType) res.setHeader('Content-Type', responseType);
+  // return respons with send()
+  return res.status(responseStatus).send(responseProxy);
 });
 
 /**

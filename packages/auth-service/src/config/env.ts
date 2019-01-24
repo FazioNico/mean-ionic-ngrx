@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 dotenv.config();
-// console.log('------->', process.env.PORT);
 
 import * as RateLimit from 'express-rate-limit';
 import { CONFIG } from './';

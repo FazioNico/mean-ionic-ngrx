@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 dotenv.config();
-console.log('---->', process.env.NODE_ENV);
 
 export const dbSettings = {
   host: process.env.DB_REDIS_SERVERS || '127.0.0.1', // YOUR-REDISLAB-URL,

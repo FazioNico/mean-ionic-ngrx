@@ -30,7 +30,7 @@ export const monitorService = (repo: IRepository) => {
         ) => {
             const { service = null } = req.body || null;
             // TODO: return error
-            console.log('service---', req.body);
+            // console.log('service---', req.body);
             if (!service) return next({code: 400, message: 'Unexisting routes'});
             const {
                 // extracting data from Object `container`
@@ -42,9 +42,8 @@ export const monitorService = (repo: IRepository) => {
             if (!label || !host || !port) return next('');
             // build route Object to store into database
             const route = {label, host, port};
-            console.log('route...->', route);
             await repo.add(route)
-                .then(result => (console.log('Update api route: %j', result), result))
+                // .then(result => (console.log('Update api route: %j', result), result))
                 .then(result => res.status(200).json({code: 200, message: result}))
                 .catch(err => next(err));
         })
