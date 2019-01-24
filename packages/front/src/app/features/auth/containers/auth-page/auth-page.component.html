@@ -1,0 +1,52 @@
+<ion-content padding>
+    <div class="centered">
+
+      <p class="slogan">
+        {{'auth.title' | translate}}
+      </p>
+      <form [formGroup]="userForm">
+        <ion-list inset>
+          <ion-item>
+            <ion-input ngDefaultControl
+                       type="email"
+                       placeholder="{{'auth.form.email' | translate}}"
+                       formControlName="email"
+                       (keypress)="inputKeypress($event)"
+                       required>
+            </ion-input>
+          </ion-item>
+          <!-- <app-form-error name="email"></app-form-error> -->
+
+          <ion-item>
+            <ion-input ngDefaultControl
+                       type="password"
+                       placeholder="{{'auth.form.password' | translate}}"
+                       formControlName="password"
+                       (keypress)="inputKeypress($event)"
+                       required>
+            </ion-input>
+          </ion-item>
+          <!-- <app-form-error name="password"></app-form-error> -->
+
+        </ion-list>
+      </form>
+      <!-- <div>
+        <ion-button (click)="doLogin()">{{'auth.loginPage.form.buttons.login' | translate}}</ion-button>
+      </div> -->
+      <div *ngIf="loginBtn; else signupBtn">
+        <ion-button block round (click)="send()" [disabled]="!userForm.valid">{{'auth.form.login'|translate}}</ion-button>
+        <p>
+          {{'auth.questionLogin'|translate}} <br />
+          <span (click)="toggleBtn()" class="primary">{{'auth.goSignup'|translate}}</span>
+        </p>
+      </div>
+      <ng-template #signupBtn>
+        <ion-button block round (click)="send()" [disabled]="!userForm.valid">{{'auth.form.signup'|translate}}</ion-button>
+        <p>
+          {{'auth.questionSignup'|translate}} <br />
+          <span (click)="toggleBtn()" class="primary">{{'auth.goLogin'|translate}}</span>
+        </p>
+      </ng-template>
+    </div>
+</ion-content>
+
