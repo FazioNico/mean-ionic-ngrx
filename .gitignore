@@ -12,6 +12,7 @@ log.txt
 .vscode/
 npm-debug.log*
 
+dump.rdb
 .env
 .env.*
 .idea/
