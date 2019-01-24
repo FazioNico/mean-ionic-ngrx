@@ -1,9 +1,3 @@
-# @Author: Nicolas Fazio <FazioNico>
-# @Date:   21-04-2017
-# @Email:  contact@nicolasfazio.ch
-# @Last modified by:   FazioNico
-# @Last modified time: 11-10-2017
-
 #
 # Configuration
 #
@@ -17,12 +11,7 @@ addons:
       - google-chrome-stable
 language: node_js
 node_js:
-  - 7
-
-nv:
-  global:
-    - __DEV__=false
-    - __PROD__=true
+  - 10
 
 before_script:
 - export DISPLAY=:99.0
